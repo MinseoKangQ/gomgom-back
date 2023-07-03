@@ -6,7 +6,7 @@ import openai
 openai.api_key = os.environ['OPENAI_API_KEY']
 
 # 곰곰AI 페이지 접속 시
-def ai(request):
+def ai_view(request):
     
     # 질문 받기
     question_ko = request.GET.get('question', '')
@@ -38,6 +38,8 @@ def ask_gpt(prompt):
         temperature=0.7,
         n=1,
         stop=None,
-        # temperature=0.7,
     )
     return response.choices[0].text.strip()
+
+def home_view(request):
+    return render(request, 'home.html')
