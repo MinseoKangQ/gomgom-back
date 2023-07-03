@@ -20,7 +20,7 @@ def signup_view(request):
         form = signupForm(request.POST,request.FILES)
         if form.is_valid():
             #이미지가 존재한다면, 이미지 저장 필요
-            models.image = form.cleaned_data['image']
+            image = form.cleaned_data['image']
             #유효성 처리 후 회원 생성
             instance = form.save()
             #회원가입이 성공하면 로그인 페이지로 이동
