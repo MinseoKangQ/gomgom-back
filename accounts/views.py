@@ -4,6 +4,9 @@ from django.shortcuts import redirect,render
 from accounts.forms import signupForm
 from django.contrib.auth.forms import AuthenticationForm
 from users.models import models
+from .forms import CustomAuthenticationForm
+
+# 완성
 
 # signup - GET 요청
 def signup_view(request):
@@ -31,17 +34,17 @@ def signup_view(request):
 def login_view(request):
     if request.method=='GET':
         #GET 요청시 로그인 페이지 내보냄
-        return render(request,'accounts/login.html',{'form':AuthenticationForm()})
+        return render(request,'accounts/login.html',{'form':CustomAuthenticationForm()})
     else:
-        #개인정보는 post 요청으로 받아옴 (AuthenticationForm으로..)
-        form = AuthenticationForm(request,data=request.POST)
+        #개인정보는 post 요청으로 받아옴 (CustomAuthenticationForm으로..)
+        form = CustomAuthenticationForm(request,data=request.POST)
         #비지니스 로직
         if form.is_valid():
             login(request,form.user_cache)
             #로그인 성공시 홈 페이지로 이동      ** 추후에 설정 필요함! **
             return redirect('gomgom:home') #확인용으로 redirect 작성
         else: #비지니스 로직 실패 ( 로그인 실패 )
-            return render(request,'accounts/login.html',{'form':form})
+            return render(request,'accounts/login.html',{'form':CustomAuthenticationForm()})
         
 
 

@@ -3,7 +3,8 @@ from googletrans import Translator
 import os
 import openai
 
-openai.api_key = os.environ['OPENAI_API_KEY']
+# 실제 AI 테스트 할 때 주석 풀기
+# openai.api_key = os.environ['OPENAI_API_KEY']
 
 # 곰곰AI 페이지 접속 시
 def ai_view(request):
