@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from gomgom.views import ai
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('gomgom/ai/', ai),
+    path('gomgom/', include('gomgom.urls', namespace='gomgom')),
     path('accounts/', include('accounts.urls',namespace='accounts')),
 ]
