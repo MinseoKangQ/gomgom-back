@@ -4,11 +4,12 @@ from django.shortcuts import redirect,render
 from accounts.forms import signupForm
 from django.contrib.auth.forms import AuthenticationForm
 from users.models import models
+
 # signup - GET 요청
 def signup_view(request):
     #GET 요청시, 회원 가입 HTML render
     if request.method=='GET':
-        form = signupForm
+        form = signupForm()
         context = {'form':form}
         return render(request,'accounts/signup.html',context)
     else:
@@ -38,8 +39,7 @@ def login_view(request):
         if form.is_valid():
             login(request,form.user_cache)
             #로그인 성공시 홈 페이지로 이동      ** 추후에 설정 필요함! **
-            #return redirect('gomgom:home')
-            return redirect('/admin') #확인용으로 redirect 작성
+            return redirect('gomgom:home') #확인용으로 redirect 작성
         else: #비지니스 로직 실패 ( 로그인 실패 )
             return render(request,'accounts/login.html',{'form':form})
         
@@ -49,5 +49,4 @@ def logout_view(request):
     if request.user.is_authenticated:
         logout(request)
     #로그아웃 시, 그냥 홈페이지로 이동 redirect  ** 추후에 설정 필요함! **
-    #return redirect('/gomgom/home')    #확인용으로 redirect 작성
-    return redirect('/admin')
+    return redirect('gomgom:home')
