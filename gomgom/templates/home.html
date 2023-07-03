@@ -7,5 +7,8 @@
 </head>
 <body>
     안녕하세요, 홈입니다.
+    {% if request.user.is_authenticated %}
+        <div>{{ user.username }}님 환영합니다.</div>
+    {% endif %}
 </body>
 </html>
