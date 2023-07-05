@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+
+from .models import Post,Selection
+
+@admin.register(Post)
+class UserModelAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Selection)
+class UserModelAdmin(admin.ModelAdmin):
+    pass
