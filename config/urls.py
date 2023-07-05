@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('gomgom/ai/', ai),
     path('accounts/', include('accounts.urls',namespace='accounts')),
+    path('posts/',include('posts.urls',namespace='posts')),
+    
 ]
