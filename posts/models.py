@@ -9,8 +9,8 @@ class Post(models.Model):
     title = models.TextField(verbose_name='질문제목')
     content = models.TextField(verbose_name='내용')
     created_at = models.DateTimeField(verbose_name='작성일',auto_now_add=True)
-    view_count = models.IntegerField(verbose_name='조회수',null=True)
-    heart_count = models.IntegerField(verbose_name='공감수',null=True)
+    view_count = models.IntegerField(verbose_name='조회수',blank=True, default = 0)
+    heart_count = models.IntegerField(verbose_name='공감수',blank=True, default = 0)
     writer = models.ForeignKey(to=User,on_delete=models.CASCADE,null=True,blank=True)
 
 
