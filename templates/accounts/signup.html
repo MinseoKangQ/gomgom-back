@@ -57,33 +57,7 @@
     </section>
 
     <footer class="main-footer">
-
     </footer>
-    <script>
-      function getImageFiles(e) {
-        const uploadFiles = [];
-        const files = e.currentTarget.files;
-        const imagePreview = document.querySelector('.image-preview');
-        const docFrag = new DocumentFragment();
-      }
-  
-      function createElement(e, file) {
-        const li = document.createElement('li');
-        const img = document.createElement('img');
-        img.setAttribute('src', e.target.result);
-        img.setAttribute('data-file', file.name);
-        li.appendChild(img);
-  
-        return li;
-      }
-  
-      const realUpload = document.querySelector('.real-upload');
-      const upload = document.querySelector('.upload');
-  
-      upload.addEventListener('click', () => realUpload.click());
-  
-      realUpload.addEventListener('change', getImageFiles);
-    </script>
 </body>
 {% endblock %}
 </html>
