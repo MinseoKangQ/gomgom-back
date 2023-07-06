@@ -30,7 +30,7 @@ class signupForm(UserCreationForm):
         })
     )
     password2 = forms.CharField(
-        label='비밀번호',
+        label='비밀번호 확인',
         initial='',
         widget=PasswordInput(attrs={
             'class': 'form-control',
@@ -44,7 +44,7 @@ class signupForm(UserCreationForm):
 # 로그인 폼
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
-        label='아이디',
+        label='',
         initial='',
         widget=TextInput(attrs={
             'class': 'login-form-username',
@@ -52,7 +52,7 @@ class CustomAuthenticationForm(AuthenticationForm):
         })
     )
     password = forms.CharField(
-        label='비밀번호',
+        label='',
         initial='',
         widget=PasswordInput(attrs={
             'class': 'login-form-password',

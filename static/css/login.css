@@ -1,0 +1,106 @@
+.login {
+    width: 100vw;
+    height: 1046px;
+    background-color: var(--bodycolor);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.login__div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login__icon {
+    width: 73px;
+    height: 73px;
+    flex-shrink: 0;
+    background: var(--color4);
+    margin-top: 83px;
+}
+.login__title{
+    color: var(--color1);
+    text-align: center;
+    font-size: 24px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 78px 0 122px 0;
+}
+.login-form-username, .login-form-password {
+    width: 557px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    border: 2px solid var(--color3);
+    background: var(--ffffff, #FFF);
+}
+.login-form-username {
+    margin-bottom: 22px;
+    text-indent: 31px;
+    color: var(--color1);
+    font-size: 18px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+}
+.login-form-password {
+    text-indent: 31px;
+    color: var(--color1);
+    font-size: 18px;
+
+}
+.login-form input[type="text"]::placeholder,
+.login-form input[type="password"]::placeholder,
+.signupForm input[type="text"]::placeholder,
+.signupForm input[type="password"]::placeholder {
+    color: var(--color2);
+    /* M 18 */
+    font-size: 18px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    text-indent: 31px;
+}
+.btns {
+    display: flex;
+    flex-direction: column;
+
+}
+.btns__login{
+    width: 340px;
+    height: 75px;
+    flex-shrink: 0;
+    border-radius: 44px;
+    background: var(--ffab-5-d, #FFAB5D);
+    border-style: none;
+    color: #FFF;
+    /* B 24 */
+    font-size: 24px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    margin-bottom: 42px;
+
+}
+.btns__signup {
+    color: var(--grey-1, #606067);
+    /* B 24 */
+    font-size: 24px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    border-style: none;
+    background-color: transparent;
+}

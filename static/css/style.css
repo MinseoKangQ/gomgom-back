@@ -1,0 +1,21 @@
+/*components*/
+@import "component/header.css";
+@import "component/footer.css";
+/*screens*/
+@import "screens/post-detail-today-question.css";
+@import "screens/post-list-all.css";
+@import "screens/signup.css";
+@import "screens/login.css";
+
+:root {
+    --color1:#67594C;
+    --color2:#D2CDBC;
+    --color3:#E9E5DA;
+    --color4:#D9D9D9;
+    --bodycolor:#FAF9F6;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color:var(--bodycolor);
+}
