@@ -24,7 +24,7 @@ def ai_view(request):
             response_ko = translator.translate(response_en, src='en', dest='ko')
             print("답변 완료")
             # 답변이 포함된 페이지로 렌더링 해주기
-            return render(request, 'ai_response.html', {'response' : response_ko.text})
+            return render(request, 'gomgom/ai_response.html', {'response' : response_ko.text})
         # 로그인이 안 된 상태이면 로그인 화면으로 이동
         else:
             return redirect('accounts:login')
@@ -32,8 +32,7 @@ def ai_view(request):
     # 질문이 없는 경우
     else:
         # 답변이 포함 안된 페이지로 렌더링 해주기
-        return render(request, 'ai.html') 
-        
+        return render(request, 'gomgom/ai.html')        
 
 # 곰곰AI에게 질문 보내고 답변 받기
 def ask_gpt(prompt):
@@ -48,4 +47,4 @@ def ask_gpt(prompt):
     return response.choices[0].text.strip()
 
 def home_view(request):
-    return render(request, 'home.html')
+    return render(request, 'gomgom/home.html')
