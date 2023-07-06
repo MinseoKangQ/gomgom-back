@@ -14,8 +14,7 @@
     </p>
     img : 
     <p>
-        <!--user.image : {{ user.image }}<br>--> <!-- ex. profile.png -->
-        <!--user.image.url : {{ user.image.url }}<br>--> <!-- ex. /media/profile.png -->
+        
         {% if request.user.is_authenticated %}
             <img class="card__image" src="{{ user.image.url }}" alt="">
         {% endif %}
