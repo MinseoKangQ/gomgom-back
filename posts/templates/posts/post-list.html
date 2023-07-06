@@ -4,11 +4,22 @@
 {% block content %}
 <h1>Post 목록 화면</h1>
 {% for post in post_list %}
-    <div>       
-    {{ post }}
+    <div>
+        [ post ]<br>
+        post.title : {{ post.title }}<br>
+        post.content : {{ post.content }}<br>
+        post.writer : {{ post.writer }}<br>
+        post.created_at : {{ post.created_at }}<br>
+        post.heart_count : {{ post.heart_count }}<br>
+        [ Comment ]<br>
+        댓글 개수 : {{ post.comment_set.all.count }}<br>
+        {% comment %} {% for comment in post.comment_set.all %}
+            <div>   
+                [ Comment ]<br>
+                comment.content : {{ comment.content }}<br>
+                comment.writer : {{ comment.writer }} <br>
+            </div>
+        {% endfor %} {% endcomment %}
     </div>
-    {% endfor %}
-    
-
-
+{% endfor %}
 {% endblock %}
