@@ -1,32 +1,89 @@
-{% extends 'base.html' %}
-{% block title %}회원가입{% endblock %}
-
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
 {% block content %}
-<h1>회원가입</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
+    <title>{% block title %}회원가입{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <p>gomgom</p>
+          </div>
+        <nav class="nav">
+          <ul class="nav__navbar">
+            <li><a href="#">메인</a></li>
+            <li><a href="#">고민올리기</a></li>
+            <li><a href="post-list-all.html">게시판</a></li>
+            <li><a href="#">곰곰이</a></li>
+          </ul>
+          <a href="마이페이지URL" class="mypage-button">
+            <img src="{% static 'photo/mypage-icon.png' %}">
+          </a>
+        </nav>
+    </header>
 
-<form id="signupForm" action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    
-    <div>
-        {{ form.as_ul }}
-    </div>
-    <div>
-        <input type="submit">
-    </div>
-</form>
-<script>
-    document.getElementById("signupForm").addEventListener("submit", function(event) {
-        var password1 = document.getElementById("id_password1").value;
-        var password2 = document.getElementById("id_password2").value;
-        var username = document.getElementById("id_username").value;
+    <section class="signup-sec">
+      <form class="signupForm" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+          {% for field in form %}
+            {% if field.label == '이미지' %}
+            <div class="signupContainer">
+              <p>회원가입</p>
+              <div class="signupImage"> {{ field }}</div>
+              <label for="file-input">사진 등록</label>
+              <input type="file" id="file-input" style="display: none;" >
+            </div>
+            {% else %}
+            <div>
+                {{ field.label }}<br>
+                {{ field }}<br><br>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div>
+          <button type="submit" class="loginBtn">완료</button>
+        </div>
+      </form>
+    </section>
 
-        if (password1 !== password2) {
-            event.preventDefault();  // 폼 제출을 막음
-            alert("비밀번호가 일치하지 않습니다.");
-            document.getElementById("id_password1").value = "";  // 비밀번호1 값을 비움
-            document.getElementById("id_password2").value = "";  // 비밀번호2 값을 비움
-        }
+    <footer class="main-footer">
 
-    });
-</script>
+    </footer>
+    <script>
+      function getImageFiles(e) {
+        const uploadFiles = [];
+        const files = e.currentTarget.files;
+        const imagePreview = document.querySelector('.image-preview');
+        const docFrag = new DocumentFragment();
+      }
+  
+      function createElement(e, file) {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        img.setAttribute('src', e.target.result);
+        img.setAttribute('data-file', file.name);
+        li.appendChild(img);
+  
+        return li;
+      }
+  
+      const realUpload = document.querySelector('.real-upload');
+      const upload = document.querySelector('.upload');
+  
+      upload.addEventListener('click', () => realUpload.click());
+  
+      realUpload.addEventListener('change', getImageFiles);
+    </script>
+</body>
 {% endblock %}
+</html>

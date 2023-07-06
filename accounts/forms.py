@@ -30,7 +30,7 @@ class signupForm(UserCreationForm):
         })
     )
     password2 = forms.CharField(
-        label='비밀번호',
+        label='비밀번호 확인',
         initial='',
         widget=PasswordInput(attrs={
             'class': 'form-control',
