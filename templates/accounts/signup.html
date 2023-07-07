@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="ko">
-{% block content %}
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
-    <link rel="stylesheet" href="{% static 'css/common.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
-    <title>{% block title %}회원가입{% endblock %}</title>
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <p>gomgom</p>
-          </div>
-        <nav class="nav">
-          <ul class="nav__navbar">
-            <li><a href="#">메인</a></li>
-            <li><a href="#">고민올리기</a></li>
-            <li><a href="post-list-all.html">게시판</a></li>
-            <li><a href="#">곰곰이</a></li>
-          </ul>
-          <a href="마이페이지URL" class="mypage-button">
-            <img src="{% static 'photo/mypage-icon.png' %}">
-          </a>
-        </nav>
-    </header>
+{% extends 'base.html' %}
+  {% block title %}회원가입 {% endblock %}
 
+{% block content %}
     <section class="signup-sec">
       <form class="signupForm" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -55,9 +27,6 @@
         </div>
       </form>
     </section>
-
     <footer class="main-footer">
     </footer>
-</body>
 {% endblock %}
-</html>
