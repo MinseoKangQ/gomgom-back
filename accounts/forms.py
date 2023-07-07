@@ -43,7 +43,8 @@ class signupForm(UserCreationForm):
         widget=FileInput(attrs={
             'class':'form-image',
             'placeholder':'프로필 사진을 업로드'
-        })  
+        }),
+        initial='photo/basic_profile.png'
     )
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
