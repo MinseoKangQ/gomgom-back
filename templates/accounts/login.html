@@ -41,21 +41,9 @@
                 </div>
                 <div class="btns">
                     <input class="btns__login" type="submit" value="로그인">
-                    <button class="btns__signup" value="회원가입" onclick="location.href={% url 'accounts:signup' %}">회원가입</button>
-                    {% comment %} <button class="btns__signup" onclick=""><a href="{% url 'accounts:signup' %}">회원가입</a></button> {% endcomment %}
                 </div>
             </form>
-            
-
-            {% comment %} <button onclick="location.href={% url 'accounts:index' %}">회원가입</button> {% endcomment %}
-            {% comment %} <form class="login-form">
-                <input type="text" placeholder="아이디를 입력하세요.">
-                <input type="password" placeholder="비밀번호를 입력하세요.">
-            </form>
-            <div class="btns">
-                <button class="btns__login" type="submit">로그인</button>
-                <button class="btns__signup" type="submit">회원가입</button>
-            </div> {% endcomment %}
+            <button class="btns__signup" onclick="location.href='{% url 'accounts:signup' %}'">회원가입</button>
         </section>
         <footer class="main-footer">
         </footer>
