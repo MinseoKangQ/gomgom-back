@@ -1,6 +1,6 @@
 #accounts/forms
 from django.contrib.auth import get_user_model
-from django.forms import TextInput, PasswordInput
+from django.forms import TextInput, PasswordInput,FileInput
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
@@ -36,6 +36,14 @@ class signupForm(UserCreationForm):
             'class': 'form-control',
             'placeholder': '비밀번호를 다시 입력하세요.'
         })
+    )
+    image = forms.ImageField(
+        label='이미지',
+        required=False,
+        widget=FileInput(attrs={
+            'class':'form-image',
+            'placeholder':'프로필 사진을 업로드'
+        })  
     )
     class Meta(UserCreationForm.Meta):
         model = get_user_model()

@@ -3,24 +3,37 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body class="container">
+    <header>
+        <nav id="nav">
+            <div class="logo">
+                <p>gomgom</p>
+            </div>
+        <nav class="nav">
+            <ul class="nav__navbar">
+                <li><a href="{% url 'gomgom:home'%}">메인</a></li>
+                <li><a href="{% url 'posts:post-create'%}">고민올리기</a></li>
+                <li><a href="{% url 'posts:post-list-all' %}">게시판</a></li>
+                <li><a href="{% url 'gomgom:ai'%}">곰곰이</a></li>
+            </ul>
+            <a href="마이페이지URL" class="mypage-button">
+                <img src="{% static 'photo/mypage-icon.png' %}">
+            </a>
+        </nav>
+        </nav>
+    </header>
     <div>
     {% block content %}
     {% endblock %}
-    </div>
-    <div>
-        내용내용내용
-    </div>
-    <div>
-    {% if request.user.is_authenticated %}
-        <div>{{ user.username }}님 환영합니다.</div>
-        <a href = "{% url 'accounts:logout' %}">로그아웃</a>
-    {% else %}
-        <a href = "{% url 'accounts:login' %}">로그인</a>
-        <a href = "{% url 'accounts:signup' %}">회원가입</a>
-    {% endif %}
-    </div>
 </body>
 </html>

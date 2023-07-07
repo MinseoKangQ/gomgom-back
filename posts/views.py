@@ -64,4 +64,4 @@ def post_detail_view(request, id):
         }
         
         return render(request, 'posts/post-detail.html', context)
-    
+   
