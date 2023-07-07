@@ -47,5 +47,5 @@ def post_list_view(request):
         'post_list' : post_list,
         'comment_list' : comment_list,
     }
-    return render(request, 'posts/post-list.html', context)
+    return render(request, 'posts/post-list-all.html', context)
 
