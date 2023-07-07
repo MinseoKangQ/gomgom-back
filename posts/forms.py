@@ -83,4 +83,6 @@ class SelectionAddForm3(PostBaseForm):
     category = forms.ChoiceField(label='카테고리',choices= CATEGORY_CHOICES)
     class Meta(PostBaseForm.Meta):
         fields = ['title','content']
-                
+
+class PostDetailForm(PostBaseForm):
+    pass

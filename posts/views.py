@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Post, Selection, Comment
-from .forms import PostBaseForm,PostCreateForm,SelectionAddForm2, SelectionAddForm3
+from .forms import PostBaseForm,PostCreateForm, PostDetailForm
 from django import forms
 
 # Create your views here.
@@ -48,4 +48,20 @@ def post_list_view(request):
         'comment_list' : comment_list,
     }
     return render(request, 'posts/post-list-all.html', context)
-            
+
+# 상세 목록 보기
+@login_required
+def post_detail_view(request, id):
+    post = Post.objects.get(id=id)
+    if request.method == 'GET':
+        # 로그인이 안된 상태라면
+        if not request.user.is_authenticated:
+            return redirect('accounts:login')
+        # 로그인이 된 상태라면
+        else:
+            context = {
+            'post' : post,
+        }
+        
+        return render(request, 'posts/post-detail.html', context)
+   
