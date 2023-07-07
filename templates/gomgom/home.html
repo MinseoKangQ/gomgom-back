@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +15,13 @@
     </p>
     img : 
     <p>
-        
         {% if request.user.is_authenticated %}
-            <img class="card__image" src="{{ user.image.url }}" alt="">
+            {% if request.user.image %}
+                <img class="card__image" src="{{ request.user.image.url }}" alt="">
+            {% else %}
+                <img class="card__image" src="{% static 'photo/basic_profile.png' %}" alt="">
+            {% endif %}
         {% endif %}
-        <br>
     </p>
 </body>
 </html>
