@@ -1,39 +1,13 @@
 {% extends 'base.html' %}
+    {% block title %}로그인{% endblock %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ko">
-{% block content %}
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="{% static 'css/login.css' %}">
-        <link rel="stylesheet" href="{% static 'css/common.css' %}">
-        <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
-        <title>{% block title %}로그인{% endblock %}</title>
-    </head>
-    <body>
-        <header>
-            <div class="logo">
-                <p>gomgom</p>
-              </div>
-            <nav class="nav">
-              <ul class="nav__navbar">
-                <li><a href="{% url 'gomgom:home'%}">메인</a></li>
-                <li><a href="{% url 'posts:post-create'%}">고민올리기</a></li>
-                <li><a href="{% url 'posts:post-list-all' %}">게시판</a></li>
-                <li><a href="{% url 'gomgom:ai'%}">곰곰이</a></li>
-              </ul>
-              <a href="마이페이지URL" class="mypage-button">
-                <img src="photo/mypage-icon.png" alt="마이페이지">
-              </a>
-            </nav>
-        </header>
+
+{% block content %}        
         <section class="login">
             <div class="login__div">
                 <div class="login__icon"></div>
                 <div class="login__title"><span style="font-size:medium;">고민하지 말고,</span><br>곰곰에서 고민을 나누어요</div>
             </div>
-
-
             <form class="login-form" action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div>
@@ -47,8 +21,8 @@
         </section>
         <footer class="main-footer">
         </footer>
-    </body>
-</html>
+{% endblock %}
+
 
 
 
@@ -76,6 +50,3 @@
         <input type="submit">
     </div>
 </form> {% endcomment %}
-
-{% endblock %}
-</html>

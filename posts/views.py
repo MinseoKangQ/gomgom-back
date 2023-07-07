@@ -48,15 +48,4 @@ def post_list_view(request):
         'comment_list' : comment_list,
     }
     return render(request, 'posts/post-list-all.html', context)
-
-def post_detail_today_question(request,id):
-    if request.method=='GET':
-        try:
-            post = Post.objects.get(id=id)
-        except Post.DoesNotExist:
-            return redirect('home')
-        context={
-            'post':post
-        }
-        return render(request, 'posts/post_detail.html',context)
             
