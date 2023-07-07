@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from googletrans import Translator
 import os
 import openai
+from posts.models import Post
 
 # 실제 AI 테스트 할 때 주석 풀기
 # openai.api_key = os.environ['OPENAI_API_KEY']
@@ -47,4 +48,9 @@ def ask_gpt(prompt):
     return response.choices[0].text.strip()
 
 def home_view(request):
-    return render(request, 'gomgom/home.html')
+    writer_gomgom = "gomgom"
+    post_list = Post.objects.all()
+    context = {
+        'post_list' : post_list,
+    }
+    return render(request, 'gomgom/home.html', context)

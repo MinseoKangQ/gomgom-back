@@ -17,10 +17,10 @@
               </div>
             <nav class="nav">
               <ul class="nav__navbar">
-                <li><a href="#">메인</a></li>
-                <li><a href="#">고민올리기</a></li>
-                <li><a href="post-list-all.html">게시판</a></li>
-                <li><a href="#">곰곰이</a></li>
+                <li><a href="{% url 'gomgom:home'%}">메인</a></li>
+                <li><a href="{% url 'posts:post-create'%}">고민올리기</a></li>
+                <li><a href="{% url 'posts:post-list-all' %}">게시판</a></li>
+                <li><a href="{% url 'gomgom:ai'%}">곰곰이</a></li>
               </ul>
               <a href="마이페이지URL" class="mypage-button">
                 <img src="photo/mypage-icon.png" alt="마이페이지">

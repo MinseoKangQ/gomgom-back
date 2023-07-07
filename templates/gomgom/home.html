@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,13 +13,66 @@
             <div>{{ user.username }}님 환영합니다.</div>
         {% endif %}
     </p>
-    img : 
-    <p>
-        
-        {% if request.user.is_authenticated %}
-            <img class="card__image" src="{{ user.image.url }}" alt="">
-        {% endif %}
-        <br>
+    {% comment %} 프로필 사진 {% endcomment %}
+    <p>프로필 사진
+        <div>
+            {% if request.user.is_authenticated %}
+                {% if request.user.image %}
+                    <img class="card__image" src="{{ request.user.image.url }}" alt="" height="40" width="40">
+                {% else %}
+                    <img class="card__image" src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
+                {% endif %}
+            {% endif %}
+        </div>
     </p>
+    <br><hr><br>
+
+    {% comment %} 고민 나누기 버튼 {% endcomment %}
+    <p>고민 나누기 버튼 
+        <div><button onclick="location.href='{% url 'posts:post-create' %}'">고민 나누기</button></div>
+    </p>
+    <br><hr><br>
+
+    {% comment %} 곰곰이의 고민 {% endcomment %}
+    {% comment %} writer가 곰곰이인 글만 보여주기 {% endcomment %}
+    <p>곰곰이의 고민<br>
+        {% for post in post_list %}
+            {% if post.writer|stringformat:"s" == "gomgom" %}
+                <div>
+                    {{ post.id }}<br>
+                    {{ post.content }}<br>
+                    {{ post.created_at }}<br>
+                    {{ post.writer }}<br><br>
+                </div>
+            {% endif%}
+        {% endfor %}
+    </p>
+    <br><hr><br>
+
+    {% comment %} 곰곰이 바로가기 버튼 {% endcomment %}
+    <p>곰곰이 바로가기 버튼 
+        <div><button onclick="location.href='{% url 'gomgom:ai' %}'">곰곰이 바로가기</button></div>
+    </p>
+    <br><hr><br>
+
+
+    {% comment %} 오늘의 고민들 {% endcomment %}
+    <p>오늘의 고민들<br>
+        {% for post in post_list %}
+            {% if post.writer|stringformat:"s" != "gomgom" %}
+                <div>
+                    {{ post.title }}<br>
+                    {{ post.content }}<br>
+                    {{ post.created_at }}<br>
+                    {{ post.writer }}<br>
+                    {{ post.heart_count }}<br>
+                    <br>
+                    {% comment %} 댓글 개수 {% endcomment %}
+                    {% comment %} selection 이미지, 내용 {% endcomment %}
+                </div>
+            {% endif%}
+        {% endfor %}
+    </p>
+    <br><hr><br>
 </body>
 </html>
