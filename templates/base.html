@@ -29,7 +29,7 @@
                 <li><a href="{% url 'posts:post-list-all' %}">게시판</a></li>
                 <li><a href="{% url 'gomgom:ai'%}">곰곰이</a></li>
             </ul>
-            <a href="마이페이지URL" class="mypage-button">
+            <a href="{% url 'accounts:mypage'%}" class="mypage-button">
                 <img src="{% static 'photo/mypage-icon.png' %}">
             </a>
         </nav>

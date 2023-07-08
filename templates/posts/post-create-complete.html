@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}고민 올리기 완료{% endblock %}
+
+{% block content %}
+<h1>고민 올리기 완료</h1>
+
+<button onclick="location.href='{% url 'posts:post-list-all' %}'">게시판으로 이동</button>
+{% comment %} <button onclick="location.href='{% url 'account:' %}'">마이페이지로 이동</button> {% endcomment %}
+{% endblock %}
