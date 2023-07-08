@@ -104,7 +104,54 @@ def post_detail_view(request, id):
                 'comment_form' : CommentForm(),
                 }
             return render(request, 'posts/post-detail.html', context)
+        
 @login_required
 def post_create_complete(request):
     return redirect('posts:post-create-complete')
 
+
+# 곰곰이의 고민 상세 보기
+@login_required
+def post_gomgom_detail_view(request, id):
+    post = Post.objects.get(id=id)
+    
+    # 요청이 GET인 경우
+    if request.method == 'GET':
+        # 로그인이 안된 상태라면
+        if not request.user.is_authenticated:
+            return redirect('accounts:login')
+        # 로그인이 된 상태라면
+        else:
+            context = {
+            'post' : post,
+            'comment_form' : CommentForm(),
+        }
+        return render(request, 'posts/post-detail-today-question.html', context)
+    
+    # 요청이 POST인 경우
+    if request.method == 'POST':
+        # 댓글 작성
+        # 로그인이 안된 상태라면
+        if not request.user.is_authenticated:
+            return redirect('accounts:login')
+        # 로그인이 된 상태라면
+        else:
+            comment_form = CommentForm(request.POST,request.FILES)
+            if comment_form.is_valid():
+                comment_form = Comment.objects.create(
+                    content = comment_form.cleaned_data['content'],
+                    writer = request.user,
+                    image = comment_form.cleaned_data['image'],
+                    post = post
+                )
+                context = {
+                'post' : post,
+                'comment_form' : comment_form,
+                }
+                return render(request, 'posts/post-detail-today-question.html', context)
+            else:
+                context = {
+                'post' : post,
+                'comment_form' : CommentForm(),
+                }
+            return render(request, 'posts/post-detail-today-question.html', context)

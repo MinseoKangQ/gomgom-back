@@ -14,8 +14,7 @@
               {% for post in post_list %}              
                       {% if post.writer|stringformat:"s" == "gomgom"%}
                             <div class="slide-op">
-                                  {{ post.title }}
-                                  <a href="#"></a>
+                                  <a href="{% url 'posts:post-gomgom-detail' post.id %}">{{ post.title }}</a>
                             </div>
                       {% endif %}
               {% endfor%}

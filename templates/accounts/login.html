@@ -20,31 +20,3 @@
             <button class="btns__signup" onclick="location.href='{% url 'accounts:signup' %}'">회원가입</button>
         </section>
 {% endblock %}
-
-
-
-
-
-{% comment %} <!--style 적용 예시-->
-<style>
-    .login-form-username {
-        width: 557px;
-        height: 80px;
-        flex-shrink: 0;
-        border-radius: 24px;
-        border: 2px solid var(--color3);
-        background: var(--ffffff, #FFF);
-    }
-    </style>
-<h1>로그인</h1>
-
-<form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    
-    <div>
-        {{ form.as_ul }}
-    </div>
-    <div>
-        <input type="submit">
-    </div>
-</form> {% endcomment %}

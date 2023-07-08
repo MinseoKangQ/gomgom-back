@@ -40,7 +40,7 @@
         {% for post in post_list %}
             {% if post.writer|stringformat:"s" == "gomgom" %}
                 <div>
-                    <a href="{% url 'posts:post-detail' post.id %}">{{ post.title }}</a><br>
+                    <a href="{% url 'posts:post-gomgom-detail' post.id %}">{{ post.title }}</a><br>
                     post.id : {{ post.id }}<br>
                     post.content : {{ post.content }}<br>
                     post.created_at : {{ post.created_at }}<br>
