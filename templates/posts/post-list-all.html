@@ -8,19 +8,60 @@
         <div class="list-all__container">
           <div class="list-all__title">곰곰이의 고민</div>
           <div class="list-all__slide">
-            <button class="slide-btn-prev"><img src="{% static 'photo/leftBtn.png' %}"></button>
+            <button class="slide-btn-prev" onclick="slidePrev()"><img src="{% static 'photo/leftBtn.png' %}"></button>
             <div class="list-all__slide-options">
               {% comment %} 곰곰이의 고민 (writer가 곰곰인 글만 출력) {%endcomment%}
-              {% for post in post_list %}
-                  {% if post.writer|stringformat:"s" == "gomgom" %}
-                      <div class="slide-op">
-                            {{ post.title }}
-                            <a href="#"></a>
-                      </div>
-                  {% endif %}
+              {% for post in post_list %}              
+                      {% if post.writer|stringformat:"s" == "gomgom"%}
+                            <div class="slide-op">
+                                  {{ post.title }}
+                                  <a href="#"></a>
+                            </div>
+                      {% endif %}
               {% endfor%}
             </div>
-            <button class="slide-btn-next"><img src="{% static 'photo/rightBtn.png'%}"></button>
+            <button class="slide-btn-next"  onclick="slideNext()" ><img src="{% static 'photo/rightBtn.png'%}"></button>
+            {% comment %} 버튼 눌렀을때 3개씩 슬라이스 하기위한 script 코드 {% endcomment %}
+            <script>
+              var slideIndex = 0;
+              var slideOptions = document.querySelectorAll(".slide-op");
+              var slideLength = slideOptions.length;
+              
+              function slidePrev() {
+                slideIndex -= 3
+                showSlides();
+              }
+              
+              function slideNext() {
+                slideIndex += 3;
+                showSlides();
+              }
+              
+              function showSlides() {
+                for (var i = 0; i < slideLength; i++) {
+                  slideOptions[i].style.display = "none";
+                }
+                if (slideIndex <= 0) {
+                  document.querySelector(".slide-btn-prev").style.display = "none";
+                } else {
+                  document.querySelector(".slide-btn-prev").style.display = "block";
+                }
+                
+                if (slideIndex + 3 >= slideLength) {
+                  document.querySelector(".slide-btn-next").style.display = "none";
+                } else {
+                  document.querySelector(".slide-btn-next").style.display = "block";
+                }
+                for (var j = slideIndex; j < slideIndex + 3; j++) {
+                  if (slideOptions[j]) {
+                    slideOptions[j].style.display = "block";
+                    slideOptions[j].classList.add("list-all__slide-options");
+                  }
+                }
+              }
+              showSlides();
+              </script>
+              {% comment %}~스크립트 코드 끝~{% endcomment %}
           </div>
         </div>
       </section>
