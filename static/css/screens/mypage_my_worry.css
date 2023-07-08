@@ -1,0 +1,60 @@
+.mypage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 62vw;
+    border-bottom: 2px solid var(--color3);
+
+}
+.mypage__title {
+    margin: 64px 0 57px 0;
+    color: var(--67594-c, #67594C);
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+}
+.mypage__content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    margin-bottom: 50px;
+}
+.mypage__nicname {
+    margin-left: 8vw;
+    display: flex;
+    align-items: center;
+}
+.mypage__nicname img {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    border-radius: 100px;
+    margin-right: 31px;
+}
+.mypage__nicname span {
+    color: #67594C;
+    font-family: Pretendard;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+}
+.mypage__settings {
+    position: absolute;
+    right: 0;
+    display: flex;
+    margin-right: 8vw;
+    color: var(--67594-c, #67594C);
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+}
+.mypage__settings span:first-child {
+    margin-right: 69px;
+}

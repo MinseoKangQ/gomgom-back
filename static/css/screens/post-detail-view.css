@@ -1,0 +1,107 @@
+.detail-container__view-user {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    background-blend-mode: darken;
+}
+.detail-container__question {
+    position: relative;
+}
+.detail-container__like-btn {
+    position: absolute;
+    top: 32px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 33px;
+}
+.detail-container__like-btn span {
+    margin-right: 10px;
+}
+.detail-container__like-btn img {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+/*
+.detail-container__question-box {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 100%;
+
+}
+  
+.question-box__title {
+    flex: 1 0 auto;
+}
+  
+.question-box__content {
+    flex: 1 0 auto;
+}
+  
+.question-box__choice-btns {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+*/
+.detail-container__question-box {
+    margin: 42px 36px 49px 36px;
+}
+.question-box__title {
+    width: 242px;
+    height: 31px;
+    flex-shrink: 0;
+    background: var(--e-9-e-5-da, #E9E5DA);
+    color: #67594C;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    padding: 6px 2px 5px 4px;
+}
+.question-box__content {
+    background-color: antiquewhite;
+    margin-top: 30px;
+    margin-bottom: 47px;
+    display: flex;
+    width: 682px;
+    flex-direction: column;
+    flex-shrink: 0;
+    color: #67594C;
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+}
+.question-box__choice-btns {
+    display: flex;
+    justify-content: space-between;
+}
+.question-box__choice-btn {
+    width: 321px;
+    height: 88px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: var(--67594-c, #67594C);
+
+}
+.choice-btn__content span {
+    color: var(--faf-9-f-6, #FAF9F6);
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+}
+.choice-btn__content {
+
+    display: flex;
+    flex-direction: column;
+}

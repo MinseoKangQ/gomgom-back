@@ -1,0 +1,7 @@
+.main-footer {
+    width: 100vw;
+    height: 76px;
+    flex-shrink: 0;
+    background: var(--67594-c, rgba(103, 89, 76, 0.50));
+    bottom: 0;
+}
