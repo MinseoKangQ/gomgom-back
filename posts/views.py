@@ -35,8 +35,10 @@ def post_create_form_view(request,selection_count=2):
                     post=post
                 )
             else:
-                return redirect('/admin')
-            return redirect('/admin')
+                # return redirect('/admin')
+                return render(request, 'posts/post-create-complete.html')
+            return render(request, 'posts/post-create-complete.html')
+            # return redirect('/admin')
 
 @login_required
 def post_list_view(request):
@@ -97,3 +99,6 @@ def post_detail_view(request, id):
                 }
             return render(request, 'posts/post-detail.html', context)
 
+@login_required
+def post_create_complete(request):
+    return redirect('posts:post-create-complete')
