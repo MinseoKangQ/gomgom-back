@@ -6,21 +6,25 @@
 <body>
     안녕하세요, 홈입니다.
     <p>
+        {% comment %} 로그인 된 상태 {% endcomment %}
         {% if request.user.is_authenticated %}
-            <div>{{ user.username }}님 환영합니다.</div>
-        {% endif %}
-    </p>
-    {% comment %} 프로필 사진 {% endcomment %}
-    <p>프로필 사진
-        <div>
-            {% if request.user.is_authenticated %}
-                {% if request.user.image %}
-                    <img class="card__image" src="{{ request.user.image.url }}" alt="" height="40" width="40">
-                {% else %}
-                    <img class="card__image" src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
-                {% endif %}
+            <div>{{ user.username }}님 환영합니다.</div><br>
+            <button onclick="location.href='{% url 'accounts:logout' %}'">로그아웃</button>
+            <div>프로필 사진</div>
+            {% comment %} 회원가입 시 이미지가 있는 경우 {% endcomment %}
+            {% if request.user.image %}
+                <img class="card__image" src="{{ request.user.image.url }}" alt="" height="40" width="40">
+            {% comment %} 회원가입 시 이미지가 없는 경우 {% endcomment %}
+            {% else %}
+                <img class="card__image" src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
+            <br>
             {% endif %}
-        </div>
+        
+        {% comment %} 로그아웃 된 상태 로그인/회원가입 화면으로 이동하는 버튼 띄워주기{% endcomment %}
+        {% else %}
+            <button onclick="location.href='{% url 'accounts:login' %}'">로그인</button>
+            <button onclick="location.href='{% url 'accounts:signup' %}'">회원가입</button>
+        {% endif %}
     </p>
     <br><hr><br>
 
@@ -36,10 +40,11 @@
         {% for post in post_list %}
             {% if post.writer|stringformat:"s" == "gomgom" %}
                 <div>
-                    {{ post.id }}<br>
-                    {{ post.content }}<br>
-                    {{ post.created_at }}<br>
-                    {{ post.writer }}<br>
+                    <a href="{% url 'posts:post-detail' post.id %}">{{ post.title }}</a><br>
+                    post.id : {{ post.id }}<br>
+                    post.content : {{ post.content }}<br>
+                    post.created_at : {{ post.created_at }}<br>
+                    post.writer : {{ post.writer }}<br>
                     상세페이지<br><br>
                 </div>
             {% endif%}
@@ -59,11 +64,11 @@
         {% for post in post_list %}
             {% if post.writer|stringformat:"s" != "gomgom" %}
                 <div>
-                    {{ post.title }}<br>
-                    {{ post.content }}<br>
-                    {{ post.created_at }}<br>
-                    {{ post.writer }}<br>
-                    {{ post.heart_count }}<br>
+                    <a href="{% url 'posts:post-detail' post.id %}">{{ post.title }}</a><br>
+                    post.content : {{ post.content }}<br>
+                    post.created_at : {{ post.created_at }}<br>
+                    post.writer : {{ post.writer }}<br>
+                    post.heart_count : {{ post.heart_count }}<br>
                     <br>
                     {% comment %} 댓글 개수 {% endcomment %}
                     댓글개수 : {{ post.comment_set.all.count }}<br>
