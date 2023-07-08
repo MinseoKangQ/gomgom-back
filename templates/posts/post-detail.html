@@ -4,6 +4,39 @@
 {% block content %}
 <h1>Post 상세 화면</h1>
     {{ post.writer }}님의 고민<br>
+    {% comment %} 프로필 사진 {% endcomment %}
     {{ post.title }}<br>
     {{ post.content }}<br>
+    {% comment %} selection1 {% endcomment %}
+    {% comment %} selection2 {% endcomment %}
+    댓글 {{ post.comment_set.all.count }}개 | 공감 {{ post.heart_count }}개
+    <br><br>
+
+    {% for comment in post.comment_set.all %}
+        <hr>
+        작성자 프로필사진 : <br> {% comment %} 여기 작성해야함{% endcomment%}
+        아이디 : {{ comment.writer }}<br>
+        댓글 내용 : {{ comment.content }}<br>
+        댓글 이미지 : 
+        {% if comment.image %}
+            <img class="card__image" src="{{ comment.image.url }}" alt="" height="40" width="40">
+        <br>
+        {% else %} 이미지 첨부 안함 
+        <br>
+        {% endif %}
+        댓글 작성 시간 : {{ comment.created_at}}<br>
+    {% endfor %}
+
+    {% comment %} 댓글 작성 부분 {% endcomment %}
+    <hr><br>
+
+    <form class="comment-form" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            {{ comment_form.as_p }}
+        </div>
+        <div class="btns">
+            <input class="btns__comment" type="submit" value="작성" onclick="location.href='{% url 'posts:post-list-all' %}'">
+        </div>
+    </form>
 {% endblock %}
