@@ -1,7 +1,8 @@
 from django import forms
-from .models import Selection,Post        
+from .models import Selection,Post, Comment
+
+# 게시글 작성 폼
 class PostBaseForm(forms.ModelForm):
-    #모델 폼 상속 시 클래스 더 적어주어야 됨
     class Meta:
         model = Post
         fields = '__all__'
@@ -28,4 +29,31 @@ class PostCreateForm(PostBaseForm):
     category = forms.ChoiceField(label='카테고리',choices= CATEGORY_CHOICES)
     class Meta(PostBaseForm.Meta):
         fields = ['title','content']
-    
+
+# 댓글 작성 폼
+class CommentBaseForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+class CommentCreationForm(CommentBaseForm):
+    class Meta(CommentBaseForm.Meta):
+        fields = ['image', 'content']
+        
+class CommentForm(CommentCreationForm):
+    content = forms.CharField(
+        label = '내용',
+        initial = '',
+        widget = forms.TextInput(attrs = {
+            'class' : 'form-content',
+            'placeholder' : '내용을 입력하세요',
+        })
+    )
+    image = forms.ImageField(
+        label = '이미지',
+        required = False,
+        widget = forms.FileInput(attrs = {
+            'class' : 'form-image',
+            'placeholder' : '댓글 이미지 업로드'
+        }),
+    )
