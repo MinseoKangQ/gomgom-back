@@ -3,8 +3,10 @@ from django.contrib.auth import logout,login
 from django.shortcuts import redirect,render
 from accounts.forms import signupForm
 from django.contrib.auth.forms import AuthenticationForm
+from posts.models import Post
 from users.models import models
 from .forms import CustomAuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 # 완성
 
@@ -58,3 +60,12 @@ def logout_view(request):
         logout(request)
     #로그아웃 시, 그냥 홈페이지로 이동 redirect  ** 추후에 설정 필요함! **
     return redirect('gomgom:home')
+
+@login_required
+def mypage_view(request):
+    if request.method == 'GET':
+        post_list = Post.objects.filter(writer = request.user) # Post.writer 가 현재 로그인인 것 조회
+        context = {
+            'post_list' : post_list,
+        }
+        return render(request, 'accounts/mypage.html', context)

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+    {% block title %}로그인{% endblock %}
+{% load static %}
+
+{% block content %}        
+    <h3>마이페이지</h3>
+
+    {% comment %} 프로필 사진 {% endcomment %}
+    프로필 사진 : 
+    {% if request.user.image %}
+        <img class="card__image" src="{{ request.user.image.url }}" alt="" height="40" width="40">
+        <br>
+    {% comment %} 회원가입 시 이미지가 없는 경우 {% endcomment %}
+    {% else %}
+        <img class="card__image" src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
+        <br>
+    {% endif %}
+
+
+    아이디 : {{ user.username }}<br>
+    {% comment %} 프로필 수정 부분 페이지 연결하기 {% endcomment %}
+    <button onclick="location.href='{% url 'accounts:logout' %}'">프로필 수정</button><br>
+    <button onclick="location.href='{% url 'accounts:logout' %}'">로그아웃</button><br>
+
+    <hr>
+    내가 작성한 게시글<br>
+    {% for post in post_list %}           
+        <div>
+            <a href="{% url 'posts:post-detail' post.id %}">{{ post.title }}</a><br>
+            post.id : {{ post.id }}<br>
+            post.content : {{ post.content }}<br>
+            post.created_at : {{ post.created_at }}<br>
+            post.writer : {{ post.writer }}<br>
+            상세페이지<br><br>
+        </div>
+    {% endfor %}
+{% endblock %}
