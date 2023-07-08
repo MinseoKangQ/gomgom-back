@@ -13,6 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
+    <style>
+        .userImage {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+    </style>
 </head>
     <title>{% block title %}{% endblock %}</title>
 </head>
@@ -29,9 +37,22 @@
                 <li><a href="{% url 'posts:post-list-all' %}">게시판</a></li>
                 <li><a href="{% url 'gomgom:ai'%}">곰곰이</a></li>
             </ul>
-            <a href="{% url 'accounts:mypage'%}" class="mypage-button">
+            {% comment %} 회원가입 시 이미지가 있는 경우 {% endcomment %}
+            {% if request.user.image %}
+                <a href="{% url 'accounts:mypage'%}" class="mypage-button">
+                    <img class="userImage" src="{{ request.user.image.url }}">
+                </a>
+                <br>
+            {% comment %} 회원가입 시 이미지가 없는 경우 {% endcomment %}
+            {% else %}
+                <a href="{% url 'accounts:mypage'%}" class="mypage-button">    
+                    <img class="userImage" src="{% static 'photo/basic_profile.png' %}">
+                <a>
+                <br>
+            {% endif %}
+            {% comment %} <a href="{% url 'accounts:mypage'%}" class="mypage-button">
                 <img src="{% static 'photo/mypage-icon.png' %}">
-            </a>
+            </a> {% endcomment %}
         </nav>
         </nav>
     </header>

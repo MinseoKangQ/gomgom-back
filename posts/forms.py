@@ -20,10 +20,10 @@ class PostCreateForm(PostBaseForm):
         ('기타','기타'),
     ]
     #선택지1
-    image1=forms.ImageField(label = '이미지')
+    image1=forms.ImageField(label = '이미지', required = False)
     selection_content1=forms.CharField(label = '선택지 내용',max_length=20)
     #선택지2
-    image2=forms.ImageField(label = '이미지')
+    image2=forms.ImageField(label = '이미지', required = False)
     selection_content2=forms.CharField(label = '선택지 내용',max_length=20)
     
     category = forms.ChoiceField(label='카테고리',choices= CATEGORY_CHOICES)
