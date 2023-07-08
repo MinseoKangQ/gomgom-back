@@ -28,23 +28,44 @@
       <section class="category">
         <div class="category__container">
           <div class="category__title">고민을 한 곳에 모았어요</div>
-          <div class="category__btns">
-            <input type="button" value="대인관계">
-            <input type="button" value="연애">
-            <input type="button" value="교육">
-            <input type="button" value="생활">
-            <input type="button" value="건강">
-            <input type="button" value="반려동물">
-            <input type="button" value="여행">
-            <input type="button" value="쇼핑">
-            <input type="button" value="기타">
-          </div>
+
+          <form action="" method="GET" enctype="multipart/form-data">
+            <div class="category__btns">
+              <input type="submit" name="category" value="대인관계" >
+              <input type="submit" name="category" value="연애" >
+              <input type="submit" name="category" value="교육" >
+              <input type="submit" name="category" value="생활" >
+              <input type="submit" name="category" value="건강">
+              <input type="submit" name="category" value="반려동물">
+              <input type="submit" name="category" value="여행">
+              <input type="submit" name="category" value="쇼핑">
+              <input type="submit" name="category" value="기타">
+            </div>
+        </form>
+
         </div>
       </section>
       <section>
           {%comment%}사용자들의 고민 넣을 곳{%endcomment%}
-          
-  
+          {% for post in filter_list %}
+              {% if post.writer|stringformat:"s" != "gomgom" %}
+                <div>
+                {{post.title}}
+                {{post.writer}}
+                {{post.created_at}}
+                댓글 : {{post.comment_set.all.count}} 개
+                </div>
+                  {% for selection in post.selection_set.all %}
+                  <div>
+                    <img class="card__image" src="{{ selection.image.url }}" alt="" height="40" width="40">
+                    {{ selection.content }}
+                  </div>
+                  {% endfor %}
+                    <a href ="{% url 'posts:post-detail' post.id %}">전체보기</a>
+                <br>
+              {% endif %}
+
+          {% endfor %}
       </section>
     </main>
   {% endblock %}
