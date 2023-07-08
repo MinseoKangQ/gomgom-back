@@ -5,7 +5,7 @@ from .models import Post, Selection, Comment
 
 @admin.register(Post)
 class UserModelAdmin(admin.ModelAdmin):
-    list_display = ('title', 'content', 'writer')
+    list_display = ('title', 'content', 'writer','category')
     pass
 
 @admin.register(Selection)
