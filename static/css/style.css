@@ -1,12 +1,15 @@
 /*components*/
 @import "component/header.css";
 @import "component/footer.css";
+@import "component/detail-footer.css";
+@import "component/question-box.css";
 /*screens*/
 @import "screens/post-detail-today-question.css";
 @import "screens/post-list-all.css";
 @import "screens/signup.css";
 @import "screens/login.css";
-
+@import "screens/mypage_my_worry.css";
+@import "screens/post-detail-view.css";
 :root {
     --color1:#67594C;
     --color2:#D2CDBC;
@@ -18,4 +21,11 @@ body {
     margin: 0;
     padding: 0;
     background-color:var(--bodycolor);
+}
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

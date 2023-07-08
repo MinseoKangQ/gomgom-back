@@ -1,0 +1,47 @@
+header {
+    border-bottom: 4px solid var(--color3);    
+}
+.logo p {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--color1);
+    font-size: 32px;
+    font-family: 'MuseoModerno', cursive;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+.nav{
+    display: flex;
+    height: 5vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.nav__navbar {
+    display: flex;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 78rem;
+}
+
+.nav__navbar li {
+    list-style: none;
+    font-size: 16px;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    margin-right: 138px;
+}
+
+.nav__navbar li a {
+    text-decoration: none;
+    border-bottom: none;
+    color: var(--color1);
+
+}

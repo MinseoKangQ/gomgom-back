@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Post, Selection, Comment
-from .forms import PostBaseForm,PostCreateForm, PostDetailForm
+from .forms import PostBaseForm,PostCreateForm
 from django import forms
 
 # Create your views here.
@@ -22,6 +22,7 @@ def post_create_form_view(request,selection_count=2):
                     title = form.cleaned_data['title'],
                     content=form.cleaned_data['content'],
                     writer=request.user,
+                    category = form.cleaned_data['category'],
                 )
                 Selection.objects.create(
                     image = form.cleaned_data['image1'],
@@ -43,9 +44,11 @@ def post_list_view(request):
     # comment_list = Comment.objects.all()
     comment_list = Comment.objects.all()
     # post_list = Post.objects.filter(writer = request.user) # Post.writer 가 현재 로그인인 것 조회
+    selection_list=Selection.objects.all()
     context = {
         'post_list' : post_list,
         'comment_list' : comment_list,
+        'selection_list': selection_list,
     }
     return render(request, 'posts/post-list-all.html', context)
 
@@ -64,4 +67,3 @@ def post_detail_view(request, id):
         }
         
         return render(request, 'posts/post-detail.html', context)
-   

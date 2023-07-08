@@ -4,6 +4,17 @@ from django.contrib.auth import get_user_model
 # Create your models here.
 
 User = get_user_model()
+CHOICES = (
+        ('1','대인관계'),
+        ('2','연애'),
+        ('3','교육'),
+        ('4','생활'),
+        ('5','건강'),
+        ('6','반려동물'),
+        ('7','여행'),
+        ('8','쇼핑'),
+        ('9','기타'),
+)
 
 class Post(models.Model):
     title = models.TextField(verbose_name='질문제목')
@@ -12,6 +23,7 @@ class Post(models.Model):
     view_count = models.IntegerField(verbose_name='조회수',blank=True, default = 0)
     heart_count = models.IntegerField(verbose_name='공감수',blank=True, default = 0)
     writer = models.ForeignKey(to=User,on_delete=models.CASCADE,null=True,blank=True)
+    category = models.CharField(max_length=20, choices=CHOICES,default='기타' )
 
 
 class Comment(models.Model):
