@@ -48,8 +48,7 @@ def ask_gpt(prompt):
     return response.choices[0].text.strip()
 
 def home_view(request):
-    writer_gomgom = "gomgom"
-    post_list = Post.objects.all()
+    post_list = Post.objects.all().order_by('-created_at')
     context = {
         'post_list' : post_list,
     }

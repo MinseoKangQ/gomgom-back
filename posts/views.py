@@ -1,11 +1,8 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import Post, Selection, Comment
 from .forms import PostCreateForm, CommentForm
-from django import forms
-
-# Create your views here.
-
+from django.core.paginator import Paginator
 
 @login_required(login_url='/accounts/login/')
 def post_create_form_view(request,selection_count=2):
@@ -46,17 +43,23 @@ def post_list_view(request):
     if request.method == 'GET':
         selected_category = request.GET.get('category') 
         post_list = Post.objects.all() # Post 전체 데이터 조회
+        
         if selected_category is None: # 처음에 버튼 선택 안할시, queryset 데이터에 아무것도 없음.
             selected_category = '대인관계'  # 그래서 디폴트 값은 대인관계로 설정
             
         print(selected_category)
-        filter_list = Post.objects.filter(category=selected_category) # 사용자가 선택한 카테고리와 같은것만 필터링
+        filter_list = Post.objects.filter(category=selected_category).order_by('-created_at') # 사용자가 선택한 카테고리와 같은것만 필터링
         selection_list = Selection.objects.all()
+        
+        paginator = Paginator(filter_list, 8)  # 한 페이지에 8개의 게시글 표시
+        page_number = request.GET.get('page')  # 현재 페이지 번호 가져오기
+        page_obj = paginator.get_page(page_number)  # 현재 페이지의 게시글 객체 가져오기
+        
         context = {
             'post_list': post_list,
             'selection_list': selection_list,
-            'filter_list': filter_list,
-            'selected_category': selected_category
+            'filter_list': page_obj,  # 페이지 객체를 전달
+            'selected_category': selected_category,
         }
         return render(request, 'posts/post-list-all.html', context)
     
@@ -97,7 +100,8 @@ def post_detail_view(request, id):
                 'post' : post,
                 'comment_form' : comment_form,
                 }
-                return render(request, 'posts/post-detail.html', context)
+                # return render(request, 'posts/post-detail.html', context)
+                return redirect('posts:post-detail', post.id)
             else:
                 context = {
                 'post' : post,
@@ -108,7 +112,6 @@ def post_detail_view(request, id):
 @login_required
 def post_create_complete(request):
     return redirect('posts:post-create-complete')
-
 
 # 곰곰이의 고민 상세 보기
 @login_required
