@@ -86,26 +86,63 @@
         </div>
       </section>
       <section>
-          {%comment%}사용자들의 고민 넣을 곳{%endcomment%}
-          {% for post in filter_list %}
-              {% if post.writer|stringformat:"s" != "gomgom" %}
-                <div>
-                {{post.title}}
-                {{post.writer}}
-                {{post.created_at}}
-                댓글 : {{post.comment_set.all.count}} 개
-                </div>
-                  {% for selection in post.selection_set.all %}
-                  <div>
-                    <img class="card__image" src="{{ selection.image.url }}" alt="" height="40" width="40">
-                    {{ selection.content }}
-                  </div>
-                  {% endfor %}
-                    <a href ="{% url 'posts:post-detail' post.id %}">전체보기</a>
-                <br>
-              {% endif %}
+        {% for post in filter_list.object_list %}
+          {% if post.writer|stringformat:"s" != "gomgom" %}
+            <div>
+            {{post.title}}<br>
+            {{post.writer}}<br>
+            {{post.created_at}}<br>
+            댓글 : {{post.comment_set.all.count}} 개<br>
+            </div>
+            {% for selection in post.selection_set.all %}
+            <div>
+              <img class="card__image" src="{{ selection.image.url }}" alt="" height="40" width="40">
+              {{ selection.content }}
+            </div>
+            {% endfor %}
+          <br>
+          {% endif %}
+        {% endfor %}
 
-          {% endfor %}
+        {% comment %} 페이지 링크 표시 {% endcomment %}
+        <div class="pagination">
+          <span class="step-links">
+              {% if filter_list.number == filter_list.paginator.num_pages|add:-1 and filter_list.number >= 3%}
+                <a href="?category={{ selected_category }}&page={{ filter_list.number|add:-2 }}">{{ filter_list.number|add:-2 }}</a>
+              {% endif%}
+              {% comment %} 이전페이지 {% endcomment %}
+              {% if filter_list.has_previous %}
+                  <span class="previous-page">
+                    <a href="?category={{ selected_category }}&page={{ filter_list.previous_page_number }}">{{ filter_list.previous_page_number }}</a>
+                  </span>
+              {% endif %}
+              {% comment %} 현재 페이지 {% endcomment %}
+              <span class="current-page">{{ filter_list.number }}</span>      
+                
+                {% comment %} 현재 페이지가 1이라면 {% endcomment %}
+                {% if filter_list.number == 1 %}
+                  {% if filter_list.paginator.num_pages|add:-1 == 2 %}
+                    <a href="?category={{ selected_category }}&page=2">2</a>
+                  {% elif filter_list.paginator.num_pages|add:-1 == 3 %}
+                    <a href="?category={{ selected_category }}&page=2">2</a>
+                    <a href="?category={{ selected_category }}&page=3">3</a>
+                  {% endif %}
+                {% else %}
+                  {% if filter_list.has_next %}
+                      {% if filter_list.next_page_number != filter_list.paginator.num_pages %}
+                          <a href="?category={{ selected_category }}&page={{ filter_list.next_page_number }}">{{ filter_list.number|add:1 }}</a>
+                      {% endif %}  
+                  {% endif %}
+
+
+
+
+                {% endif %}
+          </span>
+      </div>
+      
+      
+       
       </section>
     </main>
   {% endblock %}
