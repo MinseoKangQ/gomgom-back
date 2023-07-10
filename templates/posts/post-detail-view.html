@@ -1,5 +1,3 @@
-개인 디테일
-
 {% extends 'base.html' %}
 {% block title %}고민상세보기{% endblock %}
     {% load static %}
@@ -29,14 +27,21 @@
                                         <button class="question-box__choice-btn">
                                             <div class="choice-btn__content">
                                                 <span>{{selection.content}}</span>
-                                                <span class="hidden ratio">60%</span>
+                                                <span>{{selection.vote}}</span>
                                             </div>
                                         </button>
-                                    {% else %}
-                                        <button class="question-box__choice-btn">
+                                    {% elif forloop.counter == 1 %}
+                                        <button class="question-box__choice-btn" onclick="location.href='{% url 'posts:post-detail' post.id %}?param=1'">
                                             <div class="choice-btn__content">
                                                 <span>{{selection.content}}</span>
-                                                <span class="hidden ratio">40%</span>
+                                                <span>{{selection.vote}}</span>
+                                            </div>
+                                        </button>
+                                    {% elif forloop.counter == 2 %}
+                                        <button class="question-box__choice-btn" onclick="location.href='{% url 'posts:post-detail' post.id %}?param=2'">
+                                            <div class="choice-btn__content">
+                                                <span>{{selection.content}}</span>
+                                                <span>{{selection.vote}}</span>
                                             </div>
                                         </button>
                                     {% endif %}

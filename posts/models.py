@@ -23,6 +23,7 @@ class Post(models.Model):
     view_count = models.IntegerField(verbose_name='조회수',blank=True, default = 0)
     heart_count = models.IntegerField(verbose_name='공감수',blank=True, default = 0)
     writer = models.ForeignKey(to=User,on_delete=models.CASCADE,null=True,blank=True)
+    all_voted_count = models.IntegerField(verbose_name = '투표 참여 수', default = 0)
     category = models.CharField(max_length=20, choices=CHOICES,default='기타' )
 
 
@@ -36,10 +37,6 @@ class Comment(models.Model):
 class Selection(models.Model):
     image=models.ImageField(verbose_name = '이미지',null=True,blank = True)
     content = models.CharField(verbose_name='내용',max_length=100)
+    vote = models.CharField(verbose_name = '투표율', default = "0%", max_length = 10)
+    each_voted_count = models.IntegerField(verbose_name = '선택지 투표 참여 수', default = 0)
     post = models.ForeignKey(to='Post',on_delete=models.CASCADE,null=True,blank=True)
-
-class Vote(models.Model):
-    user = models.ForeignKey(to=User,on_delete=models.CASCADE)
-    post = models.ForeignKey(to='Post',on_delete=models.CASCADE)
-    selection = models.ForeignKey(Selection,on_delete=models.CASCADE)
-    
