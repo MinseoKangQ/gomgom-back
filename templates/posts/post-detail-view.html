@@ -22,17 +22,24 @@
                                         <button class="question-box__choice-btn">
                                             <div class="choice-btn__content">
                                                 <span>{{selection.content}}</span>
-                                                <span>60%</span>
+                                                <span>{{selection.vote}}</span>
                                             </div>
                                         </button>
-                                        {% else %}
-                                            <button class="question-box__choice-btn">
-                                                <div class="choice-btn__content">
-                                                    <span>{{selection.content}}</span>
-                                                    <span>40%</span>
-                                                </div>
-                                            </button>
-                                        {% endif %}
+                                    {% elif forloop.counter == 1 %}
+                                        <button class="question-box__choice-btn" onclick="location.href='{% url 'posts:post-detail' post.id %}?param=1'">
+                                            <div class="choice-btn__content">
+                                                <span>{{selection.content}}</span>
+                                                <span>{{selection.vote}}</span>
+                                            </div>
+                                        </button>
+                                    {% elif forloop.counter == 2 %}
+                                        <button class="question-box__choice-btn" onclick="location.href='{% url 'posts:post-detail' post.id %}?param=2'">
+                                            <div class="choice-btn__content">
+                                                <span>{{selection.content}}</span>
+                                                <span>{{selection.vote}}</span>
+                                            </div>
+                                        </button>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>
