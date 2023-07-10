@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-    {% block title %}곰곰이의 고민{% endblock %}
-{% load static %}
-
-{% block content %}
+{% block title %}곰곰이의 고민{% endblock %}
+    {% load static %}
+    {% block content %}
+    <main>
         <section class="detail-sec1">
             <div class="detail-container">
                 <p class="detail-container__today-title">곰곰이의 고민</p>
                 <div class="detail-container__question">
-                    <img class="detail-container__detail-user" src="{% static 'photo/gomgom.png' %}">
+                    <img class="detail-container__detail-user" src="{%static 'photo/completeGom.png'%}">
                     <div class="detail-container__div">
                         <div class="detail-container__question-box">
                             <div class="question-box__title-box">
@@ -18,7 +18,7 @@
                             </h4>
                         </div>
                         <div class="detail-container__img">
-                            {%comment%}이미지 넣는곳!{%endcomment%}
+                            {%comment %}이미지 넣는곳 (만약 시간 남으면,, post 모델에 image 필드 추가해서 만들기{% endcomment%}
                         </div>      
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="likeCount">
                     <div class="likeCount__comment">
                         <img src="{% static 'photo/message.svg'%}">
-                        <span>999+</span>
+                        <span>{{ post.comment_set.all.count }}</span>
                     </div>
                     <div class="likeCount__heart">
                         <img src="{% static 'photo/heart.svg'%}">
@@ -60,7 +60,9 @@
                             {{comment.created_at}}
                         </div>
                         <div class="comments-container__comment-box__img">
-                            <img src="{{ comment.image.url }}">
+                            {% if comment.image %}
+                            <img class="card__image" src="{{ comment.image.url }}" alt="">
+                            {% endif %}
                         </div>
                     </div>
                 </div> 
@@ -73,17 +75,18 @@
     </main>
     <footer class="footer">
         <div class="detail-footer">
-            <form class="answer-form">
+            <form class="answer-form" action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="answer-form__div">
                     <div class="answer-form__container">
-                        <input type="text" placeholder="곰곰이의 고민에 댓글을 써주세요.">
+                        <input type="text" name="text_field_name" placeholder="곰곰이의 고민에 댓글을 써주세요.">
                         <button type="submit"></button>
                         <div class="answer-form__searchImgBtn">
-                            <input type="file" class="hidden" id="inputFile">
+                            <input type="file" class="hidden" name="file_field_name" id="inputFile">
                             <img src="{% static 'photo/searchImgBtn.svg'%}">
                         </div>
                     </div>
-                    <button><img src="{% static 'photo/submitBtn.svg'%}"></button>
+                    <button type="submit" value="작성" onclick="location.href="{% url 'posts:post-gomgom-detail' post.id %}""><img src="{% static 'photo/submitBtn.svg'%}"></button>
                 </div>
             </form>
         </div>

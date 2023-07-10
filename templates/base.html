@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/screens/ai_response.css' %}">
     <link rel="stylesheet" href="{% static 'css/screens/post-detail-today-question.css'%}">
+    <link rel="stylesheet" href="{% static 'css/screens/post-detail-view.css' %}">  
+
 
     <script defer src="{% static 'js/post-list-all.js' %}"></script>  
     <script defer src="{% static 'js/post-detail-today-question.js' %}"></script>
     <script defer src="{% static 'js/post-detail-view.js' %}"></script> 
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
@@ -40,7 +42,7 @@
             </ul>
             {% comment %} 회원가입 시 이미지가 있는 경우 {% endcomment %}
             {% if request.user.image %}
-                <a href="{% url 'accounts:mypage'%}" class="mypage-button">
+                <a href="{% url 'accounts:mypage'%}">
                     <img class="userImage" src="{{ request.user.image.url }}">
                 </a>
                 <br>
