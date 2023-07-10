@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
   {% block title %}회원가입{% endblock %}
+  {% load static %}
 
 {% block content %}
     <section class="signup-sec">
@@ -10,9 +11,9 @@
             {% if field.label == '이미지' %}
             <div class="signupContainer">
               <p>회원가입</p>
-              <div class="signupImage"> {{ field }}</div>
+              <img src="photo/mypage-icon.png">
               <label for="file-input">사진 등록</label>
-              <input type="file" id="file-input" style="display: none;" >
+              <input type="file" name = "file_field_name" id="file-input" style="display: none;" >
             </div>
             {% else %}
             <div>

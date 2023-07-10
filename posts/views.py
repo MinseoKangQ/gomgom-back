@@ -5,6 +5,7 @@ from .forms import PostCreateForm, CommentForm
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 
+
 @login_required(login_url='/accounts/login/')
 def post_create_form_view(request,selection_count=2):
     if request.method=='GET':
@@ -135,29 +136,33 @@ def post_detail_view(request, id):
         if not request.user.is_authenticated:
             return redirect('accounts:login')
         # 로그인이 된 상태라면
-        else:           
-            comment_form = CommentForm(request.POST,request.FILES)
-            if comment_form.is_valid():
-                comment_form = Comment.objects.create(
-                    content = comment_form.cleaned_data['content'],
-                    writer = request.user,
-                    image = comment_form.cleaned_data['image'],
-                    post = post
+        else:
+            post = Post.objects.get(id=id)
+            image = request.FILES.get('file_field_name')  # 파일 필드에 대한 값 가져오기
+            content = request.POST.get('text_field_name')  # 텍스트 필드에 대한 값 가져오기
+            #댓글 이미지와 내용이 전부 존재할 경우, 
+            if image and content:
+                comment = Comment.objects.create(
+                    image=image,
+                    content=content,
+                    post=post,
+                    writer=request.user,
                 )
-                        
-                context = {
-                'post' : post,
-                'comment_form' : comment_form,
-                }
-                # return render(request, 'posts/post-detail.html', context)
-                return redirect('posts:post-detail', post.id)
-            else:
-                context = {
-                'post' : post,
-                'comment_form' : CommentForm(),
-                }
-            return render(request, 'posts/post-detail-view.html', context)
-        
+            # 댓글 내용만 존재할 경우,
+            elif content:
+                comment = Comment.objects.create(
+                    content = content,
+                    post=post,
+                    writer=request.user,
+                )
+            else: # 댓글 이미지와, 내용이 없을 경우,
+                return render(request, 'posts/post-detail-view.html')
+            context = {
+                    'post': post,
+            }
+            return render(request, 'posts/post-detail-view.html', context)            
+    return render(request, 'posts/post-detail-view.html')   
+
 @login_required
 def post_create_complete(request):
     return redirect('posts:post-create-complete')
@@ -188,22 +193,28 @@ def post_gomgom_detail_view(request, id):
             return redirect('accounts:login')
         # 로그인이 된 상태라면
         else:
-            comment_form = CommentForm(request.POST,request.FILES)
-            if comment_form.is_valid():
-                comment_form = Comment.objects.create(
-                    content = comment_form.cleaned_data['content'],
-                    writer = request.user,
-                    image = comment_form.cleaned_data['image'],
-                    post = post
+            post = Post.objects.get(id=id)
+            image = request.FILES.get('file_field_name')  # 파일 필드에 대한 값 가져오기
+            content = request.POST.get('text_field_name')  # 텍스트 필드에 대한 값 가져오기
+            #댓글 이미지와 내용이 전부 존재할 경우, 
+            if image and content:
+                comment = Comment.objects.create(
+                    image=image,
+                    content=content,
+                    post=post,
+                    writer=request.user,
                 )
-                context = {
-                'post' : post,
-                'comment_form' : comment_form,
-                }
-                return render(request, 'posts/post-detail-today-question.html', context)
-            else:
-                context = {
-                'post' : post,
-                'comment_form' : CommentForm(),
-                }
-            return render(request, 'posts/post-detail-today-question.html', context)
+            # 댓글 내용만 존재할 경우,
+            elif content:
+                comment = Comment.objects.create(
+                    content = content,
+                    post=post,
+                    writer=request.user,
+                )
+            else: # 댓글 이미지와, 내용이 없을 경우,
+                return render(request, 'posts/post-detail-today-question.html')
+            context = {
+                    'post': post,
+            }
+            return render(request, 'posts/post-detail-today-question.html', context)            
+    return render(request, 'posts/post-detail-today-question.html')
