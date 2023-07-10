@@ -4,38 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="{% static 'css/signup.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/screens/ai_response.css' %}">
+    <link rel="stylesheet" href="{% static 'css/screens/post-detail-today-question.css'%}">
+
     <script defer src="{% static 'js/post-list-all.js' %}"></script>  
+    <script defer src="{% static 'js/post-detail-today-question.js' %}"></script>
+    <script defer src="{% static 'js/post-detail-view.js' %}"></script> 
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
-    <style>
-        .userImage {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-    </style>
+
 </head>
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+
     <header>
+        <nav id="nav">
             <div class="logo">
                 <p>gomgom</p>
             </div>
         <nav class="nav">
-            <ul class="nav-navbar">
-                <li class="nav-item"><a href="{% url 'gomgom:home'%}">메인</a></li>
-                <li class="nav-item"><a href="{% url 'posts:post-create'%}">고민올리기</a></li>
-                <li class="nav-item"><a href="{% url 'posts:post-list-all' %}">게시판</a></li>
-                <li class="nav-item"><a href="{% url 'gomgom:ai'%}">곰곰이</a></li>
+            <ul class="nav__navbar">
+                <li><a href="{% url 'gomgom:home'%}">메인</a></li>
+                <li><a href="{% url 'posts:post-create'%}">고민올리기</a></li>
+                <li><a href="{% url 'posts:post-list-all' %}">게시판</a></li>
+                <li><a href="{% url 'gomgom:ai'%}">곰곰이</a></li>
             </ul>
             {% comment %} 회원가입 시 이미지가 있는 경우 {% endcomment %}
             {% if request.user.image %}
@@ -45,18 +46,20 @@
                 <br>
             {% comment %} 회원가입 시 이미지가 없는 경우 {% endcomment %}
             {% else %}
-                <a href="{% url 'accounts:mypage'%}" class="mypage-button">    
+                {% comment %}<a href="{% url 'accounts:mypage'%}" class="mypage-button">   {%endcomment%}
+                <a href="{% url 'accounts:mypage'%}">
                     <img class="userImage" src="{% static 'photo/basic_profile.png' %}">
-                </a>
+                <a>
                 <br>
             {% endif %}
-            {% comment %} <a href="{% url 'accounts:mypage'%}" class="mypage-button">
-                <img src="{% static 'photo/mypage-icon.png' %}">
-            </a> {% endcomment %}
+        </nav>
         </nav>
     </header>
+    
     {% block content %}
+
     {% endblock %}
+
     <footer class="main-footer">
     </footer>
 </body>

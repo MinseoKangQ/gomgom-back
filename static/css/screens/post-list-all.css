@@ -149,6 +149,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 20px;
 }
 
 .todayWorryContent-left {
@@ -159,7 +160,6 @@
 
 .todayWorryContent-left-start {
     height: 300px;
-    margin-left:500px;
 }
 
 
@@ -228,6 +228,8 @@
 .todayWorryContent-two-buttons {
     margin-top: 20px;
     display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
     padding-bottom: 10px;
 }
 

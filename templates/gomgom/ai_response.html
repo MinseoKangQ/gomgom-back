@@ -1,14 +1,33 @@
 {% extends 'base.html' %}
+    {% block title %}곰곰이의 답변{% endblock %}
 {% load static %}
-{% block title %}곰곰이{% endblock %}
 
 {% block content %}
 <body>
-    <form action="" method="GET">
-        <input type="text" name="question">
-        <input type="submit" value="GET 제출">
-    </form>
-    답변 페이지<br>
-    {{ response }}
+    <main>
+        <div class="line">
+
+        </div>
+        <div class="ask-box">
+            <div class="ask-text">
+                곰곰이의 답변
+            </div>
+        </div>
+        <div class="think-box">
+            <div class="think-text">
+                당신의 질문: {{ question }}
+            </div>
+        </div>
+        <div class="worry-box">
+            <div class="worry-box-contents">
+                <div class="worry-text">
+                    {{ response }}
+                </div>
+            </div>
+        </div>
+        <div class="image-box">
+            <img src="{% static 'photo/big-bear.png' %}" alt="big-bear">
+        </div>
+    </main>
 </body>
 {% endblock %}
