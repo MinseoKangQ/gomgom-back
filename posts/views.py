@@ -79,7 +79,7 @@ def post_detail_view(request, id):
             'post' : post,
             'comment_form' : CommentForm(),
         }
-        return render(request, 'posts/post-detail.html', context)
+        return render(request, 'posts/post-detail-view.html', context)
     # 요청이 POST인 경우
     if request.method == 'POST':
         # 댓글 작성

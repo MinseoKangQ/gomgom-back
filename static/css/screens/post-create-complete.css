@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Poller+One&display=swap');
+
+.logo p {
+    color: var(--67594-c, #67594C);
+    font-size: 32px;
+    font-family: MuseoModerno;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-mypage-container {
+    display: flex;
+    align-items: center;
+}
+
+.mypage-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: url(./mypage-icon.png) lightgray 50% / cover no-repeat;
+    text-indent: -9999px;
+    position: absolute;
+    right: 30px;
+    margin-right: 342px;
+}
+
+.main_visual_top {
+    position: relative;
+    width: 100%;
+    height: 448px;
+    background: #67594C;
+}
+
+.first-paragraph {
+    padding-top: 78px;
+    margin-right: 1107px;
+    margin-left: 427px;
+    color: #FAF9F6;
+    font-size: 20px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%;
+}
+
+.second-paragraph {
+    color: #FAF9F6;
+    font-size: 36px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+}
+
+.third-paragraph {
+    color: #FAF9F6;
+    font-size: 36px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+}
+
+.fourth-paragraph {
+    width: 176px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 32px;
+    background: var(--ffab-5-d, #FFAB5D);
+    border: none;
+    color: var(--ffffff, #FFF);
+    font-size: 20px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.fourth-box {
+    margin-right: 404px;
+}
+
+.main_visual_bottom {
+    height: 385px;
+    flex-shrink: 0;
+    background: var(--d-2-cdbc, #D2CDBC);
+}
+
+.paragraph-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 427px;
+    margin-top: 27px;
+}
+
+
+footer {
+    height: 76px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background: var(--67594-c, rgba(103, 89, 76, 0.50));
+}
+
+.footer {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#footer_content {
+    color: #67594C;
+    font-size: 12px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    text-align: center;
+}
+
+/* 추가된 스타일 */
+#nav .navbar {
+    justify-content: center;
+}
+
+#nav .navbar li {
+    margin-right: 138px;
+}
+
+#nav .navbar li:last-child {
+    margin-right: 0;
+}
+
+.navbar-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 700px;
+}
+
+.navbar-div a {
+    text-decoration: none;
+    border-bottom: none;
+    font-size: 16px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    color: var(--67594-c, #67594C);
+}
+
+.navbar-div-box {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    align-items: end;
+    margin-bottom: 16px;
+}
+
+.line {
+    height: 4px;
+    background: var(--e-9-e-5-da, #E9E5DA);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--faf-9-f-6, #FAF9F6);
+}
+
+.worry-img-box {
+    padding-top: 143px;
+}
+
+.worry-img {
+    width: 132px;
+    height: 132px;
+    flex-shrink: 0;
+    background: #D9D9D9;
+}
+
+.worry-text-box {
+    margin-top: 41px;
+}
+
+.worry-text {
+    color: var(--67594-c, #67594C);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.worry-detail-box {
+    margin-top: 31px;
+}
+
+.worry-detail-text {
+    color: var(--67594-c, #67594C);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+    width: 303px;
+    height: 55px;
+}
+
+.button-box {
+    margin-top: 94px;
+    margin-bottom: 407px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-button {
+    width: 260px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 44px;
+    background: var(--ffab-5-d, #FFAB5D);
+    border: none;
+}
+
+.home-button-text {
+    color: #FFF;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.my-page-button {
+    margin-top: 32px;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+
+}
+
+.my-page-text {
+    color: var(--67594-c, #67594C);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.button-box button {
+    margin-bottom: 32px;
+}

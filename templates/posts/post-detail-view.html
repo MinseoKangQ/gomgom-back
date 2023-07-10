@@ -1,0 +1,91 @@
+
+{% extends 'base.html'%}
+    {% block title %}상세보기{% endblock %}
+{% load static %}
+
+{% block content %}
+    <main>
+        <section class="detail-sec1">
+            <div class="detail-container">
+                <p class="detail-container__today-title">{{post.writer}} 님의 고민</p>
+                <div class="detail-container__question">
+                    <img class="detail-container__view-user" src="{% static 'photo/mypage-icon.png' %}">
+                    <div class="detail-container__div">
+                        <div class="detail-container__question-box">
+                            <h3 class="question-box__title">{{post.title}}</h3>
+                            <h4 class="question-box__content">
+                                {{post.content}}
+                            </h4>
+                            <div class="question-box__choice-btns">
+                                {% for selection in post.selection_set.all%}
+                                    {% if forloop.counter == 0 %}
+                                        <button class="question-box__choice-btn">
+                                            <div class="choice-btn__content">
+                                                <span>{{selection.content}}</span>
+                                                <span>60%</span>
+                                            </div>
+                                        </button>
+                                        {% else %}
+                                            <button class="question-box__choice-btn">
+                                                <div class="choice-btn__content">
+                                                    <span>{{selection.content}}</span>
+                                                    <span>40%</span>
+                                                </div>
+                                            </button>
+                                        {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-container__like-btn">
+                        <span>공감돼요!</span>
+                        <img src="{% static 'photo/heartEmpty.svg' %}">
+                    </div>    
+                </div>
+            </div>
+        </section>
+        <section class="detail-sec2">
+            {% comment %}사용자들의 댓글이 들어갈 곳{% endcomment %}
+            {% comment %}페이지 완성시, 수정 필요{% endcomment %}
+            <br><br>
+            {% for comment in post.comment_set.all %}
+                {% if comment.writer.image %}
+                <img src="{{ comment.writer.image.url }}" alt="Profile Picture" height="40" width="40">
+                {% else %}
+                <img src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
+                {% endif %}
+                {{ comment.writer }}<br>
+                {{ comment.content|linebreaksbr }}<br>
+                {% if comment.image %}
+                <img class="card__image" src="{{ comment.image.url }}" alt="" height="40" width="40">
+                <br>
+                {% else %} 이미지 첨부 안함 
+                <br>
+                {% endif %}
+                댓글 작성 시간 : {{ comment.created_at}}<br>
+            {% endfor %}
+
+        </section>
+    </main>
+
+    <footer class="detail-footer">
+        <form class="answer-form" action="" method="POST" enctyp"multipart/form-data">
+            {% csrf_token %}
+            <div class="answer-form__div">
+                <div class="answer-form__container">
+                    <input type="text" placeholder="곰곰이의 고민에 댓글을 써주세요.">
+
+
+                    <button type="submit"></button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M30 2H2V30H30V2Z" stroke="#D2CDBC" stroke-width="2" stroke-miterlimit="10"/>
+                        <path d="M2 26.1864L10.9067 17.2798L18.5467 24.9065L23.64 19.8131L30 26.1864" stroke="#D2CDBC" stroke-width="2" stroke-miterlimit="10"/>
+                        <path d="M18.5467 13.4532C19.9532 13.4532 21.0933 12.313 21.0933 10.9065C21.0933 9.50005 19.9532 8.35986 18.5467 8.35986C17.1402 8.35986 16 9.50005 16 10.9065C16 12.313 17.1402 13.4532 18.5467 13.4532Z" stroke="#D2CDBC" stroke-width="2" stroke-miterlimit="10"/>
+                    </svg>
+                </div>
+                <button><img src="{% static 'photo/submitBtn.svg' %}"></button>
+            </div>
+        </form>
+    </footer>
+
+    {% endblock %}

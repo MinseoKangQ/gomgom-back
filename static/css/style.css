@@ -5,6 +5,7 @@
 @import "component/question-box.css";
 /*screens*/
 @import "screens/post-detail-today-question.css";
+@import "screens/post-create-complete.css";
 @import "screens/post-list-all.css";
 @import "screens/signup.css";
 @import "screens/login.css";

@@ -4,20 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="{% static 'css/signup.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/screens/ai_response.css' %}">
+    <link rel="stylesheet" href="{% static 'css/screens/post-detail-today-question.css'%}">
+
+    <script defer src="{% static 'js/post-list-all.js' %}"></script>  
+    <script defer src="{% static 'js/post-detail-today-question.js' %}"></script>
+    <script defer src="{% static 'js/post-detail-view.js' %}"></script> 
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
+
 </head>
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body class="container">
+<body>
+
     <header>
         <nav id="nav">
             <div class="logo">
@@ -38,7 +46,8 @@
                 <br>
             {% comment %} 회원가입 시 이미지가 없는 경우 {% endcomment %}
             {% else %}
-                <a href="{% url 'accounts:mypage'%}" class="mypage-button">    
+                {% comment %}<a href="{% url 'accounts:mypage'%}" class="mypage-button">   {%endcomment%}
+                <a href="{% url 'accounts:mypage'%}">
                     <img class="userImage" src="{% static 'photo/basic_profile.png' %}">
                 <a>
                 <br>
@@ -46,9 +55,11 @@
         </nav>
         </nav>
     </header>
-    <div>
+    
     {% block content %}
+
     {% endblock %}
+
     <footer class="main-footer">
     </footer>
 </body>

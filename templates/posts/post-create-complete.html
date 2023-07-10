@@ -1,9 +1,46 @@
 {% extends 'base.html' %}
-{% block title %}고민 올리기 완료{% endblock %}
+    {% block title %}등록성공{% endblock %}
+
+
 
 {% block content %}
-<h1>고민 올리기 완료</h1>
+    <div class="line">
 
-<button onclick="location.href='{% url 'posts:post-list-all' %}'">게시판으로 이동</button>
-{% comment %} <button onclick="location.href='{% url 'account:' %}'">마이페이지로 이동</button> {% endcomment %}
+    </div>
+
+    <main>
+        <div class="worry-img-box">
+            <div class="worry-img">
+                {% comment %}곰곰이이미지 필요{% endcomment %}
+
+            </div>
+        </div>
+
+        <div class="worry-text-box">
+            <div class="worry-text">
+                고민 올리기 완료!
+            </div>
+        </div>
+
+        <div class="worry-detail-box">
+            <div class="worry-detail-text">
+                곧 사람들이 고민 선택을 도와줄 거예요!
+                나의 고민은 마이페이지에서 확인 가능해요.
+            </div>
+        </div>
+
+        <div class="button-box">
+            <button class="home-button" onclick="location.href='{% url 'posts:post-list-all' %}'">
+                <div class="home-button-text">
+                    게시판으로 이동
+                </div>
+            </button>
+            <button class="my-page-button" onclick="location.href='{% url 'accounts:mypage' %}'">
+                <div class="my-page-text">
+                    마이페이지로 이동
+                </div>
+            </button>
+        </div>
+    </main>
+
 {% endblock %}

@@ -20,7 +20,7 @@ header {
     justify-content: center;
     align-items: center;
 }
-.nav__navbar {
+.nav-navbar {
     display: flex;
     flex-grow: 1;
     display: flex;
@@ -29,7 +29,7 @@ header {
     max-width: 78rem;
 }
 
-.nav__navbar li {
+.nav-navbar li {
     list-style: none;
     font-size: 16px;
     font-family: 'Pretendard';
@@ -39,9 +39,13 @@ header {
     margin-right: 138px;
 }
 
-.nav__navbar li a {
+.nav-navbar li a {
     text-decoration: none;
     border-bottom: none;
     color: var(--color1);
 
+}
+.nav-item {
+    padding:22px;
+    cursor: pointer;
 }
