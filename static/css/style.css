@@ -10,6 +10,8 @@
 @import "screens/login.css";
 @import "screens/mypage_my_worry.css";
 @import "screens/post-detail-view.css";
+@import "screens/ai_response.css";
+
 :root {
     --color1:#67594C;
     --color2:#D2CDBC;
@@ -24,8 +26,15 @@ body {
 }
 main {
     width: 100vw;
-    height: 100vh;
+    /* height: 0vh; */
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.userImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
 }
