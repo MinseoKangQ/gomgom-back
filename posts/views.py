@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Selection, Comment
 from .forms import PostCreateForm, CommentForm
 from django.core.paginator import Paginator
+from django.http import JsonResponse
 
 @login_required(login_url='/accounts/login/')
 def post_create_form_view(request,selection_count=2):
@@ -75,6 +76,53 @@ def post_detail_view(request, id):
             return redirect('accounts:login')
         # 로그인이 된 상태라면
         else:
+            param = request.GET.get('param')
+            selections = Selection.objects.filter(post=post)
+            
+            if param == "1" or param == "2":
+                post.all_voted_count += 1
+                post.save()
+                first_selection = selections.first()
+                second_selection = selections[1]
+                
+                if param == "1":
+                    if first_selection and param == "1":
+                        first_selection.each_voted_count += 1
+                        first_selection.save()
+
+                    total_voted_count = post.all_voted_count
+                    first_selection_voted_count = first_selection.each_voted_count if first_selection else 0
+                    second_selection_voted_count = selections[1].each_voted_count if len(selections) > 1 else 0
+                    
+                    # Calculate vote percentages
+                    first_selection_vote_percentage = int((first_selection_voted_count / total_voted_count) * 100) if total_voted_count != 0 else 0
+                    second_selection_vote_percentage = int((second_selection_voted_count / total_voted_count) * 100) if total_voted_count != 0 else 0
+                    
+                    if first_selection:
+                        first_selection.vote = f'{first_selection_vote_percentage}%'
+                        second_selection.vote = f'{second_selection_vote_percentage}%'
+                        first_selection.save()
+                        second_selection.save()
+                
+                elif param == "2":
+                    if second_selection and param == "2":
+                        second_selection.each_voted_count += 1
+                        second_selection.save()
+
+                    total_voted_count = post.all_voted_count
+                    first_selection_voted_count = first_selection.each_voted_count if first_selection else 0
+                    second_selection_voted_count = selections[1].each_voted_count if len(selections) > 1 else 0
+                    
+                    # Calculate vote percentages
+                    first_selection_vote_percentage = int((first_selection_voted_count / total_voted_count) * 100) if total_voted_count != 0 else 0
+                    second_selection_vote_percentage = int((second_selection_voted_count / total_voted_count) * 100) if total_voted_count != 0 else 0
+                    
+                    if second_selection:
+                        first_selection.vote = f'{first_selection_vote_percentage}%'
+                        second_selection.vote = f'{second_selection_vote_percentage}%'
+                        first_selection.save()
+                        second_selection.save()
+                        
             context = {
             'post' : post,
             'comment_form' : CommentForm(),
@@ -87,7 +135,7 @@ def post_detail_view(request, id):
         if not request.user.is_authenticated:
             return redirect('accounts:login')
         # 로그인이 된 상태라면
-        else:
+        else:           
             comment_form = CommentForm(request.POST,request.FILES)
             if comment_form.is_valid():
                 comment_form = Comment.objects.create(
@@ -96,6 +144,7 @@ def post_detail_view(request, id):
                     image = comment_form.cleaned_data['image'],
                     post = post
                 )
+                        
                 context = {
                 'post' : post,
                 'comment_form' : comment_form,
@@ -107,7 +156,7 @@ def post_detail_view(request, id):
                 'post' : post,
                 'comment_form' : CommentForm(),
                 }
-            return render(request, 'posts/post-detail.html', context)
+            return render(request, 'posts/post-detail-view.html', context)
         
 @login_required
 def post_create_complete(request):
