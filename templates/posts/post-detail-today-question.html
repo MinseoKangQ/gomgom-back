@@ -1,99 +1,64 @@
 {% extends 'base.html' %}
+    {% block title %}곰곰이의 고민{% endblock %}
 {% load static %}
-{% block title %}게시판 상세페이지{% endblock %}
+
 
 {% block content %}
-<h1>곰곰이 Post 상세 화면</h1>
-    {{ post.writer }}님의 고민<br>
-    {% comment %} 프로필 사진 {% endcomment %}
-    {{ post.title }}<br>
-    {{ post.content|linebreaksbr }}<br>
-    {% comment %} selection1 {% endcomment %}
-    {% comment %} selection2 {% endcomment %}
-    댓글 {{ post.comment_set.all.count }}개 | 공감 {{ post.heart_count }}개
-    <br><br>
-
-    {% for comment in post.comment_set.all %}
-        <hr>
-        작성자 프로필사진 :
-        {% if comment.writer.image %}
-            <img src="{{ comment.writer.image.url }}" alt="Profile Picture" height="40" width="40">
-        {% else %}
-            <img src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
-        {% endif %}
-        <br>        
-        아이디 : {{ comment.writer }}<br>
-        댓글 내용 : {{ comment.content|linebreaksbr }}<br>
-        댓글 이미지 : 
-        {% if comment.image %}
-            <img class="card__image" src="{{ comment.image.url }}" alt="" height="40" width="40">
-        <br>
-        {% else %} 이미지 첨부 안함 
-        <br>
-        {% endif %}
-        댓글 작성 시간 : {{ comment.created_at}}<br>
-    {% endfor %}
-
-    {% comment %} 댓글 작성 부분 {% endcomment %}
-    <hr><br>
-
-    <form class="comment-form" action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div>
-            {{ comment_form.as_p }}
-        </div>
-        <div class="btns">
-            <input class="btns__comment" type="submit" value="작성" onclick="location.href='{% url 'posts:post-list-all' %}'">
-        </div>
-    </form>
-{% endblock %}
-
-
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>post-list</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <p>gomgom</p>
-          </div>
-        <nav class="nav">
-          <ul class="nav__navbar">
-            <li><a href="#">메인</a></li>
-            <li><a href="#">고민올리기</a></li>
-            <li><a href="post-list-all.html">게시판</a></li>
-            <li><a href="#">곰곰이</a></li>
-          </ul>
-          <a href="마이페이지URL" class="mypage-button">
-            <img src="photo/mypage-icon.png" alt="마이페이지">
-          </a>
-        </nav>
-    </header>
-    <section class="detail-sec1">
-        <div class="detail-container">
-            <p>곰곰이의 고민</p>
-            <div id="todayQuestion">
-                <img src="photo/gomgom.png">
-                <div class="questionBox">
+        <section class="detail-sec1">
+            <div class="detail-container">
+                <p class="detail-container__today-title">곰곰이의 고민</p>
+                <div class="detail-container__question">
+                    <img class="detail-container__detail-user" src="{% static 'photo/gomgom.png' %}">
+                    <div class="detail-container__div">
+                        {% comment %}곰곰이의 고민이 들어갈 곳{% endcomment %}
+                        <br><br>
+                        <a class="question-box__title" >{{ post.title }}</a>
+                        <p>{{ post.content|linebreaksbr }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section class="detail-sec2">
-    </section>
+        </section>
+        <section class="detail-sec2">
+            {% comment %}사용자들의 댓글이 들어갈 곳{% endcomment %}
+            {% comment %}페이지 완성시, 수정 필요{% endcomment %}
+            <br><br>
+            {% for comment in post.comment_set.all %}
+                {% if comment.writer.image %}
+                <img src="{{ comment.writer.image.url }}" alt="Profile Picture" height="40" width="40">
+                {% else %}
+                <img src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
+                {% endif %}
+                {{ comment.writer }}<br>
+                {{ comment.content|linebreaksbr }}<br>
+                {% if comment.image %}
+                <img class="card__image" src="{{ comment.image.url }}" alt="" height="40" width="40">
+                <br>
+                {% else %} 이미지 첨부 안함 
+                <br>
+                {% endif %}
+                댓글 작성 시간 : {{ comment.created_at}}<br>
+    {% endfor %}
+
+        </section>
+    </main>
     <footer class="detail-footer">
-        <form class="answer-form">
+        <form class="answer-form" action="" method="POST" enctyp"multipart/form-data">
+            {% csrf_token %}
             <div class="answer-form__div">
-                <input type="text" placeholder="곰곰이의 고민에 댓글을 써주세요.">
-                <button type="submit"></button>
+                <div class="answer-form__container">
+                    <input type="text" placeholder="곰곰이의 고민에 댓글을 써주세요.">
+                    <div>
+                        {% comment %}페이지 완성시, 수정 필요{% endcomment %}
+                    </div>
+                    <button type="submit"></button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M30 2H2V30H30V2Z" stroke="#D2CDBC" stroke-width="2" stroke-miterlimit="10"/>
+                        <path d="M2 26.1864L10.9067 17.2798L18.5467 24.9065L23.64 19.8131L30 26.1864" stroke="#D2CDBC" stroke-width="2" stroke-miterlimit="10"/>
+                        <path d="M18.5467 13.4532C19.9532 13.4532 21.0933 12.313 21.0933 10.9065C21.0933 9.50005 19.9532 8.35986 18.5467 8.35986C17.1402 8.35986 16 9.50005 16 10.9065C16 12.313 17.1402 13.4532 18.5467 13.4532Z" stroke="#D2CDBC" stroke-width="2" stroke-miterlimit="10"/>
+                    </svg>
+                </div>
+                <button><img src="{% static 'photo/submitBtn.svg' %}"></button>
             </div>
         </form>
     </footer>
-</body>
-</html> {% endcomment %}
+{% endblock %}

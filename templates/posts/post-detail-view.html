@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post-detail-view-question</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <p>gomgom</p>
+          </div>
+        <nav class="nav">
+          <ul class="nav__navbar">
+            <li><a href="#">메인</a></li>
+            <li><a href="#">고민올리기</a></li>
+            <li><a href="post-list-all.html">게시판</a></li>
+            <li><a href="#">곰곰이</a></li>
+          </ul>
+          <a href="마이페이지URL" class="mypage-button">
+            <img src="photo/mypage-icon.png" alt="마이페이지">
+          </a>
+        </nav>
+    </header>
+    <main>
+        <section class="detail-sec1">
+            <div class="detail-container">
+                <p class="detail-container__today-title">OO님의 고민</p>
+                <div class="detail-container__question">
+                    <img class="detail-container__view-user" src="photo/mypage-icon.png">
+                    <div class="detail-container__div">
+                        <div class="detail-container__question-box">
+                            <a class="question-box__title">고양이 모래는 뭐가 좋을까요?</a>
+                            <h4 class="question-box__content">
+                                취향이 참 까탈스런 고양이 인데요, 변로나이트 쓰다가 자꾸 
+                                이불에 볼일을 봐서 화장실 모래가 문제인가 싶어서 고민 올려요ㅠㅠ 
+                                고양이 박사님들 도와주세요!
+                            </h4>
+                            <div class="question-box__choice-btns">
+                                <button class="question-box__choice-btn">
+                                    <div class="choice-btn__content">
+                                        <span>두부모래</span>
+                                        <span>60%</span>
+                                    </div>
+                                </button>
+                                <button class="question-box__choice-btn">
+                                    <div class="choice-btn__content">
+                                        <span>종이모래</span>
+                                        <span>40%</span>
+                                    </div>
+                                </button>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-container__like-btn">
+                        <span>공감돼요!</span>
+                        <img src="photo/heartEmpty.svg">
+                    </div>    
+                </div>
+            </div>
+        </section>
+        <section class="detail-sec2">
+        </section>
+    </main>
+    <footer class="detail-footer">
+        <form class="answer-form">
+            <div class="answer-form__div">
+                <div class="answer-form__container">
+                    <input type="text" placeholder="곰곰이의 고민에 댓글을 써주세요.">
+                    <button type="submit"></button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M30 2H2V30H30V2Z" stroke="#D2CDBC" stroke-width="2" stroke-miterlimit="10"/>
+                        <path d="M2 26.1864L10.9067 17.2798L18.5467 24.9065L23.64 19.8131L30 26.1864" stroke="#D2CDBC" stroke-width="2" stroke-miterlimit="10"/>
+                        <path d="M18.5467 13.4532C19.9532 13.4532 21.0933 12.313 21.0933 10.9065C21.0933 9.50005 19.9532 8.35986 18.5467 8.35986C17.1402 8.35986 16 9.50005 16 10.9065C16 12.313 17.1402 13.4532 18.5467 13.4532Z" stroke="#D2CDBC" stroke-width="2" stroke-miterlimit="10"/>
+                    </svg>
+                </div>
+                <button><img src="photo/submitBtn.svg"></button>
+            </div>
+        </form>
+    </footer>
+
+</body>
+</html>

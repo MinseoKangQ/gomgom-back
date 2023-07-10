@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script defer src="{% static 'js/post-list-all.js' %}"></script>  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
@@ -24,18 +25,17 @@
 </head>
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body class="container">
+<body>
     <header>
-        <nav id="nav">
             <div class="logo">
                 <p>gomgom</p>
             </div>
         <nav class="nav">
-            <ul class="nav__navbar">
-                <li><a href="{% url 'gomgom:home'%}">메인</a></li>
-                <li><a href="{% url 'posts:post-create'%}">고민올리기</a></li>
-                <li><a href="{% url 'posts:post-list-all' %}">게시판</a></li>
-                <li><a href="{% url 'gomgom:ai'%}">곰곰이</a></li>
+            <ul class="nav-navbar">
+                <li class="nav-item"><a href="{% url 'gomgom:home'%}">메인</a></li>
+                <li class="nav-item"><a href="{% url 'posts:post-create'%}">고민올리기</a></li>
+                <li class="nav-item"><a href="{% url 'posts:post-list-all' %}">게시판</a></li>
+                <li class="nav-item"><a href="{% url 'gomgom:ai'%}">곰곰이</a></li>
             </ul>
             {% comment %} 회원가입 시 이미지가 있는 경우 {% endcomment %}
             {% if request.user.image %}
@@ -47,16 +47,14 @@
             {% else %}
                 <a href="{% url 'accounts:mypage'%}" class="mypage-button">    
                     <img class="userImage" src="{% static 'photo/basic_profile.png' %}">
-                <a>
+                </a>
                 <br>
             {% endif %}
             {% comment %} <a href="{% url 'accounts:mypage'%}" class="mypage-button">
                 <img src="{% static 'photo/mypage-icon.png' %}">
             </a> {% endcomment %}
         </nav>
-        </nav>
     </header>
-    <div>
     {% block content %}
     {% endblock %}
     <footer class="main-footer">

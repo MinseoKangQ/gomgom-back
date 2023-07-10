@@ -5,3 +5,16 @@
     background: var(--67594-c, rgba(103, 89, 76, 0.50));
     bottom: 0;
 }
+.footer {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#footer_content {
+    color: #67594C;
+    font-size: 12px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    text-align: center;
+}

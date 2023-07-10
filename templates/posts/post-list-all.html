@@ -1,148 +1,291 @@
-
 {% extends 'base.html' %}
-  {% block title %} 게시판 {% endblock %}
+    {% block title %}게시판{% endblock %}
 {% load static %}
 
 {% block content %}
-      <section class="list-all">
-        <div class="list-all__container">
-          <div class="list-all__title">곰곰이의 고민</div>
-          <div class="list-all__slide">
-            <button class="slide-btn-prev" onclick="slidePrev()"><img src="{% static 'photo/leftBtn.png' %}"></button>
-            <div class="list-all__slide-options">
-              {% comment %} 곰곰이의 고민 (writer가 곰곰인 글만 출력) {%endcomment%}
-              {% for post in post_list %}              
-                      {% if post.writer|stringformat:"s" == "gomgom"%}
-                            <div class="slide-op">
-                                  <a href="{% url 'posts:post-gomgom-detail' post.id %}">{{ post.title }}</a>
-                            </div>
-                      {% endif %}
-              {% endfor%}
+<section class="list-all">
+  <div class="list-all__container">
+    <div class="list-all__title">곰곰이의 고민</div>
+    <div class="list-all__slide">
+      <button class="slide-btn-prev"  onclick="slidePrev()" ><img src="{% static 'photo/leftBtn.png' %}"></button>
+      <div class="list-all__slide-options">
+        {% comment %} 곰곰이의 고민 (writer가 곰곰인 글만 출력) {%endcomment%}
+        {% for post in post_list %}              
+                {% if post.writer|stringformat:"s" == "gomgom"%}
+                      <div class="slide-op">
+                            <a href="{% url 'posts:post-gomgom-detail' post.id %}">{{ post.title }}</a>
+                      </div>
+                {% endif %}
+        {% endfor%}
+      </div>
+      <button class="slide-btn-next"  onclick="slideNext()" ><img src="{% static 'photo/rightBtn.png'%}"></button>
+      {% comment %} 버튼 눌렀을때 3개씩 슬라이스 하기위한 script 코드 {% endcomment %}
+      <script>
+        var slideIndex = 0;
+        var slideOptions = document.querySelectorAll(".slide-op");
+        var slideLength = slideOptions.length;
+        
+        function slidePrev() {
+          slideIndex -= 3
+          showSlides();
+        }
+        
+        function slideNext() {
+          slideIndex += 3;
+          showSlides();
+        }
+        
+        function showSlides() {
+          for (var i = 0; i < slideLength; i++) {
+            slideOptions[i].style.display = "none";
+          }
+          if (slideIndex <= 0) {
+            document.querySelector(".slide-btn-prev").style.display = "none";
+          } else {
+            document.querySelector(".slide-btn-prev").style.display = "block";
+          }
+          
+          if (slideIndex + 3 >= slideLength) {
+            document.querySelector(".slide-btn-next").style.display = "none";
+          } else {
+            document.querySelector(".slide-btn-next").style.display = "block";
+          }
+          for (var j = slideIndex; j < slideIndex + 3; j++) {
+            if (slideOptions[j]) {
+              slideOptions[j].style.display = "block";
+              slideOptions[j].classList.add("list-all__slide-options");
+            }
+          }
+        }
+        showSlides();
+        </script>
+        {% comment %}~스크립트 코드 끝~{% endcomment %}
+    </div>
+  </div>
+</section>
+
+<section class="category">
+  <div class="category__container">
+    <div class="category__title">고민을 한 곳에 모았어요</div>
+      <form action="" method="GET" enctype="multipart/form-data">
+        <div class="category__btns">
+          <input  class="category-btn" type="submit"  name="category" value="대인관계">
+          <input  class="category-btn" type="submit"  name="category" value="연애">
+          <input  class="category-btn" type="submit"  name="category" value="교육">
+          <input  class="category-btn" type="submit"  name="category" value="생활">
+          <input  class="category-btn" type="submit"  name="category" value="건강">
+          <input  class="category-btn" type="submit"  name="category" value="반려동물">
+          <input  class="category-btn" type="submit"  name="category" value="여행">
+          <input  class="category-btn" type="submit"  name="category" value="쇼핑">
+          <input  class="category-btn" type="submit"  name="category" value="기타">
+        </div>
+    </form>
+  </div>
+</section>
+
+<section>
+  {% for post in filter_list.object_list %}
+  {% if post.writer|stringformat:"s" != "gomgom" %}
+    {% if forloop.counter|divisibleby:2 %}
+        <div class="todayWorryContent">
+          <div class="todayWorryContent-left">
+            <div class="todayWorryContent-left-start">
+              <div class="todayWorryContent-medium-sizebox">
+                <div class="todayWorryContent-question-header" >
+                  <div class="todayWorryContent-question-header__title">
+                    {{post.title}}
+                  </div>
+                  <div class="todayWorryContent-question-header__like1">
+                    <div class="todayWorryContent-question-header__like-icon">
+                      <img src="{% static 'photo/message.svg'%}" alt="message">
+                    </div>
+                    <div class="todayWorryContent-question-header__like-count">
+                      {{post.comment_set.all.count}}
+                    </div>
+                  </div>
+                  <div class="todayWorryContent-question-header__like2">
+                    <div class="todayWorryContent-question-header__like-icon">
+                      <img class=".todayWorryContent-icon" src="{% static 'photo/heart.svg'%}" alt="heart">
+                    </div>
+                    <div class="todayWorryContent-question-header__like2-text">
+                      999+
+                    </div>
+                  </div>
+                </div>
+                <div class="todayWorryContent-two-buttons">
+                  {% for selection in post.selection_set.all%}
+                    {% if forloop.counter == 0 %}
+                      <div class="todayWorryContent-two-buttons-left">
+                        <div class="todayWorryContent-two-buttons-left-1">
+                          <div>{{selection.content}}</div>
+                          {% comment %} 투표수 표시{% endcomment %}
+                          <div  class="hidden ratio">60%</div>
+                        </div>
+                      </div>
+                  {% else %}
+                    <div class="todayWorryContent-two-buttons-right">
+                      <div class="todayWorryContent-two-buttons-right-1">
+                        <div>{{selection.content}}</div>
+                        {% comment %} 투표수 표시{% endcomment %}
+                        <div  class="hidden ratio">40%</div>
+                      </div>
+                    </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <div class="todayWorryContent-left-start-box-post" >
+                  {{post.content}}
+                </div>
             </div>
-            <button class="slide-btn-next"  onclick="slideNext()" ><img src="{% static 'photo/rightBtn.png'%}"></button>
-            {% comment %} 버튼 눌렀을때 3개씩 슬라이스 하기위한 script 코드 {% endcomment %}
-            <script>
-              var slideIndex = 0;
-              var slideOptions = document.querySelectorAll(".slide-op");
-              var slideLength = slideOptions.length;
-              
-              function slidePrev() {
-                slideIndex -= 3
-                showSlides();
-              }
-              
-              function slideNext() {
-                slideIndex += 3;
-                showSlides();
-              }
-              
-              function showSlides() {
-                for (var i = 0; i < slideLength; i++) {
-                  slideOptions[i].style.display = "none";
-                }
-                if (slideIndex <= 0) {
-                  document.querySelector(".slide-btn-prev").style.display = "none";
-                } else {
-                  document.querySelector(".slide-btn-prev").style.display = "block";
-                }
-                
-                if (slideIndex + 3 >= slideLength) {
-                  document.querySelector(".slide-btn-next").style.display = "none";
-                } else {
-                  document.querySelector(".slide-btn-next").style.display = "block";
-                }
-                for (var j = slideIndex; j < slideIndex + 3; j++) {
-                  if (slideOptions[j]) {
-                    slideOptions[j].style.display = "block";
-                    slideOptions[j].classList.add("list-all__slide-options");
-                  }
-                }
-              }
-              showSlides();
-              </script>
-              {% comment %}~스크립트 코드 끝~{% endcomment %}
+
+              <div class="todayWorryContent-profile">
+                <div class="todayWorryContent-profile-box">
+                  <div class="todayWorryContent-profile-box-1">
+                    <div class="todayWorryContent-profile-box-icon">
+                      <img src="{% static 'photo/mypage-icon.png'%}" alt="profile-img">
+                    </div>
+                    <div class="todayWorryContent-profile-box-text1">
+                      {{post.writer}}
+                    </div>
+                  </div>
+                  <div class="todayWorryContent-profile-box-text2">
+                    {{post.created_at}}
+                  </div>
+                </div>
+              </div>
+            </div>
+    {% else %}
+
+      <div class="todayWorryContent-right">
+        <div class="todayWorryContent-right-start">
+          <div class="todayWorryContent-medium-sizebox">
+            <div class="todayWorryContent-question-header" >
+              <div class="todayWorryContent-question-header__title">
+                {{post.title}}
+              </div>
+              <div class="todayWorryContent-question-header__like1">
+                <div class="todayWorryContent-question-header__like-icon">
+                  <img src="{% static 'photo/message.svg'%}" alt="message">
+                </div>
+                <div class="todayWorryContent-question-header__like-count">
+                  {{post.comment_set.all.count}}
+                </div>
+              </div>
+              <div class="todayWorryContent-question-header__like2">
+                <div class="todayWorryContent-question-header__like-icon">
+                  <img class=".todayWorryContent-icon" src="{% static 'photo/heart.svg'%}" alt="heart">
+                </div>
+                <div class="todayWorryContent-question-header__like2-text">
+                  999+
+                </div>
+              </div>
+            </div>
+            <div class="todayWorryContent-two-buttons">
+              {% for selection in post.selection_set.all%}
+                {% if forloop.counter == 0 %}
+                <div class="todayWorryContent-two-buttons-left">
+                  <div class="todayWorryContent-two-buttons-left-1">
+                    <div>{{selection.content}}</div>
+                    <div class="hidden ratio">60%</div>
+                  </div>
+                </div>
+                {% else %}
+                <div class="todayWorryContent-two-buttons-right">
+                  <div class="todayWorryContent-two-buttons-right-1">
+                    <div>{{selection.content}}</div>
+                    <div class="hidden ratio">40%</div>
+                  </div>
+                </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div class="todayWorryContent-left-start-box-post" >
+              {{post.content}}
+            </div>
+        </div>
+      
+          <div class="todayWorryContent-profile">
+            <div class="todayWorryContent-profile-box">
+              <div class="todayWorryContent-profile-box-1">
+                <div class="todayWorryContent-profile-box-icon">
+                  <img src="{% static 'photo/mypage-icon.png'%}" alt="profile-img">
+                </div>
+                <div class="todayWorryContent-profile-box-text1">
+                  {{post.writer}}
+                </div>
+              </div>
+              <div class="todayWorryContent-profile-box-text2">
+                {{post.created_at}}
+              </div>
+            </div>
           </div>
         </div>
-      </section>
-  
-      <section class="category">
-        <div class="category__container">
-          <div class="category__title">고민을 한 곳에 모았어요</div>
-
-          <form action="" method="GET" enctype="multipart/form-data">
-            <div class="category__btns">
-              <input type="submit" name="category" value="대인관계" >
-              <input type="submit" name="category" value="연애" >
-              <input type="submit" name="category" value="교육" >
-              <input type="submit" name="category" value="생활" >
-              <input type="submit" name="category" value="건강">
-              <input type="submit" name="category" value="반려동물">
-              <input type="submit" name="category" value="여행">
-              <input type="submit" name="category" value="쇼핑">
-              <input type="submit" name="category" value="기타">
-            </div>
-        </form>
-
-        </div>
-      </section>
-      <section>
-        {% for post in filter_list.object_list %}
-          {% if post.writer|stringformat:"s" != "gomgom" %}
-            <div>
-            {{post.title}}<br>
-            {{post.writer}}<br>
-            {{post.created_at}}<br>
-            댓글 : {{post.comment_set.all.count}} 개<br>
-            </div>
-            {% for selection in post.selection_set.all %}
-            <div>
-              <img class="card__image" src="{{ selection.image.url }}" alt="" height="40" width="40">
-              {{ selection.content }}
-            </div>
-            {% endfor %}
-          <br>
-          {% endif %}
-        {% endfor %}
-
-        {% comment %} 페이지 링크 표시 {% endcomment %}
-        <div class="pagination">
-          <span class="step-links">
-              {% if filter_list.number == filter_list.paginator.num_pages|add:-1 and filter_list.number >= 3%}
-                <a href="?category={{ selected_category }}&page={{ filter_list.number|add:-2 }}">{{ filter_list.number|add:-2 }}</a>
-              {% endif%}
-              {% comment %} 이전페이지 {% endcomment %}
-              {% if filter_list.has_previous %}
-                  <span class="previous-page">
-                    <a href="?category={{ selected_category }}&page={{ filter_list.previous_page_number }}">{{ filter_list.previous_page_number }}</a>
-                  </span>
-              {% endif %}
-              {% comment %} 현재 페이지 {% endcomment %}
-              <span class="current-page">{{ filter_list.number }}</span>      
-                
-                {% comment %} 현재 페이지가 1이라면 {% endcomment %}
-                {% if filter_list.number == 1 %}
-                  {% if filter_list.paginator.num_pages|add:-1 == 2 %}
-                    <a href="?category={{ selected_category }}&page=2">2</a>
-                  {% elif filter_list.paginator.num_pages|add:-1 == 3 %}
-                    <a href="?category={{ selected_category }}&page=2">2</a>
-                    <a href="?category={{ selected_category }}&page=3">3</a>
-                  {% endif %}
-                {% else %}
-                  {% if filter_list.has_next %}
-                      {% if filter_list.next_page_number != filter_list.paginator.num_pages %}
-                          <a href="?category={{ selected_category }}&page={{ filter_list.next_page_number }}">{{ filter_list.number|add:1 }}</a>
-                      {% endif %}  
-                  {% endif %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
 
 
-
-
-                {% endif %}
+{% comment %} 페이지 링크 표시 {% endcomment %}
+<div class="pagination">
+  <span class="step-links">
+      {% if filter_list.number == filter_list.paginator.num_pages|add:-1 and filter_list.number >= 3%}
+        <a href="?category={{ selected_category }}&page={{ filter_list.number|add:-2 }}">{{ filter_list.number|add:-2 }}</a>
+      {% endif%}
+      {% comment %} 이전페이지 {% endcomment %}
+      {% if filter_list.has_previous %}
+          <span class="previous-page">
+            <a href="?category={{ selected_category }}&page={{ filter_list.previous_page_number }}">{{ filter_list.previous_page_number }}</a>
           </span>
-      </div>
-      
-      
-       
-      </section>
-    </main>
-  {% endblock %}
+      {% endif %}
+      {% comment %} 현재 페이지 {% endcomment %}
+      <span class="current-page">{{ filter_list.number }}</span>      
+        
+        {% comment %} 현재 페이지가 1이라면 {% endcomment %}
+        {% if filter_list.number == 1 %}
+          {% if filter_list.paginator.num_pages|add:-1 == 2 %}
+            <a href="?category={{ selected_category }}&page=2">2</a>
+          {% elif filter_list.paginator.num_pages|add:-1 == 3 %}
+            <a href="?category={{ selected_category }}&page=2">2</a>
+            <a href="?category={{ selected_category }}&page=3">3</a>
+          {% endif %}
+        {% else %}
+          {% if filter_list.has_next %}
+              {% if filter_list.next_page_number != filter_list.paginator.num_pages %}
+                  <a href="?category={{ selected_category }}&page={{ filter_list.next_page_number }}">{{ filter_list.number|add:1 }}</a>
+              {% endif %}  
+          {% endif %}
+
+
+
+
+        {% endif %}
+
+<div class="pageNumberBar">
+  <div class="pageNumberBar-container">
+    <div class="pageNumberBar-container__left-btn">
+      <img src="{% static 'photo/leftBtn.png'%}">
+    </div>
+    <div class="pageNumberBar-container__chosen-page">
+      <img src="{% static 'photo/chosenPageSign.svg' %}">
+    </div>
+    <div class="pageNumberBar-container__second">
+      2
+    </div>
+    <div class="pageNumberBar-container__third">
+      3
+    </div>
+    <div class="pageNumberBar-container__right-btn">
+      <img src="{% static 'photo/rightBtn.png'%}">
+    </div>
+    </div>
+</div>
+</main>
+<footer class="main-footer">
+<div class="footer">
+  <p id="footer_content">footer 내용 구성하기</p>
+</div>
+</footer>
+
+</main>
+
+{% endblock %}
