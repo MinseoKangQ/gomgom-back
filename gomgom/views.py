@@ -18,14 +18,18 @@ def ai_view(request):
     
     # 질문이 있는 경우
     if len(str(question_ko)) >= 1:
+        context = { 'question' : question_ko, 
+                    'response' : "성공", }
         # 로그인이 된 상태에서만 이용 가능함
-        if request.user.is_authenticated:
-            question_en = translator.translate(question_ko, src='ko', dest='en')
-            response_en = ask_gpt(str(question_en.text))
-            response_ko = translator.translate(response_en, src='en', dest='ko')
-            print("답변 완료")
+        # if request.user.is_authenticated:
+        #     question_en = translator.translate(question_ko, src='ko', dest='en')
+        #     response_en = ask_gpt(str(question_en.text))
+        #     response_ko = translator.translate(response_en, src='en', dest='ko')
+        #     print("답변 완료")
             # 답변이 포함된 페이지로 렌더링 해주기
-            return render(request, 'gomgom/ai_response.html', {'response' : response_ko.text})
+            # return render(request, 'gomgom/ai_response.html', {'response' : response_ko.text})
+        if request.user.is_authenticated:
+            return render(request,'gomgom/ai_response.html', context)
         # 로그인이 안 된 상태이면 로그인 화면으로 이동
         else:
             return redirect('accounts:login')
