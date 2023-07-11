@@ -1,5 +1,4 @@
-
-from django.contrib.auth import logout,login
+from django.contrib.auth import logout,login,authenticate
 from django.shortcuts import redirect,render
 from accounts.forms import signupForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -62,11 +61,17 @@ def login_view(request):
         form = CustomAuthenticationForm(request,data=request.POST)
         #비지니스 로직
         if form.is_valid():
-            login(request,form.user_cache)
-            #로그인 성공시 홈 페이지로 이동      ** 추후에 설정 필요함! **
-            return redirect('gomgom:home') #확인용으로 redirect 작성
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username,password=password)
+            if user is not None:
+                login(request,user)
+                return redirect('gomgom:home')
+            else:
+                print('User not found')
         else: #비지니스 로직 실패 ( 로그인 실패 )
             return render(request,'accounts/login.html',{'form':CustomAuthenticationForm()})
+        
         
 
 

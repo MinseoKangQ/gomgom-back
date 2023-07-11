@@ -2,6 +2,32 @@
 {% block title %}곰곰이의 고민{% endblock %}
     {% load static %}
     {% block content %}
+    <style>
+        .question-box__title-box {
+            width: 390px;
+            height: 31px;
+            flex-shrink: 0;
+            background: var(--e-9-e-5-da, #E9E5DA);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+        }
+        .question-box__content {
+            margin-top: 24px;
+            margin-bottom: 47px;
+            display: flex;
+            width: 410px;
+            flex-direction: column;
+            flex-shrink: 0;
+            color: var(--67594-c, #67594C);
+            font-family: Pretendard;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 160%;
+        }
+    </style>
     <main>
         <section class="detail-sec1">
             <div class="detail-container">
@@ -13,12 +39,15 @@
                             <div class="question-box__title-box">
                                 <span class="question-box__title">{{post.title}}</span>
                             </div>
-                            <h4 class="question-box__content">
+                            <div class="question-box__content">
                                 {{ post.content|linebreaksbr }}
-                            </h4>
+                            </div>
                         </div>
                         <div class="detail-container__img">
-                            {%comment %}이미지 넣는곳 (만약 시간 남으면,, post 모델에 image 필드 추가해서 만들기{% endcomment%}
+                            {%comment %}이미지 넣는곳{% endcomment%}
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}" alt="" height="150" width="200">
+                            {% endif %}
                         </div>      
                     </div>
                 </div>
@@ -61,18 +90,36 @@
                         </div>
                         <div class="comments-container__comment-box__img">
                             {% if comment.image %}
-                            <img class="card__image" src="{{ comment.image.url }}" alt="">
+                            <img class="card__image" src="{{ comment.image.url }}" alt="" height="150" width="200">
                             {% endif %}
                         </div>
                     </div>
                 </div> 
                 <div class="comments__border"></div>
                 {% endfor %}
+                <div class="comments__border"></div>
+                <div class="comments__border"></div>
+                <div class="comments__border"></div>
+                <div class="comments__border"></div>
+                <div class="comments__border"></div>
+                <div class="comments__border"></div>
+                <div class="comments__border"></div>
+                <div class="comments__border"></div>
             </div>
 
         </section>
 
     </main>
+    <style>
+        .answer-form__container input[type="text"] {
+            font-size: 18px;
+            font-family: Pretendard;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 100%;
+            text-indent: 31px;
+        }
+    </style>
     <footer class="footer">
         <div class="detail-footer">
             <form class="answer-form" action="" method="POST" enctype="multipart/form-data">

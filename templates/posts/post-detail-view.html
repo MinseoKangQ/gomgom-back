@@ -59,7 +59,7 @@
                 <div class="likeCount">
                     <div class="likeCount__comment">
                         <img src="{% static 'photo/message.svg' %}">
-                        <span>{{ post.commen_set.all }}</span>
+                        <span>{{ post.comment_set.all.count }}</span>
                     </div>
                     <div class="likeCount__heart">
                         <img src="{% static 'photo/heart.svg' %}">
@@ -101,10 +101,24 @@
                 <div class="comments__border"></div>
                 {% endfor %}
             </div>
+            <div class="comments__border"></div>
+            <div class="comments__border"></div>
+            <div class="comments__border"></div>
+            <div class="comments__border"></div>
 
         </section>
 
     </main>
+    <style>
+        .answer-form__container input[type="text"] {
+            font-size: 18px;
+            font-family: Pretendard;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 100%;
+            text-indent: 31px;
+        }
+    </style>
     <footer class="footer">
         <div class="detail-footer">
             <form class="answer-form" action="" method="POST" enctype="multipart/form-data">

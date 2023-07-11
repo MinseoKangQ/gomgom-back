@@ -51,6 +51,7 @@ class signupForm(UserCreationForm):
         
 # 로그인 폼
 class CustomAuthenticationForm(AuthenticationForm):
+    
     username = forms.CharField(
         label='',
         initial='',

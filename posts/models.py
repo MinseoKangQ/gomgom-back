@@ -25,6 +25,7 @@ class Post(models.Model):
     writer = models.ForeignKey(to=User,on_delete=models.CASCADE,null=True,blank=True)
     all_voted_count = models.IntegerField(verbose_name = '투표 참여 수', default = 0)
     category = models.CharField(max_length=20, choices=CHOICES,default='기타' )
+    image = models.ImageField(verbose_name='이미지',null=True, blank=True)
 
 
 class Comment(models.Model):
