@@ -6,6 +6,8 @@
 <style type="text/css">
   a:link { color: #67594C; text-decoration: none;}
   a:visited { color: #67594C; text-decoration: none;}
+  img { vertical-align: bottom; }
+  .post-img { margin : 0px; }
  </style>
 
 <section class="list-all">
@@ -15,11 +17,11 @@
       <button class="slide-btn-prev"  onclick="slidePrev()" ><img src="{% static 'photo/leftBtn.png' %}"></button>
       <div class="list-all__slide-options">
         {% comment %} 곰곰이의 고민 (writer가 곰곰인 글만 출력) {%endcomment%}
-        {% for post in post_list %}              
+        {% for post in post_list reversed %}              
                 {% if post.writer|stringformat:"s" == "gomgom"%}
                     <div class="slide-op">
                       <a href="{% url 'posts:post-gomgom-detail' post.id %}">
-                        <img src="{{ post.image.url }}">
+                        <img class="post-img" src="{{ post.image.url }}">
                       </a>
                       <div class="slide-op__worry-title">{{ post.title }}</div>
                     </div>
@@ -102,7 +104,7 @@
         <div class="todayWorryContent-medium-sizebox">
           <div class="todayWorryContent-question-header" >
             <div class="todayWorryContent-question-header__title">
-              <a href="{% url 'posts:post-detail' 1 %}">{{ post_list.0.title }}</a>
+              <a href="{% url 'posts:post-detail' post_list.0.id %}">{{ post_list.0.title }}</a>
             </div>
             <div class="todayWorryContent-question-header__like1">
               <div class="todayWorryContent-question-header__like-icon">
@@ -159,75 +161,73 @@
             </div>
           </div>
         </div>
-
       </div>
 
-      <div class="todayWorryContent-left-medium-first">
-        <div class="todayWorryContent-medium-sizebox">
-          <div class="todayWorryContent-question-header" >
-            <div class="todayWorryContent-question-header__title">
-              <a href="{% url 'posts:post-detail' 3 %}">{{ post_list.2.title }}</a>
-            </div>
-            <div class="todayWorryContent-question-header__like1">
-              <div class="todayWorryContent-question-header__like-icon">
-                <img src="{% static 'photo/message.svg'%}" alt="message">
+        <div class="todayWorryContent-left-medium-first">
+          <div class="todayWorryContent-medium-sizebox">
+            <div class="todayWorryContent-question-header" >
+              <div class="todayWorryContent-question-header__title">
+                <a href="{% url 'posts:post-detail' 3 %}">{{ post_list.2.title }}</a>
               </div>
-              <div class="todayWorryContent-question-header__like-count">
-                {{ post_list.2.comment_set.count }}
+              <div class="todayWorryContent-question-header__like1">
+                <div class="todayWorryContent-question-header__like-icon">
+                  <img src="{% static 'photo/message.svg'%}" alt="message">
+                </div>
+                <div class="todayWorryContent-question-header__like-count">
+                  {{ post_list.2.comment_set.count }}
+                </div>
               </div>
-            </div>
-            <div class="todayWorryContent-question-header__like2">
-              <div class="todayWorryContent-question-header__like-icon">
-                <img class=".todayWorryContent-icon" src="{% static 'photo/heart.svg'%}" alt="heart">
-              </div>
-              <div class="todayWorryContent-question-header__like2-text">
-                999+
-              </div>
-            </div>
-          </div>
-          <div class="todayWorryContent-two-buttons">
-            <div class="todayWorryContent-two-buttons-left">
-              <div class="todayWorryContent-two-buttons-left-1">
-                <div>{{ post_list.2.selection_set.all.0.content }}</div>
-                <div class="hidden ratio">60%</div>
+              <div class="todayWorryContent-question-header__like2">
+                <div class="todayWorryContent-question-header__like-icon">
+                  <img class=".todayWorryContent-icon" src="{% static 'photo/heart.svg'%}" alt="heart">
+                </div>
+                <div class="todayWorryContent-question-header__like2-text">
+                    999+
+                </div>
               </div>
             </div>
-            <div class="todayWorryContent-two-buttons-right">
-              <div class="todayWorryContent-two-buttons-right-1">
-                <div>{{ post_list.2.selection_set.all.1.content }}</div>
-                <div class="hidden ratio">40%</div>
+            <div class="todayWorryContent-two-buttons">
+              <div class="todayWorryContent-two-buttons-left">
+                <div class="todayWorryContent-two-buttons-left-1">
+                  <div>{{ post_list.2.selection_set.all.0.content }}</div>
+                  <div class="hidden ratio">60%</div>
+                </div>
+              </div>
+              <div class="todayWorryContent-two-buttons-right">
+                <div class="todayWorryContent-two-buttons-right-1">
+                  <div>{{ post_list.2.selection_set.all.1.content }}</div>
+                  <div class="hidden ratio">40%</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="todayWorryContent-left-start-box-post" >
-            {{ post_list.2.content }}
-          </div>
-      </div>
+            <div class="todayWorryContent-left-start-box-post" >
+              {{ post_list.2.content }}
+            </div>
+        </div>
 
-        <div class="todayWorryContent-profile">
-          <div class="todayWorryContent-profile-box">
-            <div class="todayWorryContent-profile-box-1">
-              <div class="todayWorryContent-profile-box-icon">
-                {% if post_list.2.writer.image %}
-                  <img class="userImage" src="{{ post_list.2.writer.image.url }}" alt="프로필 이미지">
-                {% else %}
-                  <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
-                {% endif %}
+          <div class="todayWorryContent-profile">
+            <div class="todayWorryContent-profile-box">
+              <div class="todayWorryContent-profile-box-1">
+                <div class="todayWorryContent-profile-box-icon">
+                  {% if post_list.2.writer.image %}
+                    <img class="userImage" src="{{ post_list.2.writer.image.url }}" alt="프로필 이미지">
+                  {% else %}
+                    <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                  {% endif %}
+                </div>
+                <div class="todayWorryContent-profile-box-text1">
+                  {{ post_list.2.writer }}
+                </div>
               </div>
-              <div class="todayWorryContent-profile-box-text1">
-                {{ post_list.2.writer }}
+              <div class="todayWorryContent-profile-box-text2">
+                {{ post_list.2.created_at }}
               </div>
-            </div>
-            <div class="todayWorryContent-profile-box-text2">
-              {{ post_list.2.created_at }}
             </div>
           </div>
         </div>
 
-      </div>
-
       <div class="todayWorryContent-left-medium-second">
-        <div class="todayWorryContent-small-sizebox">
+        <div class="todayWorryContent-medium-sizebox">
           <div class="todayWorryContent-question-header" >
             <div class="todayWorryContent-question-header__title">
               <a href="{% url 'posts:post-detail' 7 %}">{{ post_list.6.title }}</a>
@@ -351,8 +351,6 @@
     </div>
   </div>
 
-
-
     <div class="todayWorryContent-right">
       <div class="todayWorryContent-right-start">
         <div class="todayWorryContent-medium-sizebox">
@@ -416,9 +414,9 @@
           </div>
         </div>
       </div>
-      
+  
       <div class="todayWorryContent-right-medium">
-        <div class="todayWorryContent-small-sizebox">
+        <div class="todayWorryContent-medium-sizebox">
           <div class="todayWorryContent-question-header" >
             <div class="todayWorryContent-question-header__title">
               <a href="{% url 'posts:post-detail' 4 %}">{{ post_list.3.title }}</a>
@@ -477,10 +475,10 @@
             </div>
           </div>
         </div>
-      </div> 
+      </div>
 
       <div class="todayWorryContent-right-medium">
-        <div class="todayWorryContent-small-sizebox">
+        <div class="todayWorryContent-medium-sizebox">
           <div class="todayWorryContent-question-header" >
             <div class="todayWorryContent-question-header__title">
               <a href="{% url 'posts:post-detail' 6 %}">{{ post_list.5.title }}</a>
@@ -539,7 +537,8 @@
             </div>
           </div>
         </div>
-      </div>   
+      </div>
+
       <div class="todayWorryContent-right-end">
         <div class="todayWorryContent-medium-sizebox">
           <div class="todayWorryContent-question-header" >
