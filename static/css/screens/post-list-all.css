@@ -158,10 +158,6 @@
     align-items: center;
 }
 
-.todayWorryContent-left-start {
-    height: 300px;
-}
-
 
 .todayWorryContent-medium-sizebox {
     width: 580px;
@@ -414,4 +410,10 @@
 
 .todayWorryContent-profile-box-text2{ 
     margin-top: 11px;
+}
+
+.content-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
