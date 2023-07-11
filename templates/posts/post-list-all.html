@@ -3,6 +3,11 @@
 {% load static %}
 
 {% block content %}
+<style type="text/css">
+  a:link { color: #67594C; text-decoration: none;}
+  a:visited { color: #67594C; text-decoration: none;}
+ </style>
+
 <section class="list-all">
   <div class="list-all__container">
     <div class="list-all__title">곰곰이의 고민</div>
@@ -12,9 +17,16 @@
         {% comment %} 곰곰이의 고민 (writer가 곰곰인 글만 출력) {%endcomment%}
         {% for post in post_list %}              
                 {% if post.writer|stringformat:"s" == "gomgom"%}
-                      <div class="slide-op">
+                    <div class="slide-op">
+                      <a href="{% url 'posts:post-gomgom-detail' post.id %}">
+                        <img src="{{ post.image.url }}">
+                      </a>
+                      <div class="slide-op__worry-title">{{ post.title }}</div>
+                    </div>
+                
+                      {% comment %} <div class="slide-op">
                             <a href="{% url 'posts:post-gomgom-detail' post.id %}">{{ post.title }}</a>
-                      </div>
+                      </div> {% endcomment %}
                 {% endif %}
         {% endfor%}
       </div>
@@ -90,7 +102,7 @@
         <div class="todayWorryContent-medium-sizebox">
           <div class="todayWorryContent-question-header" >
             <div class="todayWorryContent-question-header__title">
-              {{ post_list.0.title }}
+              <a href="{% url 'posts:post-detail' 1 %}">{{ post_list.0.title }}</a>
             </div>
             <div class="todayWorryContent-question-header__like1">
               <div class="todayWorryContent-question-header__like-icon">
@@ -112,21 +124,19 @@
           <div class="todayWorryContent-two-buttons">
             <div class="todayWorryContent-two-buttons-left">
               <div class="todayWorryContent-two-buttons-left-1">
-                <div>두부모래</div>
+                <div>{{ post_list.0.selection_set.all.0.content }}</div>
                 <div  class="hidden ratio">60%</div>
               </div>
             </div>
             <div class="todayWorryContent-two-buttons-right">
               <div class="todayWorryContent-two-buttons-right-1">
-                <div>종이모래</div>
+                <div>{{ post_list.0.selection_set.all.1.content }}</div>
                 <div  class="hidden ratio">40%</div>
               </div>
             </div>
           </div>
           <div class="todayWorryContent-left-start-box-post" >
-            취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
-            이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
-            고양이 박사님들 도와주세요!
+            {{ post_list.0.content }}
           </div>
       </div>
 
@@ -134,14 +144,18 @@
           <div class="todayWorryContent-profile-box">
             <div class="todayWorryContent-profile-box-1">
               <div class="todayWorryContent-profile-box-icon">
-                <img src="{% static 'photo/mypage-icon.png'%}" alt="profile-img">
+                {% if post_list.0.writer.image %}
+                  <img class="userImage" src="{{ post_list.0.writer.image.url }}" alt="프로필 이미지">
+                {% else %}
+                  <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                {% endif %}
               </div>
               <div class="todayWorryContent-profile-box-text1">
-                작성자닉네임
+                {{ post_list.0.writer }}
               </div>
             </div>
             <div class="todayWorryContent-profile-box-text2">
-              1분 전
+              {{ post_list.0.created_at }}
             </div>
           </div>
         </div>
@@ -152,7 +166,7 @@
         <div class="todayWorryContent-medium-sizebox">
           <div class="todayWorryContent-question-header" >
             <div class="todayWorryContent-question-header__title">
-              {{ post_list.2.title }}
+              <a href="{% url 'posts:post-detail' 3 %}">{{ post_list.2.title }}</a>
             </div>
             <div class="todayWorryContent-question-header__like1">
               <div class="todayWorryContent-question-header__like-icon">
@@ -174,21 +188,19 @@
           <div class="todayWorryContent-two-buttons">
             <div class="todayWorryContent-two-buttons-left">
               <div class="todayWorryContent-two-buttons-left-1">
-                <div>두부모래</div>
+                <div>{{ post_list.2.selection_set.all.0.content }}</div>
                 <div class="hidden ratio">60%</div>
               </div>
             </div>
             <div class="todayWorryContent-two-buttons-right">
               <div class="todayWorryContent-two-buttons-right-1">
-                <div>종이모래</div>
+                <div>{{ post_list.2.selection_set.all.1.content }}</div>
                 <div class="hidden ratio">40%</div>
               </div>
             </div>
           </div>
           <div class="todayWorryContent-left-start-box-post" >
-            취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
-            이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
-            고양이 박사님들 도와주세요!
+            {{ post_list.2.content }}
           </div>
       </div>
 
@@ -196,14 +208,18 @@
           <div class="todayWorryContent-profile-box">
             <div class="todayWorryContent-profile-box-1">
               <div class="todayWorryContent-profile-box-icon">
-                <img src="{% static 'photo/mypage-icon.png'%}" alt="profile-img">
+                {% if post_list.2.writer.image %}
+                  <img class="userImage" src="{{ post_list.2.writer.image.url }}" alt="프로필 이미지">
+                {% else %}
+                  <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                {% endif %}
               </div>
               <div class="todayWorryContent-profile-box-text1">
-                작성자닉네임
+                {{ post_list.2.writer }}
               </div>
             </div>
             <div class="todayWorryContent-profile-box-text2">
-              1분 전
+              {{ post_list.2.created_at }}
             </div>
           </div>
         </div>
@@ -214,14 +230,14 @@
         <div class="todayWorryContent-small-sizebox">
           <div class="todayWorryContent-question-header" >
             <div class="todayWorryContent-question-header__title">
-              {{ post_list.4.title }}
+              <a href="{% url 'posts:post-detail' 7 %}">{{ post_list.6.title }}</a>
             </div>
             <div class="todayWorryContent-question-header__like1">
               <div class="todayWorryContent-question-header__like-icon">
                 <img src="{% static 'photo/message.svg'%}" alt="message">
               </div>
               <div class="todayWorryContent-question-header__like-count">
-                {{ post_list.4.comment_set.count }}
+                {{ post_list.6.comment_set.count }}
               </div>
             </div>
           <div class="todayWorryContent-question-header__like2">
@@ -236,41 +252,42 @@
           <div class="todayWorryContent-two-buttons">
             <div class="todayWorryContent-two-buttons-left">
               <div class="todayWorryContent-two-buttons-left-1">
-                <div>두부모래</div>
+                <div>{{ post_list.4.selection_set.all.0.content }}</div>
                 <div class="hidden ratio">60%</div>
               </div>
             </div>
             <div class="todayWorryContent-two-buttons-right">
               <div class="todayWorryContent-two-buttons-right-1">
-                <div>종이모래</div>
+                <div>{{ post_list.4.selection_set.all.1.content }}</div>
                 <div class="hidden ratio">40%</div>
               </div>
             </div>
           </div>
           <div class="todayWorryContent-left-start-box-post" >
-            취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
-            이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
-            고양이 박사님들 도와주세요!
+            {{ post_list.6.content }}
           </div>
         </div>
         <div class="todayWorryContent-profile">
           <div class="todayWorryContent-profile-box">
             <div class="todayWorryContent-profile-box-1">
               <div class="todayWorryContent-profile-box-icon">
-                <img src="{% static 'photo/mypage-icon.png'%}" alt="profile-img">
+                {% if post_list.6.writer.image %}
+                  <img class="userImage" src="{{ post_list.6.writer.image.url }}" alt="프로필 이미지">
+                {% else %}
+                  <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                {% endif %}
               </div>
               <div class="todayWorryContent-profile-box-text1">
-                작성자닉네임
+                {{ post_list.6.writer }}
               </div>
             </div>
             <div class="todayWorryContent-profile-box-text2">
-              1분 전
+              {{ post_list.6.created_at }}
             </div>
           </div>
         </div>
       </div>
 
-      
       <div class="todayWorryContent-left-end">
         <div class="todayWorryContent-medium-sizebox">
           <div class="todayWorryContent-question-header" >
@@ -282,7 +299,7 @@
                 <img src="{% static 'photo/message.svg'%}" alt="message">
               </div>
               <div class="todayWorryContent-question-header__like-count">
-                {{ post_list.6.comment_set.count }}
+                999+
               </div>
             </div>
             <div class="todayWorryContent-question-header__like2">
@@ -297,35 +314,37 @@
           <div class="todayWorryContent-two-buttons">
             <div class="todayWorryContent-two-buttons-left">
               <div class="todayWorryContent-two-buttons-left-1">
-                <div>두부모래</div>
+                <div>{{ post_list.6.selection_set.all.0.content }}</div>
                 <div class="hidden ratio">60%</div>
               </div>
             </div>
             <div class="todayWorryContent-two-buttons-right">
               <div class="todayWorryContent-two-buttons-right-1">
-                <div>종이모래</div>
+                <div>{{ post_list.6.selection_set.all.1.content }}</div>
                 <div class="hidden ratio">40%</div>
               </div>
             </div>
           </div>
           <div class="todayWorryContent-left-start-box-post" >
-            취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
-            이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
-            고양이 박사님들 도와주세요!
+            {{ post_list.6.content }}
           </div>
       </div>
       <div class="todayWorryContent-profile">
         <div class="todayWorryContent-profile-box">
           <div class="todayWorryContent-profile-box-1">
             <div class="todayWorryContent-profile-box-icon">
-              <img src="{% static 'photo/mypage-icon.png'%}" alt="profile-img">
+                {% if post_list.6.writer.image %}
+                  <img class="userImage" src="{{ post_list.6.writer.image.url }}" alt="프로필 이미지">
+                {% else %}
+                  <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                {% endif %}
             </div>
             <div class="todayWorryContent-profile-box-text1">
-              작성자닉네임
+              {{ post_list.6.writer }}
             </div>
           </div>
           <div class="todayWorryContent-profile-box-text2">
-            1분 전
+            {{ post_list.6.created_at }}
           </div>
         </div>
       </div>
@@ -339,7 +358,7 @@
         <div class="todayWorryContent-medium-sizebox">
           <div class="todayWorryContent-question-header" >
             <div class="todayWorryContent-question-header__title">
-              {{ post_list.1.title }}
+              <a href="{% url 'posts:post-detail' 2 %}">{{ post_list.1.title }}</a>
             </div>
             <div class="todayWorryContent-question-header__like1">
               <div class="todayWorryContent-question-header__like-icon">
@@ -361,21 +380,19 @@
           <div class="todayWorryContent-two-buttons">
             <div class="todayWorryContent-two-buttons-left">
               <div class="todayWorryContent-two-buttons-left-1">
-                <div>두부모래</div>
+                <div>{{ post_list.1.selection_set.all.0.content }}</div>
                 <div class="hidden ratio">60%</div>
               </div>
             </div>
             <div class="todayWorryContent-two-buttons-right">
               <div class="todayWorryContent-two-buttons-right-1">
-                <div>종이모래</div>
+                <div>{{ post_list.1.selection_set.all.1.content }}</div>
                 <div class="hidden ratio">40%</div>
               </div>
             </div>
           </div>
           <div class="todayWorryContent-left-start-box-post" >
-            취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
-            이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
-            고양이 박사님들 도와주세요!
+            {{ post_list.1.content }}
           </div>
       </div>
 
@@ -383,14 +400,18 @@
           <div class="todayWorryContent-profile-box">
             <div class="todayWorryContent-profile-box-1">
               <div class="todayWorryContent-profile-box-icon">
-                <img src="{% static 'photo/mypage-icon.png'%}" alt="profile-img">
+                {% if post_list.1.writer.image %}
+                  <img class="userImage" src="{{ post_list.1.writer.image.url }}" alt="프로필 이미지">
+                {% else %}
+                  <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                {% endif %}
               </div>
               <div class="todayWorryContent-profile-box-text1">
-                작성자닉네임
+                {{ post_list.1.writer }}
               </div>
             </div>
             <div class="todayWorryContent-profile-box-text2">
-              1분 전
+              {{ post_list.1.created_at }}
             </div>
           </div>
         </div>
@@ -400,7 +421,7 @@
         <div class="todayWorryContent-small-sizebox">
           <div class="todayWorryContent-question-header" >
             <div class="todayWorryContent-question-header__title">
-              {{ post_list.3.title }}
+              <a href="{% url 'posts:post-detail' 4 %}">{{ post_list.3.title }}</a>
             </div>
             <div class="todayWorryContent-question-header__like1">
               <div class="todayWorryContent-question-header__like-icon">
@@ -422,35 +443,37 @@
           <div class="todayWorryContent-two-buttons">
             <div class="todayWorryContent-two-buttons-left">
               <div class="todayWorryContent-two-buttons-left-1">
-                <div>두부모래</div>
+                <div>{{ post_list.3.selection_set.all.0.content }}</div>
                 <div class="hidden ratio">60%</div>
               </div>
             </div>
             <div class="todayWorryContent-two-buttons-right">
               <div class="todayWorryContent-two-buttons-right-1">
-                <div>종이모래</div>
+                <div>{{ post_list.3.selection_set.all.1.content }}</div>
                 <div class="hidden ratio">40%</div>
               </div>
             </div>
           </div>
           <div class="todayWorryContent-left-start-box-post" >
-            취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
-            이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
-            고양이 박사님들 도와주세요!
+            {{ post_list.3.content }}
           </div>
         </div>
         <div class="todayWorryContent-profile">
           <div class="todayWorryContent-profile-box">
             <div class="todayWorryContent-profile-box-1">
               <div class="todayWorryContent-profile-box-icon">
-                <img src="{% static 'photo/mypage-icon.png'%}" alt="profile-img">
+                {% if post_list.3.writer.image %}
+                  <img class="userImage" src="{{ post_list.3.writer.image.url }}" alt="프로필 이미지">
+                {% else %}
+                  <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                {% endif %}
               </div>
               <div class="todayWorryContent-profile-box-text1">
-                작성자닉네임
+                {{ post_list.3.writer }}
               </div>
             </div>
             <div class="todayWorryContent-profile-box-text2">
-              1분 전
+              {{ post_list.3.created_at }}
             </div>
           </div>
         </div>
@@ -460,7 +483,7 @@
         <div class="todayWorryContent-small-sizebox">
           <div class="todayWorryContent-question-header" >
             <div class="todayWorryContent-question-header__title">
-              {{ post_list.5.title }}
+              <a href="{% url 'posts:post-detail' 6 %}">{{ post_list.5.title }}</a>
             </div>
             <div class="todayWorryContent-question-header__like1">
               <div class="todayWorryContent-question-header__like-icon">
@@ -482,35 +505,37 @@
           <div class="todayWorryContent-two-buttons">
             <div class="todayWorryContent-two-buttons-left">
               <div class="todayWorryContent-two-buttons-left-1">
-                <div>두부모래</div>
+                <div>{{ post_list.5.selection_set.all.0.content }}</div>
                 <div class="hidden ratio">60%</div>
               </div>
             </div>
             <div class="todayWorryContent-two-buttons-right">
               <div class="todayWorryContent-two-buttons-right-1">
-                <div>종이모래</div>
+                <div>{{ post_list.5.selection_set.all.1.content }}</div>
                 <div class="hidden ratio">40%</div>
               </div>
             </div>
           </div>
           <div class="todayWorryContent-left-start-box-post" >
-            취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
-            이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
-            고양이 박사님들 도와주세요!
+            {{ post_list.5.content }}
           </div>
         </div>
         <div class="todayWorryContent-profile">
           <div class="todayWorryContent-profile-box">
             <div class="todayWorryContent-profile-box-1">
               <div class="todayWorryContent-profile-box-icon">
-                <img src="{% static 'photo/mypage-icon.png'%}" alt="profile-img">
+                {% if post_list.5.writer.image %}
+                  <img class="userImage" src="{{ post_list.5.writer.image.url }}" alt="프로필 이미지">
+                {% else %}
+                  <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                {% endif %}
               </div>
               <div class="todayWorryContent-profile-box-text1">
-                작성자닉네임
+                {{ post_list.5.writer }}
               </div>
             </div>
             <div class="todayWorryContent-profile-box-text2">
-              1분 전
+              {{ post_list.5.created_at }}
             </div>
           </div>
         </div>
@@ -519,7 +544,7 @@
         <div class="todayWorryContent-medium-sizebox">
           <div class="todayWorryContent-question-header" >
             <div class="todayWorryContent-question-header__title">
-              {{ post_list.7.title }}
+              <a href="{% url 'posts:post-detail' 8 %}">{{ post_list.7.title }}</a>
             </div>
             <div class="todayWorryContent-question-header__like1">
               <div class="todayWorryContent-question-header__like-icon">
@@ -541,21 +566,19 @@
           <div class="todayWorryContent-two-buttons">
             <div class="todayWorryContent-two-buttons-left">
               <div class="todayWorryContent-two-buttons-left-1">
-                <div>두부모래</div>
+                <div>{{ post_list.7.selection_set.all.0.content }}</div>
                 <div class="hidden ratio">60%</div>
               </div>
             </div>
             <div class="todayWorryContent-two-buttons-right">
               <div class="todayWorryContent-two-buttons-right-1">
-                <div>종이모래</div>
+                <div>{{ post_list.7.selection_set.all.1.content }}</div>
                 <div class="hidden ratio">40%</div>
               </div>
             </div>
           </div>
           <div class="todayWorryContent-left-start-box-post" >
-            취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
-            이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
-            고양이 박사님들 도와주세요!
+            {{ post_list.7.content }}
           </div>
       </div>
 
@@ -563,14 +586,18 @@
           <div class="todayWorryContent-profile-box">
             <div class="todayWorryContent-profile-box-1">
               <div class="todayWorryContent-profile-box-icon">
-                <img src="{% static 'photo/mypage-icon.png'%}" alt="profile-img">
+                {% if post_list.7.writer.image %}
+                  <img class="userImage" src="{{ post_list.7.writer.image.url }}" alt="프로필 이미지">
+                {% else %}
+                  <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                {% endif %}
               </div>
               <div class="todayWorryContent-profile-box-text1">
-                작성자닉네임
+                {{ post_list.7.writer }}
               </div>
             </div>
             <div class="todayWorryContent-profile-box-text2">
-              1분 전
+              {{ post_list.7.created_at }}
             </div>
           </div>
         </div>
