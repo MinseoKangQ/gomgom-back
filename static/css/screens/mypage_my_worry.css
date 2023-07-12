@@ -3,12 +3,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 62vw;
-    border-bottom: 2px solid var(--color3);
+    width: 70vw;
 
 }
+.bottomline {
+    width: 50vw;
+    border-bottom: 2px solid var(--color3);
+    margin-left: 550px;
+    justify-content: center;
+    align-items: center
+}
 .mypage__title {
-    margin: 64px 0 57px 0;
+    margin: 64px 0 57px 650px;
     color: var(--67594-c, #67594C);
     font-family: Pretendard;
     font-size: 20px;
@@ -24,7 +30,7 @@
     margin-bottom: 50px;
 }
 .mypage__nicname {
-    margin-left: 8vw;
+    margin-left: 32vw;
     display: flex;
     align-items: center;
 }
@@ -33,7 +39,7 @@
     height: 100px;
     flex-shrink: 0;
     border-radius: 100px;
-    margin-right: 31px;
+    margin-right: 50px;
 }
 .mypage__nicname span {
     color: #67594C;
@@ -47,14 +53,424 @@
     position: absolute;
     right: 0;
     display: flex;
-    margin-right: 8vw;
+    margin-left: 25vw;
     color: var(--67594-c, #67594C);
     font-family: Pretendard;
-    font-size: 15px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: 160%;
 }
 .mypage__settings span:first-child {
-    margin-right: 69px;
+    margin-right: 50px;
+}
+.myWorry-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 77px 522px;
+}
+.myWorry-buttons__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.myWorry-button-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 278px;
+    height: 104px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    background: var(--67594-c, #67594C);
+    border-style: none;
+}
+.myWorry-button-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 278px;
+    height: 104px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    border: 2px solid var(--d-2-cdbc, #D2CDBC);
+    background: var(--e-9-e-5-da, #E9E5DA);
+    margin: 0 20px;
+}
+.myWorry-button-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 278px;
+    height: 104px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    border: 2px solid var(--d-2-cdbc, #D2CDBC);
+    background: var(--e-9-e-5-da, #E9E5DA);
+}
+
+.myWorry-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.myWorry-button-text__title-1 {
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    margin-bottom: 4px;
+    color: #FAF9F6;
+}
+.myWorry-button-text__title-2 {
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    margin-bottom: 4px;
+    color: var(--67594-c, #67594C);
+}
+.myWorry-button-text__title-3 {
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    margin-bottom: 4px;
+    color: var(--67594-c, #67594C);
+}
+.myWorry-button-text__count-1 {
+    color: #FAF9F6;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+}
+.myWorry-button-text__count-2 {
+    color: var(--67594-c, rgba(103, 89, 76, 0.50));
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+}
+.myWorry-button-text__count-3 {
+    color: var(--67594-c, rgba(103, 89, 76, 0.50));
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+}
+.hidden {
+    display: none;
+}
+.todayWorryContent {
+    margin-top: 41px;
+    display: flex;
+    flex-direction: row;
+}
+
+.todayWorryContent-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.todayWorryContent-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todayWorryContent-left-start {
+    height: 300px;
+}
+
+
+.todayWorryContent-medium-sizebox {
+    width: 580px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
+}
+
+.todayWorryContent-profile {
+    width: 580px;
+    height: 80px;
+}
+
+.todayWorryContent-small-sizebox {
+    width: 580px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
+}
+.todayWorryContent-big-sizebox {
+    width: 580px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #FFF;
+    
+    /* Drop Shadow */
+    box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
+}
+
+
+.todayWorryContent-right-start-box {
+    width: 580px;
+    height: 302px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
+}
+
+.todayWorryContent-right-start-profile {
+    height: 80px;
+}
+
+
+.todayWorryContent-question-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.todayWorryContent-question-header__title {
+    color: #67594C;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    margin-top: 24px;
+}
+
+.todayWorryContent-two-buttons {
+    margin-top: 20px;
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 10px;
+}
+
+.todayWorryContent-left-start-box-post {
+    margin-left: 20px;
+    margin-right: 107px;
+    display: flex;
+    width: 453px;
+    flex-direction: column;
+    flex-shrink: 0;
+    color: #67594C;
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+
+}
+.todayWorryContent-two-buttons-left {
+    width: 260px;
+    height: 72px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 2px solid var(--e-9-e-5-da, #E9E5DA);
+    background: var(--faf-9-f-6, #FAF9F6);
+    color: #67594C;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    cursor: pointer;
+}
+
+.todayWorryContent-two-buttons-right {
+    width: 260px;
+    height: 72px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 2px solid var(--e-9-e-5-da, #E9E5DA);
+    background: var(--faf-9-f-6, #FAF9F6);
+    color: #67594C;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.todayWorryContent-two-buttons-left-1 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.todayWorryContent-two-buttons-right-1 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.todayWorryContent-four-buttons {
+    display: flex;
+    
+}
+.todayWorryContent-four-buttons-box {
+    width: 261px;
+    flex-shrink: 0;
+    display: flex;
+    margin-left: 20px;
+    margin-top: 16px;
+
+}
+.todayWorryContent-four-buttons-choice-btn {
+    width: 181px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 2px solid var(--e-9-e-5-da, #E9E5DA);
+    background: var(--faf-9-f-6, #FAF9F6);
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: #67594C;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    cursor: pointer;
+}
+.todayWorryContent-four-buttons-left-2 {
+    width: 261px;
+    flex-shrink: 0;
+    display: flex;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.todayWorryContent-question-header__like1 {
+    margin-left: 168px;
+    display: flex;
+    flex-direction: row;
+}
+.todayWorryContent-question-header__like-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+.todayWorryContent-icon {
+    width: 100%;
+    height: auto;
+}
+.todayWorryContent-question-header__like-count {
+    color: var(--d-2-cdbc, #D2CDBC);
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+    margin-left: 4px;
+}
+.todayWorryContent-question-header__like2 {
+    margin-left: 11.33px;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.todayWorryContent-question-header__like2-text {
+    color: var(--d-2-cdbc, #D2CDBC);
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+    margin-left: 4px;
+}
+.todayWorryContent-profile-box {
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.todayWorryContent-profile-box-1 {
+    display: flex;
+}
+.todayWorryContent-profile-box-text1 {
+    margin-left: 13px;
+    color: var(--67594-c, rgba(103, 89, 76, 0.50));
+    font-size: 15px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+}
+
+.todayWorryContent-profile-box-text2 {
+    color: var(--67594-c, rgba(103, 89, 76, 0.50));
+    font-size: 13px;
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+}
+.todayWorryContent-profile-box-icon{ 
+    margin-top: 8px;
+}
+
+.todayWorryContent-profile-box-text1{ 
+    margin-top: 11px;
+}
+
+.todayWorryContent-profile-box-text2{ 
+    margin-top: 11px;
+}
+.pageNumberBar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pageNumberBar-container__left-btn,
+.pageNumberBar-container__chosen-page,
+.pageNumberBar-container__second,
+.pageNumberBar-container__third {
+    margin-right: 41px;
+}
+.pageNumberBar-container__second,
+.pageNumberBar-container__third {
+    display: flex;
+    width: 12px;
+    height: 24px;
+    flex-direction: column;
+    flex-shrink: 0;
+    color: var(--67594-c, rgba(103, 89, 76, 0.50));
+
+    /* M 15 */
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
 }

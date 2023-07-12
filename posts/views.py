@@ -9,35 +9,65 @@ from django.http import JsonResponse
 @login_required(login_url='/accounts/login/')
 def post_create_form_view(request,selection_count=2):
     if request.method=='GET':
-        selection_count+=1
         form = PostCreateForm()
         context = {'form':form}
         return render(request,'posts/post-create-form-view.html',context)
     if request.method=='POST':
-        if 'post' in request.POST:
-            form = PostCreateForm(request.POST,request.FILES)
-            if form.is_valid():
-                post = Post.objects.create(
-                    title = form.cleaned_data['title'],
-                    content=form.cleaned_data['content'],
-                    writer=request.user,
-                    category = form.cleaned_data['category'],
-                )
-                post.save()
-                Selection.objects.create(
-                    image = form.cleaned_data['image1'],
-                    content = form.cleaned_data['selection_content1'],
-                    post=post
-                )
-                Selection.objects.create(
-                    image = form.cleaned_data['image2'],
-                    content = form.cleaned_data['selection_content2'],
-                    post=post
-                )
-            else:
+        title = request.POST.get('post_title')
+        content = request.POST.get('post_content')
+        writer = request.user
+        category = request.POST.get('post_category')
+            
+        post = Post.objects.create(
+            title = title,
+            content = content,
+            writer = writer,
+            category = category,
+        )
+        post.save()
+                
+        image1 = request.FILES.get('selection_image1')
+        content1 = request.POST.get('selection_content1') 
+        image2 = request.FILES.get('selection_image2')
+        content2 = request.POST.get('selection_content2')
+        
+        Selection.objects.create(
+            image = image1,
+            content = content1,
+            post=post,
+        )
+        Selection.objects.create(
+            image = image2,
+            content = content2,
+            post=post,
+        )
+    else:
+        return render(request, 'posts/post-create-complete.html')
+    return render(request, 'posts/post-create-complete.html')
+                
+                
+                
+                #post = Post.objects.create(
+                #    title = form.cleaned_data['title'],
+                #    content=form.cleaned_data['content'],
+                #    writer=request.user,
+                #    category = form.cleaned_data['category'],
+                #)
+                #post.save()
+                #Selection.objects.create(
+                #    image = form.cleaned_data['image1'],
+                #    content = form.cleaned_data['selection_content1'],
+                #    post=post
+                #)
+                #Selection.objects.create(
+                #    image = form.cleaned_data['image2'],
+                #    content = form.cleaned_data['selection_content2'],
+                #    post=post
+                #)
+            #else:
                 # return redirect('/admin')
-                return render(request, 'posts/post-create-complete.html')
-            return render(request, 'posts/post-create-complete.html')
+            #    return render(request, 'posts/post-create-complete.html')
+            #return render(request, 'posts/post-create-complete.html')
             # return redirect('/admin')
 
 @login_required
