@@ -3,11 +3,46 @@
 {% load static %}
 
 {% block content %}
+<style>
+.return-button-text{
+    color: #67594C;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+.return-button {
+    width: 200px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 44px;
+    background: var(--ffab-5-d, #FAF9F6);
+    border: none;
+    margin-top:50px;
+}
+.worry-box-contents {
+    width: 680px;
+    height: 248px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    background: var(--e-9-e-5-da, #E9E5DA);
+    box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
+    text-align: center;
+}
+.worry-text {
+    color: var(--67594-c, #67594C);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    margin-top: 70px;
+}
+</style>
 <body>
     <main>
-        <div class="line">
-
-        </div>
         <div class="ask-box">
             <div class="ask-text">
                 곰곰이의 답변
@@ -23,10 +58,15 @@
                 <div class="worry-text">
                     {{ response }}
                 </div>
+                <button class = "return-button" onclick="location.href='{% url 'gomgom:ai' %}'">
+                    <div class ="return-button-text">
+                    다시하기
+                    </div>
+                </button>
             </div>
         </div>
         <div class="image-box">
-            <img src="{% static 'photo/big-bear.png' %}" alt="big-bear">
+            <img src="{% static 'photo/resultgomgom.png' %}" alt="big-bear">
         </div>
     </main>
 </body>

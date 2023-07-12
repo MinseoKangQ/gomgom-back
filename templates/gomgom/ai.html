@@ -1,13 +1,101 @@
 {% extends 'base.html' %}
+{% block title %}똑똑한 곰곰이{% endblock %}
 {% load static %}
-{% block title %}곰곰이{% endblock %}
+{% block content %}
+<style>
+    .ask-box {
+        margin-top: 50px;
+    }
+    .worry-box-contents {
+        width: 680px;
+        height: 248px;
+        flex-shrink: 0;
+        border-radius: 24px;
+        background: var(--ffffff, #FFF);
+        box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
+        text-align: center;
+        border: 1px solid #FFF;
+    }
+    input::placeholder {
+        color:#D2CDBC;
+        font-family: Pretendard;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 160%;
+    }
+    
+    .worry-box-contents {
+        width: 680px;
+        height: 248px;
+        flex-shrink: 0;
+        border-radius: 24px;
+        background: var(--ffffff, #FFF);
+        box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
+        text-align: center;
+        border: 1px solid #FFF;
+    
+    
+        color: var(--d-2-cdbc, #67594C);
+        font-family: Pretendard;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 160%;
+        
+    }
 
-{% block content %}  
-<body>
-    <form action="" method="GET">
-        <input type="text" name="question">
-        <input type="submit" value="GET 제출">
-    </form>
-    질문 페이지
-</body>
+    .image-button {
+        background: url("{% static 'photo/aigomgom.png'%}") no-repeat;
+        border: none;
+        width: 700px; 
+        height: 700px;
+        cursor: pointer;
+        margin-top : 50px;
+        margin-left:400px;
+    }
+    
+</style>
+<script>
+    const input = document.querySelector('.worry-box-contents');
+    const button = document.getElementById('submit-button');
+
+    input.addEventListener('input', function() {
+        if (input.value) {
+            button.style.backgroundImage = "url('/static/photo/thinkgomgom.png')";
+        } else {
+            button.style.backgroundImage = "url('/static/photo/aigomgom.png')";
+        }
+    });
+
+</script>
+
+
+
+    <main>
+
+        <div class="ask-box">
+            <div class="ask-text">
+                곰곰이에게 물어봐!
+            </div>
+        </div>
+
+        <div class="think-box">
+            <div class="think-text">
+                고민을 생각하면서 아래의 곰곰이를 문지르다가
+                준비가 되면 손을 떼세요!
+            </div>
+        </div>
+
+        <form action="" method="GET">
+            <div class="worry-box">
+                <input type ="text" class="worry-box-contents" name="question" placeholder="고민을 간단히 적어주세요">
+            </div>
+            <button id="submit-button" type="submit" class="image-button"></button>
+        </form>
+
+    </main>
+
+
+
 {% endblock %}
