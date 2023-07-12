@@ -53,12 +53,24 @@ def logout_view(request):
     #로그아웃 시, 그냥 홈페이지로 이동 redirect  ** 추후에 설정 필요함! **
     return redirect('gomgom:home')
 
-# 마이페이지
+# 마이페이지 (1. 내가 작성한 글, 2. 내가 공감한 글, 3. 내가 답변한 글)
 @login_required
 def mypage_view(request):
     if request.method == 'GET':
-        post_list = Post.objects.filter(writer = request.user) # Post.writer 가 현재 로그인인 것 조회
-        context = {
-            'post_list' : post_list,
-        }
-        return render(request, 'accounts/mypage.html', context)
+        name = request.GET.get("mypage")
+        if name is None:
+            name = "mypost"
+        # Post.writer 가 현재 로그인인 것 조회 (1. 내가 작성한 글 )
+        if name =="mypost":
+            print("내가 작성한 글 출력")
+            post_list = Post.objects.filter(writer = request.user) 
+            context = {
+                'post_list' : post_list,
+            }
+            return render(request, 'accounts/mypage.html', context)
+        elif name =="myheart":
+            print("내가 공감한 글 출력")
+            return render(request, 'accounts/mypage.html')
+        elif name =="mycomment":
+            print("내가 답변한 글 출력")
+            return render(request, 'accounts/mypage.html')
