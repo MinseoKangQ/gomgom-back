@@ -13,6 +13,7 @@
     box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
 }
 .detail-container {
+    
     display: flex;
     flex-direction: column;
 }
@@ -71,7 +72,7 @@
     margin-right: 33px;
 }
 .detail-container__question-box {
-    margin: 42px 36px 49px 36px;
+    margin: 100px 36px 49px 36px;
 }
 .detail-container__border {
     margin-top: 21px;

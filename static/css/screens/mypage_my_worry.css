@@ -3,18 +3,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 70vw;
+    width: 62vw;
+    border-bottom: 2px solid var(--color3);
 
 }
-.bottomline {
-    width: 50vw;
-    border-bottom: 2px solid var(--color3);
-    margin-left: 550px;
-    justify-content: center;
-    align-items: center
-}
 .mypage__title {
-    margin: 64px 0 57px 650px;
+    margin: 64px 0 57px 0;
     color: var(--67594-c, #67594C);
     font-family: Pretendard;
     font-size: 20px;
@@ -30,7 +24,7 @@
     margin-bottom: 50px;
 }
 .mypage__nicname {
-    margin-left: 32vw;
+    margin-left: 8vw;
     display: flex;
     align-items: center;
 }
@@ -39,7 +33,7 @@
     height: 100px;
     flex-shrink: 0;
     border-radius: 100px;
-    margin-right: 50px;
+    margin-right: 31px;
 }
 .mypage__nicname span {
     color: #67594C;
@@ -53,22 +47,23 @@
     position: absolute;
     right: 0;
     display: flex;
-    margin-left: 25vw;
+    margin-right: 8vw;
     color: var(--67594-c, #67594C);
     font-family: Pretendard;
-    font-size: 16px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 700;
     line-height: 160%;
 }
 .mypage__settings span:first-child {
-    margin-right: 50px;
+    margin-right: 69px;
 }
 .myWorry-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 77px 522px;
+    margin-left:50px;
 }
 .myWorry-buttons__container {
     display: flex;
