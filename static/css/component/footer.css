@@ -1,20 +1,47 @@
-.main-footer {
-    width: 100vw;
-    height: 76px;
+.footer-home {
+    height: 165px;
     flex-shrink: 0;
-    background: var(--67594-c, rgba(103, 89, 76, 0.50));
-    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background: var(--67594-c, #67594C);
 }
+
 .footer {
-    margin-top: auto;
-    margin-bottom: auto;
+    height: 165px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background: var(--67594-c, #B1A9A1);
 }
-#footer_content {
-    color: #67594C;
-    font-size: 12px;
-    font-family: Pretendard;
+
+.footer-contents {
+    display: flex;
+    align-items: row;
+}
+
+.gomgom-logo {
+    color: var(--faf-9-f-6, #FAF9F6);
+    font-family: MuseoModerno;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.footer-text {
+    color: var(--faf-9-f-6, #FAF9F6);
+    text-align: right;
+    font-family: Inter;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 160%;
-    text-align: center;
+
+    width: 513px;
+    height: 64px;
+    margin-left: 515px;
 }

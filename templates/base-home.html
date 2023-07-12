@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="{% static 'css/component/header.css' %}">
+        <link rel="stylesheet" href="{% static 'css/component/footer.css' %}">
+        <link rel="stylesheet" href="{% static 'css/screens/home.css' %}">
+        <link rel="stylesheet" href="{% static 'css/screens/home-post.css' %}">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
+
+    <title>{% block title %}{% endblock %}</title>
+    
+    </head>
+
+    <body>
+        <header>
+            <nav id="nav">
+                <div class="logo">
+                    <p>gomgom</p>
+                </div>
+                <div class="navbar-div-box">
+                    <div class="navbar-div">
+                        <a href="{% url 'gomgom:home'%}">메인</a>
+                        <a href="{% url 'posts:post-create'%}">고민올리기</a>
+                        <a href="{% url 'posts:post-list-all' %}">게시판</a>
+                        <a href="{% url 'gomgom:ai'%}">곰곰이</a>
+                    </div>
+                    {% if request.user.image %}
+                        <div class="mypage-div">
+                            <a href="{% url 'accounts:mypage'%}">
+                                <img class="mypage-img" src="{{ request.user.image.url }}">
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="mypage-div">
+                            <a href="{% url 'accounts:mypage'%}">
+                                <img class="mypage-img" src="{% static 'photo/basic_profile.png' %}">
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </nav>
+            <div class="line">
+        </header>
+        {% block content %}
+
+        {% endblock %}
+
+        <footer>
+            <div class="footer-home">
+                <div class="footer-contents">
+                    <div class="gomgom-logo">
+                        gomgom
+                    </div>
+                    <div class="footer-text">
+                        한성대학교 멋쟁이사자처럼 교내해커톤 6조<br>
+                        서울특별시 성북구 삼선교로 16길(삼선동2가) 116 한성대학교
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+    </body>
+</html>

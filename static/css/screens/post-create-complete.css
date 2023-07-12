@@ -27,18 +27,6 @@ body {
     align-items: center;
 }
 
-.mypage-button {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: url(./mypage-icon.png) lightgray 50% / cover no-repeat;
-    text-indent: -9999px;
-    position: absolute;
-    right: 30px;
-    margin-right: 342px;
-}
-
 .main_visual_top {
     position: relative;
     width: 100%;
@@ -110,29 +98,6 @@ body {
 }
 
 
-footer {
-    height: 76px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    background: var(--67594-c, rgba(103, 89, 76, 0.50));
-}
-
-.footer {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-#footer_content {
-    color: #67594C;
-    font-size: 12px;
-    font-family: Pretendard;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%;
-    text-align: center;
-}
 
 /* 추가된 스타일 */
 #nav .navbar {

@@ -1,79 +1,227 @@
-{% extends 'base.html' %}
+{% extends 'base-home.html' %}
 {% load static %}
-{% block title %}홈{% endblock %}
+{% block title %}홈이다{% endblock %}
 
 {% block content %}
-<p>
-    {% comment %} 로그인 된 상태 {% endcomment %}
-    {% if request.user.is_authenticated %}
-        <div>{{ user.username }}님 환영합니다.</div><br>
-        <button onclick="location.href='{% url 'accounts:logout' %}'">로그아웃</button>
-        <div>프로필 사진</div>
-        {% comment %} 회원가입 시 이미지가 있는 경우 {% endcomment %}
-        {% if request.user.image %}
-            <img class="card__image" src="{{ request.user.image.url }}" alt="" height="40" width="40">
-        {% comment %} 회원가입 시 이미지가 없는 경우 {% endcomment %}
-        {% else %}
-            <img class="card__image" src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
-        <br>
-        {% endif %}
-    
-    {% comment %} 로그아웃 된 상태 로그인/회원가입 화면으로 이동하는 버튼 띄워주기{% endcomment %}
-    {% else %}
-        <button onclick="location.href='{% url 'accounts:login' %}'">로그인</button>
-        <button onclick="location.href='{% url 'accounts:signup' %}'">회원가입</button>
-    {% endif %}
-</p>
-<br><hr><br>
+<style type="text/css">
+    a:link { color: #67594C; text-decoration: none;}
+    a:visited { color: #67594C; text-decoration: none;}
+    img { vertical-align: bottom; }
+    .post-img { margin : 0px; }
+    .todayWorryContent { 
+      display : grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .todayWorryContent-left {
+      margin : 0 20px;
+    }
+    .userImage {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+</style>
+<body>
 
-{% comment %} 고민 나누기 버튼 {% endcomment %}
-<p>고민 나누기 버튼 
-    <div><button onclick="location.href='{% url 'posts:post-create' %}'">고민 나누기</button></div>
-</p>
-<br><hr><br>
+    <main>
+        <div class="main_visual_top">
+            <div class="content">
+                <div class="first-paragraph">인생은 선택의 연속, 하지만 선택은 항상 어려워요!</div>
 
-{% comment %} 곰곰이의 고민 {% endcomment %}
-{% comment %} writer가 곰곰이인 글만 보여주기 {% endcomment %}
-<p>곰곰이의 고민<br>
-    {% for post in post_list %}
-        {% if post.writer|stringformat:"s" == "gomgom" %}
-            <div>
-                <a href="{% url 'posts:post-gomgom-detail' post.id %}">{{ post.title }}</a><br>
-                post.id : {{ post.id }}<br>
-                post.content : {{ post.content }}<br>
-                post.created_at : {{ post.created_at }}<br>
-                post.writer : {{ post.writer }}<br>
-                상세페이지<br><br>
+                <div class="paragraph-box">
+                    <div class="s-t-paragraph">
+                        <div class="second-paragraph">고민하지말고,</div>
+                        <div class="third-paragraph">곰곰에서 고민을 나눠주세요</div>
+                    </div>
+                    <div class="fourth-box">
+                        <a href="{% url 'posts:post-create'%}">
+                            <button class="fourth-paragraph">
+                                고민나누기
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="main-part">
+                    <img class="bear-part-img" src="{% static 'photo/bear-part.png' %}">
+                </div>
             </div>
-        {% endif%}
-    {% endfor %}
-</p>
-<br><hr><br>
+        </div>
 
-{% comment %} 곰곰이 바로가기 버튼 {% endcomment %}
-<p>곰곰이 바로가기 버튼 
-    <div><button onclick="location.href='{% url 'gomgom:ai' %}'">곰곰이 바로가기</button></div>
-</p>
-<br><hr><br>
-
-
-{% comment %} 오늘의 고민들 {% endcomment %}
-<p>오늘의 고민들<br>
-    {% for post in post_list %}
-        {% if post.writer|stringformat:"s" != "gomgom" %}
-            <div>
-                <a href="{% url 'posts:post-detail' post.id %}">{{ post.title }}</a><br>
-                post.content : {{ post.content }}<br>
-                post.created_at : {{ post.created_at }}<br>
-                post.writer : {{ post.writer }}<br>
-                post.heart_count : {{ post.heart_count }}<br>
-                <br>
-                {% comment %} 댓글 개수 {% endcomment %}
-                댓글개수 : {{ post.comment_set.all.count }}<br>
-                {% comment %} selection 이미지, 내용 {% endcomment %}
-                
+        <div class="main_visual_bottom">
+            <div class="list-all__container">
+                <div class="bear-worry">
+                    곰곰이의 고민
+                </div>
+                <div class="list-all__slide">
+                    <button class="slide-btn-prev"  onclick="slidePrev()" ><img src="{% static 'photo/leftBtn-home.png' %}"></button>
+                    <div class="list-all__slide-options">
+                    {% comment %} writer가 곰곰이인 post만 출력 {%endcomment%}
+                    {% for post in gomgom_post_list %}
+                                <div class="slide-op">
+                                    <a href="{% url 'posts:post-gomgom-detail' post.id %}">
+                                    <img class="post-img" src="{{ post.image.url }}">
+                                    <div class="slide-op__worry-title">{{ post.title }}</div>
+                                    </a>
+                                </div>
+                    {% endfor%}
+                    </div>
+                    <button class="slide-btn-next"  onclick="slideNext()" ><img src="{% static 'photo/rightBtn-home.png'%}"></button>
+                    {% comment %} 버튼 눌렀을때 3개씩 슬라이스 하기위한 script 코드 {% endcomment %}
+                    <script>
+                    var slideIndex = 0;
+                    var slideOptions = document.querySelectorAll(".slide-op");
+                    var slideLength = slideOptions.length;
+                    
+                    function slidePrev() {
+                        slideIndex -= 3
+                        showSlides();
+                    }
+                    
+                    function slideNext() {
+                        slideIndex += 3;
+                        showSlides();
+                    }
+                    
+                    function showSlides() {
+                        for (var i = 0; i < slideLength; i++) {
+                        slideOptions[i].style.display = "none";
+                        }
+                        if (slideIndex <= 0) {
+                        document.querySelector(".slide-btn-prev").style.display = "none";
+                        } else {
+                        document.querySelector(".slide-btn-prev").style.display = "block";
+                        }
+                        
+                        if (slideIndex + 3 >= slideLength) {
+                        document.querySelector(".slide-btn-next").style.display = "none";
+                        } else {
+                        document.querySelector(".slide-btn-next").style.display = "block";
+                        }
+                        for (var j = slideIndex; j < slideIndex + 3; j++) {
+                        if (slideOptions[j]) {
+                            slideOptions[j].style.display = "block";
+                            slideOptions[j].classList.add("list-all__slide-options");
+                        }
+                        }
+                    }
+                    showSlides();
+                    </script>
+                    {% comment %}~스크립트 코드 끝~{% endcomment %}
+                </div>
+                </div>
             </div>
-        {% endif%}
-    {% endfor %}
-</p>
+        </div>
+
+        <div class="main_visual_last">
+            <div class="shortCut">
+                <div class="shortCutImage">
+                    <img class="bear-img" src="{% static 'photo/bear.png' %}">
+                </div>
+                <div class="shortCutText">
+                    <div class="shortCutText1">
+                        고민에 대한 짧은 대답을 듣고 싶다면?
+                    </div>
+                    <div class="shortCutText2">
+                        곰곰이에게 물어봐~
+                    </div>
+                </div>
+                <div class="shortCutButton">
+                    <a href="{% url 'gomgom:ai'%}">
+                        <button>
+                            곰곰이 바로가기
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="todayWorry">
+                <div class="todayWorryText">
+                    <div class="todayWorryText1">
+                        오늘의 고민들
+                    </div>
+                    <div class="todayWorryText2">
+                        <a href="{% url 'posts:post-list-all'%}">
+                            <button>
+                                더 많은 고민 보러가기 >
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <section class="content-section">
+                    <div class="todayWorryContent">
+                      {% for post in post_list %}
+                          <div class="todayWorryContent-left">
+                            <div class="todayWorryContent-left-start">
+                                <div class="todayWorryContent-medium-sizebox">
+                                    <div class="todayWorryContent-question-header">
+                                        <div class="todayWorryContent-question-header__title">
+                                          <a href="{% url 'posts:post-detail' post.id %}">{{ post.title }}</a>
+                                        </div>
+                                        <div class="todayWorryContent-question-header__like1">
+                                            <div class="todayWorryContent-question-header__like-icon">
+                                              <img src="{% static 'photo/message.svg'%}" alt="message">
+                                            </div>
+                                            <div class="todayWorryContent-question-header__like-count">
+                                              {{ post.comment_set.count }}
+                                            </div>
+                                        </div>
+                                        <div class="todayWorryContent-question-header__like2">
+                                            <div class="todayWorryContent-question-header__like-icon">
+                                                <img class=".todayWorryContent-icon" src="{% static 'photo/heart.svg'%}" alt="heart">
+                                            </div>
+                                            <div class="todayWorryContent-question-header__like2-text">
+                                                999+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="todayWorryContent-two-buttons">
+                                        <div class="todayWorryContent-two-buttons-left">
+                                            <div class="todayWorryContent-two-buttons-left-1">
+                                                <div>{{ post.selection_set.all.0.content }}</div>
+                                                <div class="hidden ratio">60%</div>
+                                            </div>
+                                        </div>
+                                        <div class="todayWorryContent-two-buttons-right">
+                                            <div class="todayWorryContent-two-buttons-right-1">
+                                                <div>{{ post.selection_set.all.1.content }}</div>
+                                                <div class="hidden ratio">40%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="todayWorryContent-left-start-box-post">
+                                      {{ post.content }}
+                                    </div>
+                                </div>
+                  
+                                <div class="todayWorryContent-profile">
+                                    <div class="todayWorryContent-profile-box">
+                                        <div class="todayWorryContent-profile-box-1">
+                                            <div class="todayWorryContent-profile-box-icon">
+                                              {% if post.writer.image %}
+                                                <img class="userImage" src="{{ post.writer.image.url }}" alt="프로필 이미지">
+                                              {% else %}
+                                                <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                                              {% endif %}
+                                            </div>
+                                            <div class="todayWorryContent-profile-box-text1">
+                                              {{ post.writer }}
+                                            </div>
+                                        </div>
+                                        <div class="todayWorryContent-profile-box-text2">
+                                          {{ post.created_string }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                          </div>
+                          {% endfor %}
+                    </div>
+                </section>
+        </main>
+
+</body>
 {% endblock %}
