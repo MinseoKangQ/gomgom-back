@@ -8,6 +8,14 @@
   a:visited { color: #67594C; text-decoration: none;}
   img { vertical-align: bottom; }
   .post-img { margin : 0px; }
+  .todayWorryContent { 
+    display : grid;
+    grid-template-columns: repeat(2, 1fr);
+    {% comment %} margin: 0 30px; {% endcomment %}
+  }
+  .todayWorryContent-left {
+    margin : 0 20px;
+  }
  </style>
 
 <section class="list-all">
@@ -95,9 +103,10 @@
   </div>
 </section>
 
-{% for post in post_list %}
+
 <section class="content-section">
   <div class="todayWorryContent">
+    {% for post in post_list %}
         <div class="todayWorryContent-left">
           <div class="todayWorryContent-left-start">
               <div class="todayWorryContent-medium-sizebox">
@@ -161,8 +170,11 @@
                   </div>
               </div>
           </div>
+          
         </div>
-        <div class="todayWorryContent-right">
+        {% endfor %}
+       {% comment %}
+          <div class="todayWorryContent-right">
           <div class="todayWorryContent-right-start">
               <div class="todayWorryContent-medium-sizebox">
                   <div class="todayWorryContent-question-header">
@@ -225,10 +237,10 @@
                   </div>
               </div>
           </div>
-        </div>
+        </div> {% endcomment %}
   </div>
 </section>
-{% endfor %}
+
 
 {% comment %} <section class="content-section">
   <div class="todayWorryContent">

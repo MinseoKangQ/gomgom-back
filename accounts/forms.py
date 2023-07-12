@@ -6,9 +6,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 # 완성
 
+User =  get_user_model()
 class UserBaseForm(forms.ModelForm):
     class Meta:
-        model = get_user_model()
+        model = User
         fields='__all__'
 
 #회원가입 폼
@@ -46,7 +47,7 @@ class signupForm(UserCreationForm):
         }),
     )
     class Meta(UserCreationForm.Meta):
-        model = get_user_model()
+        model = User
         fields = ['image','username', 'password1', 'password2']
         
 # 로그인 폼
