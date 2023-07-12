@@ -63,6 +63,7 @@
     justify-content: center;
     align-items: center;
     padding: 77px 522px;
+    margin-left:50px;
 }
 .myWorry-buttons__container {
     display: flex;
