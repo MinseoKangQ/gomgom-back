@@ -12,7 +12,16 @@
             <div class="detail-container">
                 <p class="detail-container__today-title"> {{post.writer}} 님의 고민</p>
                 <div class="detail-container__question">
-                    <img class="detail-container__view-user" src="{% static 'photo/mypage-icon.png'%}">
+                        {% if post.writer.image %}
+                            <div class="detail-container__top">
+                                <img class="detail-container__view-user" src="{{ post.writer.image.url }}" alt="프로필 이미지">
+                            </div>
+                        {% else %}
+                            <div class="detail-container__top">
+                                <img class="detail-container__view-user" src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                            </div>
+                        {% endif %}
+                    {% comment %} <img class="detail-container__view-user" src="{% static 'photo/mypage-icon.png'%}"> {% endcomment %}
                     <div class="detail-container__div">
                         <div class="detail-container__question-box">
                             <div class="question-box__title-box">
@@ -89,7 +98,7 @@
                             {{comment.content}}
                         </div>
                         <div class="comments-container__comment-box__time">
-                            {{comment.created_at}}
+                            {{ comment.created_string }}
                         </div>
                         <div class="comments-container__comment-box__img">
                             {% if comment.image %}

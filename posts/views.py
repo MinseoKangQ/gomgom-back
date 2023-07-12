@@ -44,31 +44,6 @@ def post_create_form_view(request,selection_count=2):
     else:
         return render(request, 'posts/post-create-complete.html')
     return render(request, 'posts/post-create-complete.html')
-                
-                
-                
-                #post = Post.objects.create(
-                #    title = form.cleaned_data['title'],
-                #    content=form.cleaned_data['content'],
-                #    writer=request.user,
-                #    category = form.cleaned_data['category'],
-                #)
-                #post.save()
-                #Selection.objects.create(
-                #    image = form.cleaned_data['image1'],
-                #    content = form.cleaned_data['selection_content1'],
-                #    post=post
-                #)
-                #Selection.objects.create(
-                #    image = form.cleaned_data['image2'],
-                #    content = form.cleaned_data['selection_content2'],
-                #    post=post
-                #)
-            #else:
-                # return redirect('/admin')
-            #    return render(request, 'posts/post-create-complete.html')
-            #return render(request, 'posts/post-create-complete.html')
-            # return redirect('/admin')
 
 @login_required
 def post_list_view(request):
