@@ -24,10 +24,11 @@ class Post(models.Model):
     content = models.TextField(verbose_name='내용')
     created_at = models.DateTimeField(verbose_name='작성일',default=timezone.now)
     view_count = models.IntegerField(verbose_name='조회수',blank=True, default = 0)
-    heart_count = models.IntegerField(verbose_name='공감수',blank=True, default = 0)
     writer = models.ForeignKey(to=User,on_delete=models.CASCADE,null=True,blank=True)
     all_voted_count = models.IntegerField(verbose_name = '투표 참여 수', default = 0)
     category = models.CharField(max_length=20, choices=CHOICES,default='기타' )
+    like = models.ManyToManyField(User,related_name='likes',blank=True)
+    
     
     @property
     def created_string(self):

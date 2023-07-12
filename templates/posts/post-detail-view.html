@@ -57,9 +57,20 @@
                                 {% endfor %}
                             </div>
                         </div>
+                        {% comment %} 공감하기 부분 구현하기 {% endcomment %}
                         <div class="detail-container__like-btn">
                             <span>공감돼요!</span>
-                            <img src="{% static 'photo/heartEmpty.svg' %}">
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% if request.user in post.like.all %}
+                                    <input type="submit" value ='좋아요 취소'>
+                                {% comment %} <img src="{% static 'photo/heartEmpty.svg' %}">{% endcomment %}
+                                {% else %}
+                                {% comment %} <img src ="{% static 'photo/fullheart.png' %}"> {% endcomment %}
+                                    <input type="submit" value='좋아요'>
+                                {% endif %}
+                                <div id="text"></div>
+                            </form>
                         </div>        
                     </div>
                 </div>
@@ -110,10 +121,7 @@
                 <div class="comments__border"></div>
                 {% endfor %}
             </div>
-            <div class="comments__border"></div>
-            <div class="comments__border"></div>
-            <div class="comments__border"></div>
-            <div class="comments__border"></div>
+            
 
         </section>
 

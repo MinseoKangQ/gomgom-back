@@ -76,6 +76,7 @@ def post_list_view(request):
 @login_required
 def post_detail_view(request, id):
     post = Post.objects.get(id=id)
+    user = request.user
     
     # 요청이 GET인 경우
     if request.method == 'GET':
@@ -162,8 +163,13 @@ def post_detail_view(request, id):
                     post=post,
                     writer=request.user,
                 )
-            else: # 댓글 이미지와, 내용이 없을 경우,
+            else: # 댓글 이미지와, 내용이 없을 경우, (공감 버튼)
+                if post.like.filter(pk = id).exists:
+                    post.like.remove(request.user)
+                else:
+                    post.like.add(request.user)
                 return render(request, 'posts/post-detail-view.html')
+            
             context = {
                     'post': post,
             }
