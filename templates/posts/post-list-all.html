@@ -108,6 +108,7 @@
 <section class="content-section">
   <div class="todayWorryContent">
     {% for post in filter_list %}
+    {% if post.writer|stringformat:"s" != "gomgom"%}
         <div class="todayWorryContent-left">
           <div class="todayWorryContent-left-start">
               <div class="todayWorryContent-medium-sizebox">
@@ -173,6 +174,7 @@
           </div>
           
         </div>
+        {% endif %}
         {% endfor %}
   </div>
 </section>

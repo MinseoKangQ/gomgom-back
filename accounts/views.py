@@ -2,7 +2,7 @@ from django.contrib.auth import logout,login,authenticate
 from django.shortcuts import redirect,render
 from accounts.forms import signupForm
 from django.contrib.auth.forms import AuthenticationForm
-from posts.models import Post
+from posts.models import Post, Comment
 from users.models import models
 from users.models import User
 from .forms import CustomAuthenticationForm
@@ -68,9 +68,17 @@ def mypage_view(request):
                 'post_list' : post_list,
             }
             return render(request, 'accounts/mypage.html', context)
+        
         elif name =="myheart":
             print("내가 공감한 글 출력")
             return render(request, 'accounts/mypage.html')
+        
         elif name =="mycomment":
             print("내가 답변한 글 출력")
-            return render(request, 'accounts/mypage.html')
+            my_comment_list = Comment.objects.filter(writer=request.user)
+            post_ids = my_comment_list.values_list('post_id', flat=True)
+            post_list = Post.objects.filter(id__in=post_ids)
+            context = {
+                'post_list': post_list,
+            }
+            return render(request, 'accounts/mypage.html', context)
