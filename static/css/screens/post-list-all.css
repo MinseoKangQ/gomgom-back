@@ -173,20 +173,20 @@
 .todayWorryContent {
     margin-top: 41px;
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
 }
 
-.todayWorryContent-right {
+/* .todayWorryContent-right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-left: 20px;
-}
+} */
 
 .todayWorryContent-left {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* flex-direction: column; */
+    /* align-items: center; */
 }
 
 
