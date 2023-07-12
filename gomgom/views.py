@@ -52,8 +52,11 @@ def ask_gpt(prompt):
     return response.choices[0].text.strip()
 
 def home_view(request):
-    post_list = Post.objects.all().order_by('-created_at')
+    gomgom_post_list = Post.objects.filter(writer__username='gomgom')
+    post_list = Post.objects.exclude(writer__username='gomgom').order_by('-created_at')[:8]
+    
     context = {
         'post_list' : post_list,
+        'gomgom_post_list' : gomgom_post_list,
     }
     return render(request, 'gomgom/home.html', context)

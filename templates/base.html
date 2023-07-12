@@ -31,42 +31,52 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-
     <header>
         <nav id="nav">
             <div class="logo">
                 <p>gomgom</p>
             </div>
-        <nav class="nav">
-            <ul class="nav__navbar">
-                <li><a href="{% url 'gomgom:home'%}">메인</a></li>
-                <li><a href="{% url 'posts:post-create'%}">고민올리기</a></li>
-                <li><a href="{% url 'posts:post-list-all' %}">게시판</a></li>
-                <li><a href="{% url 'gomgom:ai'%}">곰곰이</a></li>
-            </ul>
-            {% comment %} 회원가입 시 이미지가 있는 경우 {% endcomment %}
-            {% if request.user.image %}
-                <a href="{% url 'accounts:mypage'%}">
-                    <img class="userImage" src="{{ request.user.image.url }}">
-                </a>
-                <br>
-            {% comment %} 회원가입 시 이미지가 없는 경우 {% endcomment %}
-            {% else %}
-                {% comment %}<a href="{% url 'accounts:mypage'%}" class="mypage-button">   {%endcomment%}
-                <a href="{% url 'accounts:mypage'%}">
-                    <img class="userImage" src="{% static 'photo/basic_profile.png' %}">
-                <a>
-                <br>
-            {% endif %}
+            <div class="navbar-div-box">
+                <div class="navbar-div">
+                    <a href="{% url 'gomgom:home'%}">메인</a>
+                    <a href="{% url 'posts:post-create'%}">고민올리기</a>
+                    <a href="{% url 'posts:post-list-all' %}">게시판</a>
+                    <a href="{% url 'gomgom:ai'%}">곰곰이</a>
+                </div>
+                {% if request.user.image %}
+                    <div class="mypage-div">
+                        <a href="{% url 'accounts:mypage'%}">
+                            <img class="mypage-img" src="{{ request.user.image.url }}">
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="mypage-div">
+                        <a href="{% url 'accounts:mypage'%}">
+                            <img class="mypage-img" src="{% static 'photo/basic_profile.png' %}">
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
         </nav>
-        </nav>
+        <div class="line">
     </header>
-    
+
     {% block content %}
 
     {% endblock %}
-
-    <footer class="main-footer">
+    
+    <footer>
+        <div class="footer">
+            <div class="footer-contents">
+                <div class="gomgom-logo">
+                    gomgom
+                </div>
+                <div class="footer-text">
+                    한성대학교 멋쟁이사자처럼 교내해커톤 6조<br>
+                    서울특별시 성북구 삼선교로 16길(삼선동2가) 116 한성대학교
+                </div>
+            </div>
+        </div>
     </footer>
 </body>
 </html>

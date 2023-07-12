@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}홈{% endblock %}
+
+{% block content %}
+<p>
+    {% comment %} 로그인 된 상태 {% endcomment %}
+    {% if request.user.is_authenticated %}
+        <div>{{ user.username }}님 환영합니다.</div><br>
+        <button onclick="location.href='{% url 'accounts:logout' %}'">로그아웃</button>
+        <div>프로필 사진</div>
+        {% comment %} 회원가입 시 이미지가 있는 경우 {% endcomment %}
+        {% if request.user.image %}
+            <img class="card__image" src="{{ request.user.image.url }}" alt="" height="40" width="40">
+        {% comment %} 회원가입 시 이미지가 없는 경우 {% endcomment %}
+        {% else %}
+            <img class="card__image" src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
+        <br>
+        {% endif %}
+    
+    {% comment %} 로그아웃 된 상태 로그인/회원가입 화면으로 이동하는 버튼 띄워주기{% endcomment %}
+    {% else %}
+        <button onclick="location.href='{% url 'accounts:login' %}'">로그인</button>
+        <button onclick="location.href='{% url 'accounts:signup' %}'">회원가입</button>
+    {% endif %}
+</p>
+<br><hr><br>
+
+{% comment %} 고민 나누기 버튼 {% endcomment %}
+<p>고민 나누기 버튼 
+    <div><button onclick="location.href='{% url 'posts:post-create' %}'">고민 나누기</button></div>
+</p>
+<br><hr><br>
+
+{% comment %} 곰곰이의 고민 {% endcomment %}
+{% comment %} writer가 곰곰이인 글만 보여주기 {% endcomment %}
+<p>곰곰이의 고민<br>
+    {% for post in post_list %}
+        {% if post.writer|stringformat:"s" == "gomgom" %}
+            <div>
+                <a href="{% url 'posts:post-gomgom-detail' post.id %}">{{ post.title }}</a><br>
+                post.id : {{ post.id }}<br>
+                post.content : {{ post.content }}<br>
+                post.created_at : {{ post.created_at }}<br>
+                post.writer : {{ post.writer }}<br>
+                상세페이지<br><br>
+            </div>
+        {% endif%}
+    {% endfor %}
+</p>
+<br><hr><br>
+
+{% comment %} 곰곰이 바로가기 버튼 {% endcomment %}
+<p>곰곰이 바로가기 버튼 
+    <div><button onclick="location.href='{% url 'gomgom:ai' %}'">곰곰이 바로가기</button></div>
+</p>
+<br><hr><br>
+
+
+{% comment %} 오늘의 고민들 {% endcomment %}
+<p>오늘의 고민들<br>
+    {% for post in post_list %}
+        {% if post.writer|stringformat:"s" != "gomgom" %}
+            <div>
+                <a href="{% url 'posts:post-detail' post.id %}">{{ post.title }}</a><br>
+                post.content : {{ post.content }}<br>
+                post.created_at : {{ post.created_at }}<br>
+                post.writer : {{ post.writer }}<br>
+                post.heart_count : {{ post.heart_count }}<br>
+                <br>
+                {% comment %} 댓글 개수 {% endcomment %}
+                댓글개수 : {{ post.comment_set.all.count }}<br>
+                {% comment %} selection 이미지, 내용 {% endcomment %}
+                
+            </div>
+        {% endif%}
+    {% endfor %}
+</p>
+{% endblock %}

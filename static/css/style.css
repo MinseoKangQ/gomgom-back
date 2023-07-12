@@ -12,6 +12,7 @@
 @import "screens/mypage_my_worry.css";
 @import "screens/post-detail-view.css";
 @import "screens/ai_response.css";
+@import "screens/home.css";
 
 :root {
     --color1:#67594C;
