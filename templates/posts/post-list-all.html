@@ -17,19 +17,17 @@
       <button class="slide-btn-prev"  onclick="slidePrev()" ><img src="{% static 'photo/leftBtn.png' %}"></button>
       <div class="list-all__slide-options">
         {% comment %} 곰곰이의 고민 (writer가 곰곰인 글만 출력) {%endcomment%}
-        {% for post in post_list reversed %}              
-                {% if post.writer|stringformat:"s" == "gomgom"%}
+        {% for post in gomgom_post_list %}
                     <div class="slide-op">
                       <a href="{% url 'posts:post-gomgom-detail' post.id %}">
                         <img class="post-img" src="{{ post.image.url }}">
+                        <div class="slide-op__worry-title">{{ post.title }}</div>
                       </a>
-                      <div class="slide-op__worry-title">{{ post.title }}</div>
                     </div>
                 
                       {% comment %} <div class="slide-op">
                             <a href="{% url 'posts:post-gomgom-detail' post.id %}">{{ post.title }}</a>
                       </div> {% endcomment %}
-                {% endif %}
         {% endfor%}
       </div>
       <button class="slide-btn-next"  onclick="slideNext()" ><img src="{% static 'photo/rightBtn.png'%}"></button>
@@ -97,7 +95,142 @@
   </div>
 </section>
 
+{% for post in post_list %}
 <section class="content-section">
+  <div class="todayWorryContent">
+        <div class="todayWorryContent-left">
+          <div class="todayWorryContent-left-start">
+              <div class="todayWorryContent-medium-sizebox">
+                  <div class="todayWorryContent-question-header">
+                      <div class="todayWorryContent-question-header__title">
+                        <a href="{% url 'posts:post-detail' post.id %}">{{ post.title }}</a>
+                      </div>
+                      <div class="todayWorryContent-question-header__like1">
+                          <div class="todayWorryContent-question-header__like-icon">
+                            <img src="{% static 'photo/message.svg'%}" alt="message">
+                          </div>
+                          <div class="todayWorryContent-question-header__like-count">
+                            {{ post.comment_set.count }}
+                          </div>
+                      </div>
+                      <div class="todayWorryContent-question-header__like2">
+                          <div class="todayWorryContent-question-header__like-icon">
+                              <img class=".todayWorryContent-icon" src="{% static 'photo/heart.svg'%}" alt="heart">
+                          </div>
+                          <div class="todayWorryContent-question-header__like2-text">
+                              999+
+                          </div>
+                      </div>
+                  </div>
+                  <div class="todayWorryContent-two-buttons">
+                      <div class="todayWorryContent-two-buttons-left">
+                          <div class="todayWorryContent-two-buttons-left-1">
+                              <div>{{ post.selection_set.all.0.content }}</div>
+                              <div class="hidden ratio">60%</div>
+                          </div>
+                      </div>
+                      <div class="todayWorryContent-two-buttons-right">
+                          <div class="todayWorryContent-two-buttons-right-1">
+                              <div>{{ post.selection_set.all.1.content }}</div>
+                              <div class="hidden ratio">40%</div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="todayWorryContent-left-start-box-post">
+                    {{ post.content }}
+                  </div>
+              </div>
+
+              <div class="todayWorryContent-profile">
+                  <div class="todayWorryContent-profile-box">
+                      <div class="todayWorryContent-profile-box-1">
+                          <div class="todayWorryContent-profile-box-icon">
+                            {% if post.writer.image %}
+                              <img class="userImage" src="{{ post.writer.image.url }}" alt="프로필 이미지">
+                            {% else %}
+                              <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                            {% endif %}
+                          </div>
+                          <div class="todayWorryContent-profile-box-text1">
+                            {{ post.writer }}
+                          </div>
+                      </div>
+                      <div class="todayWorryContent-profile-box-text2">
+                        {{ post.created_at }}
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="todayWorryContent-right">
+          <div class="todayWorryContent-right-start">
+              <div class="todayWorryContent-medium-sizebox">
+                  <div class="todayWorryContent-question-header">
+                      <div class="todayWorryContent-question-header__title">
+                        <a href="{% url 'posts:post-detail' post.id %}">{{ post.title }}</a>
+                      </div>
+                      <div class="todayWorryContent-question-header__like1">
+                          <div class="todayWorryContent-question-header__like-icon">
+                            <img src="{% static 'photo/message.svg'%}" alt="message">
+                          </div>
+                          <div class="todayWorryContent-question-header__like-count">
+                            {{ post.comment_set.count }}
+                          </div>
+                      </div>
+                      <div class="todayWorryContent-question-header__like2">
+                          <div class="todayWorryContent-question-header__like-icon">
+                              <img class=".todayWorryContent-icon" src="{% static 'photo/heart.svg'%}" alt="heart">
+                          </div>
+                          <div class="todayWorryContent-question-header__like2-text">
+                              999+
+                          </div>
+                      </div>
+                  </div>
+                  <div class="todayWorryContent-two-buttons">
+                      <div class="todayWorryContent-two-buttons-left">
+                          <div class="todayWorryContent-two-buttons-left-1">
+                              <div>{{ post.selection_set.all.0.content }}</div>
+                              <div class="hidden ratio">60%</div>
+                          </div>
+                      </div>
+                      <div class="todayWorryContent-two-buttons-right">
+                          <div class="todayWorryContent-two-buttons-right-1">
+                              <div>{{ post.selection_set.all.1.content }}</div>
+                              <div class="hidden ratio">40%</div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="todayWorryContent-left-start-box-post">
+                    {{ post.content }}
+                  </div>
+              </div>
+
+              <div class="todayWorryContent-profile">
+                  <div class="todayWorryContent-profile-box">
+                      <div class="todayWorryContent-profile-box-1">
+                          <div class="todayWorryContent-profile-box-icon">
+                            {% if post.writer.image %}
+                              <img class="userImage" src="{{ post.writer.image.url }}" alt="프로필 이미지">
+                            {% else %}
+                              <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                            {% endif %}
+                          </div>
+                          <div class="todayWorryContent-profile-box-text1">
+                            {{ post.writer }}
+                          </div>
+                      </div>
+                      <div class="todayWorryContent-profile-box-text2">
+                        {{ post.created_at }}
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+  </div>
+</section>
+{% endfor %}
+
+{% comment %} <section class="content-section">
   <div class="todayWorryContent">
     <div class="todayWorryContent-left">
       <div class="todayWorryContent-left-start">
@@ -603,7 +736,8 @@
       </div>        
     </div>
   </div>
-</section>
+</section> {% endcomment %}
+
 
 
 <div class="pageNumberBar">
