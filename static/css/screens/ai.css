@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poller+One&display=swap');
 
-/* .logo p {
+.logo p {
     color: var(--67594-c, #67594C);
     font-size: 32px;
     font-family: MuseoModerno;
@@ -132,7 +132,7 @@ footer {
     font-weight: 400;
     line-height: 160%;
     text-align: center;
-} */
+}
 
 /* 추가된 스타일 */
 #nav .navbar {
@@ -189,7 +189,7 @@ footer {
 }
 
 .think-box {
-    margin-top: 20px;
+    margin-top: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -197,6 +197,8 @@ footer {
 
 .think-text {
     color: #67594C;
+    width: 294px;
+    height: 52px;
     font-family: Pretendard;
     font-size: 16px;
     font-style: normal;
@@ -207,7 +209,7 @@ footer {
 
 
 .worry-box {
-    margin-top: 50px;
+    margin-top: 37px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,19 +220,27 @@ footer {
     height: 248px;
     flex-shrink: 0;
     border-radius: 24px;
-    background: var(--e-9-e-5-da, #67594C);
+    background: var(--ffffff, #FFF);
     box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
     text-align: center;
-}
+    border: 1px solid #FFF;
 
-.worry-text {
-    color: var(--67594-c, #67594C);
+
+    color: var(--d-2-cdbc, #67594C);
     font-family: Pretendard;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: 160%;
-    margin-top: 70px;
+}
+
+.worry-text {
+    color: var(--d-2-cdbc, #D2CDBC);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
 }
 
 
@@ -239,6 +249,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid #FFF;
 }
 
 .img {
@@ -249,15 +260,11 @@ footer {
     background-blend-mode: darken;
 }
 
-.line {
+.line{ 
     height: 4px;
     background: var(--e-9-e-5-da, #E9E5DA);
 }
 
 main{ 
     background: var(--faf-9-f-6, #FAF9F6);
-}
-
-.button {
-
 }
