@@ -74,7 +74,8 @@ def post_create_form_view(request,selection_count=2):
 def post_list_view(request):
     if request.method == 'GET':
         selected_category = request.GET.get('category') 
-        post_list = Post.objects.all().order_by('-created_at') # Post 전체 데이터 조회
+        gomgom_post_list = Post.objects.filter(writer__username='gomgom')
+        post_list = Post.objects.exclude(writer__username='gomgom').order_by('-created_at')
         
         if selected_category is None: # 처음에 버튼 선택 안할시, queryset 데이터에 아무것도 없음.
             selected_category = '대인관계'  # 그래서 디폴트 값은 대인관계로 설정
@@ -89,6 +90,7 @@ def post_list_view(request):
         
         context = {
             'post_list': post_list,
+            'gomgom_post_list': gomgom_post_list,
             'selection_list': selection_list,
             'filter_list': page_obj,  # 페이지 객체를 전달
             'selected_category': selected_category,
