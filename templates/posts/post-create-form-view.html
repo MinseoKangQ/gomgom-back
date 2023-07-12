@@ -1,18 +1,123 @@
+
 {% extends 'base.html' %}
 {% block title %}고민 입력{% endblock %}
-
+{% load static %}
 {% block content %}
-<h1>Post 입력 화면 - Form 사용</h1>
-
-<form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
+{% comment %} css 부분 수정 {% endcomment %}
+<style>
+    .create-form {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
     
-    <div>
-        {{ form.as_p }}
-    </div>
-    <div>
-        <input type="submit" name="post" value="add_post">
-    </div>
-</form>
+    }
+    .custom-file-upload input[type="file"] {
+        display: none;
+    }
+
+    .choice-box {
+        margin-top: 55px;
+        margin-left: 1050px;
+    }
+    .explan {
+        margin-top: 132px;
+        margin-left: 1050px;
+    }
+    .explan-box-text-box {
+        width: 770px;
+        height: 116px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        background: #FFF;
+        border: 1px solid #FFF;
+    }
+
+    .worry-title-box {
+        margin-top: 10px;
+    }
+    input::placeholder {
+        color: #D2CDBC;
+    }
+
+</style>
+    <main>
+        <form class="create-form" action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="worry-title-box">
+            <div class="worry-title-text">
+                고민제목
+            </div>
+            <input type="text" class="worry-title-contents" name="post_title" placeholder="내용을 입력하세요">
+            </input>
+        </div>
+
+        <div class="choice-box">
+            <div class="choice-box-title">
+                선택지 내용
+            </div>
+            <div class="choice-1">
+                <div class="choice-img">
+                    <div class="choice-img-box">
+                        <div class="custom-file-upload">
+                            <input type="file" id="file-input1" name="selection_image1" >
+                            <label for="file-input1">
+                                <img src="{% static 'photo/image-gallery.png'%}" alt="image-gallery">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <input class="choice-text-box" type="text" name="selection_content1" placeholder="선택지1"></input>
+
+            </div>
+            
+            <div class="choice-2">
+                <div class="choice-img">
+                    <div class="choice-img-box">
+                        <div class="custom-file-upload">
+                            <input type="file" id="file-input2" name="selection_image2" >
+                            <label for="file-input2">
+                                <img src="{% static 'photo/image-gallery.png'%}" alt="image-gallery">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <input class="choice-text-box" type="text" name="selection_content2" placeholder="선택지2"></input>
+            </div>
+        </div>
+
+        <div class="explan"> 
+            <div class="explan-text">
+                설명
+            </div>
+            <div class="explan-box">
+                <input class="explan-box-text-box" type="text" name="post_content" placeholder="설명을 입력하세요"></input>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-title">
+                카테고리
+            </div>
+                <select class="category-box" name="post_category"> 
+                    <option value="대인관계">대인관계</option> 
+                    <option value="연애">연애</option> 
+                    <option value="교육">교육</option>
+                    <option value="생활">생활</option> 
+                    <option value="건강">건강</option>
+                    <option value="반려동물">반려동물</option> 
+                    <option value="기타">기타</option> 
+                </select>
+            </div>
+
+        <div class="button">
+            <button class="worry-button" type="submit" value="add_post">
+                <div class="button-text">
+                    고민 올리기
+                </div>
+            </button>
+        </div>
+    </form>
+    </main>
 
 {% endblock %}

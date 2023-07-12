@@ -1,29 +1,585 @@
 {% extends 'base.html' %}
-    {% block title %}마이페이지{% endblock %}
-{% load static %}
+{% block title %}마이페이지{% endblock %}
+  {% load static %}
+  {% block content %}
+        <div class="mypage">
+            <div class="mypage__title">마이페이지</div>
+            <div class="mypage__content">
+                <div class="mypage__nicname">
+                    {% comment %} 프로필 사진 {% endcomment %}
+                      {% if request.user.image %}
+                          <img class="card__image" src="{{ request.user.image.url }}" alt="" height="40" width="40">
+                    {% comment %} 회원가입 시 이미지가 없는 경우 {% endcomment %}
+                      {% else %}
+                          <img class="card__image" src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
+                      {% endif %}
+                    <span>{{ user.username }}</span>
+                </div>
+                <div class="mypage__settings">
+                  {% comment %} 프로필 수정 부분 페이지 연결하기 {% endcomment %}
+                  <a href="{% url 'accounts:logout' %}"><span>프로필 수정</span></a>
+                  <a href="{% url 'accounts:logout' %}"><span>로그아웃</span></a>
+                </div>    
+            </div>
+        </div>
+        <div class="bottomline"></div>
+        <div class="myWorry-buttons">
+            <div class="myWorry-button-1">
+              <div class="myWorry-button">
+                <div id="myWorry-btn-title" class="myWorry-button-text__title-1">나의 고민</div>
+                <div class="myWorry-button-text__count-1">999개</div>
+              </div>
+            </div>
+            <div class="myWorry-button-2">
+                <div class="myWorry-button">
+                    <div id="myWorry-btn-title" class="myWorry-button-text__title-2">내가 공감한 고민</div>
+                    <div class="myWorry-button-text__count-2">999개</div>
+                </div>
+            </div>
+            <div class="myWorry-button-3">
+                <div class="myWorry-button">
+                  <div id="myWorry-btn-title" class="myWorry-button-text__title-3">내가 답변한 고민</div>
+                  <div class="myWorry-button-text__count-3">999개</div>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="todayWorryContent">
+              <div class="todayWorryContent-left">
+                <div class="todayWorryContent-left-start">
+                  <div class="todayWorryContent-medium-sizebox">
+                    <div class="todayWorryContent-question-header" >
+                      <div class="todayWorryContent-question-header__title">
+                        고양이 모래는 뭐가 좋을까요?
+                      </div>
+                      <div class="todayWorryContent-question-header__like1">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img src="photo/message.svg" alt="message">
+                        </div>
+                        <div class="todayWorryContent-question-header__like-count">
+                          999+
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-question-header__like2">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img class=".todayWorryContent-icon" src="photo/heart.svg" alt="heart">
+                        </div>
+                        <div class="todayWorryContent-question-header__like2-text">
+                          999+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-two-buttons">
+                      <div class="todayWorryContent-two-buttons-left">
+                        <div class="todayWorryContent-two-buttons-left-1">
+                          <div>두부모래</div>
+                          <div  class="hidden ratio">60%</div>
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-two-buttons-right">
+                        <div class="todayWorryContent-two-buttons-right-1">
+                          <div>종이모래</div>
+                          <div  class="hidden ratio">40%</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-left-start-box-post" >
+                      취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
+                      이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
+                      고양이 박사님들 도와주세요!
+                    </div>
+                </div>
+    
+                  <div class="todayWorryContent-profile">
+                    <div class="todayWorryContent-profile-box">
+                      <div class="todayWorryContent-profile-box-1">
+                        <div class="todayWorryContent-profile-box-icon">
+                          <img src="photo/mypage-icon.png" alt="profile-img">
+                        </div>
+                        <div class="todayWorryContent-profile-box-text1">
+                          작성자닉네임
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-profile-box-text2">
+                        1분 전
+                      </div>
+                    </div>
+                  </div>
+    
+                </div>
+    
+                <div class="todayWorryContent-left-medium-first">
+                  <div class="todayWorryContent-medium-sizebox">
+                    <div class="todayWorryContent-question-header" >
+                      <div class="todayWorryContent-question-header__title">
+                        고양이 모래는 뭐가 좋을까요?
+                      </div>
+                      <div class="todayWorryContent-question-header__like1">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img src="photo/message.svg" alt="message">
+                        </div>
+                        <div class="todayWorryContent-question-header__like-count">
+                          999+
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-question-header__like2">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img class=".todayWorryContent-icon" src="photo/heart.svg" alt="heart">
+                        </div>
+                        <div class="todayWorryContent-question-header__like2-text">
+                          999+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-two-buttons">
+                      <div class="todayWorryContent-two-buttons-left">
+                        <div class="todayWorryContent-two-buttons-left-1">
+                          <div>두부모래</div>
+                          <div class="hidden ratio">60%</div>
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-two-buttons-right">
+                        <div class="todayWorryContent-two-buttons-right-1">
+                          <div>종이모래</div>
+                          <div class="hidden ratio">40%</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-left-start-box-post" >
+                      취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
+                      이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
+                      고양이 박사님들 도와주세요!
+                    </div>
+                </div>
+    
+                  <div class="todayWorryContent-profile">
+                    <div class="todayWorryContent-profile-box">
+                      <div class="todayWorryContent-profile-box-1">
+                        <div class="todayWorryContent-profile-box-icon">
+                          <img src="photo/mypage-icon.png" alt="profile-img">
+                        </div>
+                        <div class="todayWorryContent-profile-box-text1">
+                          작성자닉네임
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-profile-box-text2">
+                        1분 전
+                      </div>
+                    </div>
+                  </div>
+    
+                </div>
+    
+                <div class="todayWorryContent-left-medium-second">
+                  <div class="todayWorryContent-small-sizebox">
+                    <div class="todayWorryContent-question-header" >
+                      <div class="todayWorryContent-question-header__title">
+                        고양이 모래는 뭐가 좋을까요?
+                      </div>
+                      <div class="todayWorryContent-question-header__like1">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img src="photo/message.svg" alt="message">
+                        </div>
+                        <div class="todayWorryContent-question-header__like-count">
+                          999+
+                        </div>
+                      </div>
+                    <div class="todayWorryContent-question-header__like2">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img class=".todayWorryContent-icon" src="photo/heart.svg" alt="heart">
+                        </div>
+                        <div class="todayWorryContent-question-header__like2-text">
+                          999+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-two-buttons">
+                      <div class="todayWorryContent-two-buttons-left">
+                        <div class="todayWorryContent-two-buttons-left-1">
+                          <div>두부모래</div>
+                          <div class="hidden ratio">60%</div>
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-two-buttons-right">
+                        <div class="todayWorryContent-two-buttons-right-1">
+                          <div>종이모래</div>
+                          <div class="hidden ratio">40%</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="todayWorryContent-profile">
+                    <div class="todayWorryContent-profile-box">
+                      <div class="todayWorryContent-profile-box-1">
+                        <div class="todayWorryContent-profile-box-icon">
+                          <img src="photo/mypage-icon.png" alt="profile-img">
+                        </div>
+                        <div class="todayWorryContent-profile-box-text1">
+                          작성자닉네임
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-profile-box-text2">
+                        1분 전
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    
+                
+                <div class="todayWorryContent-left-end">
+                  <div class="todayWorryContent-medium-sizebox">
+                    <div class="todayWorryContent-question-header" >
+                      <div class="todayWorryContent-question-header__title">
+                        고양이 모래는 뭐가 좋을까요?
+                      </div>
+                      <div class="todayWorryContent-question-header__like1">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img src="photo/message.svg" alt="message">
+                        </div>
+                        <div class="todayWorryContent-question-header__like-count">
+                          999+
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-question-header__like2">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img class=".todayWorryContent-icon" src="photo/heart.svg" alt="heart">
+                        </div>
+                        <div class="todayWorryContent-question-header__like2-text">
+                          999+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-two-buttons">
+                      <div class="todayWorryContent-two-buttons-left">
+                        <div class="todayWorryContent-two-buttons-left-1">
+                          <div>두부모래</div>
+                          <div class="hidden ratio">60%</div>
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-two-buttons-right">
+                        <div class="todayWorryContent-two-buttons-right-1">
+                          <div>종이모래</div>
+                          <div class="hidden ratio">40%</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-left-start-box-post" >
+                      취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
+                      이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
+                      고양이 박사님들 도와주세요!
+                    </div>
+                </div>
+                <div class="todayWorryContent-profile">
+                  <div class="todayWorryContent-profile-box">
+                    <div class="todayWorryContent-profile-box-1">
+                      <div class="todayWorryContent-profile-box-icon">
+                        <img src="photo/mypage-icon.png" alt="profile-img">
+                      </div>
+                      <div class="todayWorryContent-profile-box-text1">
+                        작성자닉네임
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-profile-box-text2">
+                      1분 전
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+    
+    
+              <div class="todayWorryContent-right">
+                <div class="todayWorryContent-right-start">
+                  <div class="todayWorryContent-medium-sizebox">
+                    <div class="todayWorryContent-question-header" >
+                      <div class="todayWorryContent-question-header__title">
+                        고양이 모래는 뭐가 좋을까요?
+                      </div>
+                      <div class="todayWorryContent-question-header__like1">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img src="photo/message.svg" alt="message">
+                        </div>
+                        <div class="todayWorryContent-question-header__like-count">
+                          999+
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-question-header__like2">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img class=".todayWorryContent-icon" src="photo/heart.svg" alt="heart">
+                        </div>
+                        <div class="todayWorryContent-question-header__like2-text">
+                          999+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-two-buttons">
+                      <div class="todayWorryContent-two-buttons-left">
+                        <div class="todayWorryContent-two-buttons-left-1">
+                          <div>두부모래</div>
+                          <div class="hidden ratio">60%</div>
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-two-buttons-right">
+                        <div class="todayWorryContent-two-buttons-right-1">
+                          <div>종이모래</div>
+                          <div class="hidden ratio">40%</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-left-start-box-post" >
+                      취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
+                      이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
+                      고양이 박사님들 도와주세요!
+                    </div>
+                </div>
+    
+                  <div class="todayWorryContent-profile">
+                    <div class="todayWorryContent-profile-box">
+                      <div class="todayWorryContent-profile-box-1">
+                        <div class="todayWorryContent-profile-box-icon">
+                          <img src="photo/mypage-icon.png" alt="profile-img">
+                        </div>
+                        <div class="todayWorryContent-profile-box-text1">
+                          작성자닉네임
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-profile-box-text2">
+                        1분 전
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="todayWorryContent-right-medium">
+                  <div class="todayWorryContent-big-sizebox">
+                    <div class="todayWorryContent-question-header" >
+                      <div class="todayWorryContent-question-header__title">
+                        고양이 모래는 뭐가 좋을까요?
+                      </div>
+                      <div class="todayWorryContent-question-header__like1">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img src="photo/message.svg" alt="message">
+                        </div>
+                        <div class="todayWorryContent-question-header__like-count">
+                          999+
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-question-header__like2">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img class=".todayWorryContent-icon" src="photo/heart.svg" alt="heart">
+                        </div>
+                        <div class="todayWorryContent-question-header__like2-text">
+                          999+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-four-buttons">
+                      <div class="todayWorryContent-four-buttons-left">
+                        <div class="todayWorryContent-four-buttons-box">
+                          <div>
+                            <img src="photo/tofuLitter.png">
+                          </div>
+                          <div class="todayWorryContent-four-buttons-choice-btn">
+                            <div>두부모래</div>
+                            <div class="hidden ratio">35%</div>
+                          </div>
+                        </div>
+                        <div class="todayWorryContent-four-buttons-left-2">
+                          <div>
+                            <img src="photo/bentonite.png">
+                          </div>
+                          <div class="todayWorryContent-four-buttons-choice-btn">
+                            <div>벤토나이트</div>
+                            <div class="hidden ratio">11%</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-four-buttons-right">
+                        <div class="todayWorryContent-four-buttons-box">
+                          <div>
+                            <img src="photo/paperLitter.png">
+                          </div>
+                          <div class="todayWorryContent-four-buttons-choice-btn">
+                            <div>종이모래</div>
+                            <div class="hidden ratio">50%</div>
+                          </div>
+                        </div>
+                        <div class="todayWorryContent-four-buttons-left-2">
+                          <div>
+                            <img src="photo/cassavaSand.png">
+                          </div>
+                          <div class="todayWorryContent-four-buttons-choice-btn">
+                            <div>카사바모래</div>
+                            <div class="hidden ratio">4%</div>
+                          </div>
+                        </div>
+    
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-left-start-box-post" >
+                      취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
+                      이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
+                      고양이 박사님들 도와주세요!
+                    </div>
+                  </div>
+                  <div class="todayWorryContent-profile">
+                    <div class="todayWorryContent-profile-box">
+                      <div class="todayWorryContent-profile-box-1">
+                        <div class="todayWorryContent-profile-box-icon">
+                          <img src="photo/mypage-icon.png" alt="profile-img">
+                        </div>
+                        <div class="todayWorryContent-profile-box-text1">
+                          작성자닉네임
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-profile-box-text2">
+                        1분 전
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="todayWorryContent-right-medium">
+                  <div class="todayWorryContent-small-sizebox">
+                    <div class="todayWorryContent-question-header" >
+                      <div class="todayWorryContent-question-header__title">
+                        고양이 모래는 뭐가 좋을까요?
+                      </div>
+                      <div class="todayWorryContent-question-header__like1">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img src="photo/message.svg" alt="message">
+                        </div>
+                        <div class="todayWorryContent-question-header__like-count">
+                          999+
+                        </div>
+                      </div>
+                    <div class="todayWorryContent-question-header__like2">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img class=".todayWorryContent-icon" src="photo/heart.svg" alt="heart">
+                        </div>
+                        <div class="todayWorryContent-question-header__like2-text">
+                          999+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-two-buttons">
+                      <div class="todayWorryContent-two-buttons-left">
+                        <div class="todayWorryContent-two-buttons-left-1">
+                          <div>두부모래</div>
+                          <div class="hidden ratio">60%</div>
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-two-buttons-right">
+                        <div class="todayWorryContent-two-buttons-right-1">
+                          <div>종이모래</div>
+                          <div class="hidden ratio">40%</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="todayWorryContent-profile">
+                    <div class="todayWorryContent-profile-box">
+                      <div class="todayWorryContent-profile-box-1">
+                        <div class="todayWorryContent-profile-box-icon">
+                          <img src="photo/mypage-icon.png" alt="profile-img">
+                        </div>
+                        <div class="todayWorryContent-profile-box-text1">
+                          작성자닉네임
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-profile-box-text2">
+                        1분 전
+                      </div>
+                    </div>
+                  </div>
+                </div>   
+                <div class="todayWorryContent-right-end">
+                  <div class="todayWorryContent-medium-sizebox">
+                    <div class="todayWorryContent-question-header" >
+                      <div class="todayWorryContent-question-header__title">
+                        고양이 모래는 뭐가 좋을까요?
+                      </div>
+                      <div class="todayWorryContent-question-header__like1">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img src="photo/message.svg" alt="message">
+                        </div>
+                        <div class="todayWorryContent-question-header__like-count">
+                          999+
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-question-header__like2">
+                        <div class="todayWorryContent-question-header__like-icon">
+                          <img class=".todayWorryContent-icon" src="photo/heart.svg" alt="heart">
+                        </div>
+                        <div class="todayWorryContent-question-header__like2-text">
+                          999+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-two-buttons">
+                      <div class="todayWorryContent-two-buttons-left">
+                        <div class="todayWorryContent-two-buttons-left-1">
+                          <div>두부모래</div>
+                          <div class="hidden ratio">60%</div>
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-two-buttons-right">
+                        <div class="todayWorryContent-two-buttons-right-1">
+                          <div>종이모래</div>
+                          <div class="hidden ratio">40%</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="todayWorryContent-left-start-box-post" >
+                      취향이 참 까탈스런 고양이 인데요, 벤토나이트 쓰다가 자꾸
+                      이불에 볼일을 봐서 화장실 모래가 문제인가 싶어 고민 올려요 ㅠㅠ 
+                      고양이 박사님들 도와주세요!
+                    </div>
+                </div>
+    
+                  <div class="todayWorryContent-profile">
+                    <div class="todayWorryContent-profile-box">
+                      <div class="todayWorryContent-profile-box-1">
+                        <div class="todayWorryContent-profile-box-icon">
+                          <img src="photo/mypage-icon.png" alt="profile-img">
+                        </div>
+                        <div class="todayWorryContent-profile-box-text1">
+                          작성자닉네임
+                        </div>
+                      </div>
+                      <div class="todayWorryContent-profile-box-text2">
+                        1분 전
+                      </div>
+                    </div>
+                  </div>
+                </div>        
+              </div>
+            </div>
+          </section>
+    
+          <div class="pageNumberBar">
+            <div class="pageNumberBar-container">
+              <div class="pageNumberBar-container__left-btn">
+                <img src="photo/leftBtn.png">
+              </div>
+              <div class="pageNumberBar-container__chosen-page">
+                <img src="photo/chosenPageSign.svg">
+              </div>
+              <div class="pageNumberBar-container__second">
+                2
+              </div>
+              <div class="pageNumberBar-container__third">
+                3
+              </div>
+              <div class="pageNumberBar-container__right-btn">
+                <img src="photo/rightBtn.png">
+              </div>
+              </div>
+          </div>
+        </main>
+{% endblock %}
 
-{% block content %}        
-    <h3>마이페이지</h3>
-
-    {% comment %} 프로필 사진 {% endcomment %}
-    프로필 사진 : 
-    {% if request.user.image %}
-        <img class="card__image" src="{{ request.user.image.url }}" alt="" height="40" width="40">
-        <br>
-    {% comment %} 회원가입 시 이미지가 없는 경우 {% endcomment %}
-    {% else %}
-        <img class="card__image" src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
-        <br>
-    {% endif %}
-
-
-    아이디 : {{ user.username }}<br>
-    {% comment %} 프로필 수정 부분 페이지 연결하기 {% endcomment %}
-    <button onclick="location.href='{% url 'accounts:logout' %}'">프로필 수정</button><br>
-    <button onclick="location.href='{% url 'accounts:logout' %}'">로그아웃</button><br>
-
-    <hr>
-    내가 작성한 게시글<br>
+내가 작성한 게시글<br>
     {% for post in post_list %}           
         <div>
             <a href="{% url 'posts:post-detail' post.id %}">{{ post.title }}</a><br>
@@ -34,4 +590,3 @@
             상세페이지<br><br>
         </div>
     {% endfor %}
-{% endblock %}
