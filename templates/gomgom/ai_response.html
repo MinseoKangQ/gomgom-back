@@ -42,7 +42,6 @@
     .re-button {
         width: 179px;
         height: 64px;
-        flex-shrink: 0;
         border-radius: 32px;
         background: var(--faf-9-f-6, #FAF9F6);
         color: var(--67594-c, #67594C);
@@ -52,35 +51,36 @@
         font-weight: 700;
         line-height: 100%;
         border: none;
-        {% comment %} margin-top: 37px;
-        display: flex;
-        justify-content: center;
-        align-items: center; {% endcomment %}
+        margin-top: 15px;
     }
     
     .worry-box-contents {
-        padding : 0 20px;
         width: 680px;
         height: 248px;
-        flex-shrink: 0;
         border-radius: 24px;
-        background: #e9e5da
-        box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
-        display:block;
+    }
 
+    .text-and-btn {
+        margin: 0px;
+        display: flex;
+        position: absolute;
+        align-items: center;
+        flex-direction: column;
     }
     
-    .worry-text {
+    .worry-text-response {
         color: var(--67594-c, #67594C);
         font-family: Pretendard;
         font-size: 24px;
         font-style: normal;
         font-weight: 700;
         line-height: 160%;
-        margin-top: 70px;
         display: block;
-        align : center;
+        margin-bottom: 15px;
     }
     
     
@@ -103,50 +103,12 @@
         background: var(--faf-9-f-6, #FAF9F6);
     }
     
-    .worry-button-box{ 
-        margin-top: 57px;
-        margin-bottom: 19px;
-    }
-    
     .re-button-img, .worry-button-text {
         display : inline;
     }
-{% comment %} .return-button-text{
-    color: #67594C;
-    text-align: center;
-    font-family: Pretendard;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 100%;
-}
-.return-button {
-    width: 200px;
-    height: 64px;
-    flex-shrink: 0;
-    border-radius: 44px;
-    background: var(--ffab-5-d, #FAF9F6);
-    border: none;
-    margin-top:50px;
-}
-.worry-box-contents {
-    width: 680px;
-    height: 248px;
-    flex-shrink: 0;
-    border-radius: 24px;
-    background: var(--e-9-e-5-da, #E9E5DA);
-    box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
-    text-align: center;
-}
-.worry-text {
-    color: var(--67594-c, #67594C);
-    font-family: Pretendard;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 160%;
-    margin-top: 70px;
-} {% endcomment %}
+
+    .re-button-img { margin-right: 3px;}
+    .worry-button-text { margin-left: 3px;}
 </style>
 <body>
     <main>
@@ -162,21 +124,20 @@
         </div>
         <div class="worry-box">
             <div class="worry-box-contents">
-                <div class="worry-text">
-                    {{ response }}
-                </div>
-                <div class="worry-button-box">
-                    <button class="re-button" onclick="location.href='{% url 'gomgom:ai' %}'">
-                        <div class="re-button-img">    
-                            <img src="{% static 'photo/retry.png' %}" alt="retry">
-                        <div>
-                            <br>
+                <div class="text-and-btn">
+                    <div class="worry-text-response">
+                        {{ response }}
+                    </div>
+                    <div class="worry-button-box">
+                        <button class="re-button" onclick="location.href='{% url 'gomgom:ai' %}'">
+                            <div class="re-button-img">    
+                                <img src="{% static 'photo/retry.png' %}" alt="retry">
+                            </div>
                             <div class="worry-button-text">
                                 다시하기
                             </div>
-
-                    </button>
-                    
+                        </button>
+                    </div>
                 </div>
                 {% comment %}<button class = "return-button" onclick="location.href='{% url 'gomgom:ai' %}'">
                     <div class ="return-button-text">

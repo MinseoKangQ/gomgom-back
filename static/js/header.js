@@ -1,0 +1,1 @@
+const headerBtns = document.querySelectorAll('.header-menu');
