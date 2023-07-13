@@ -66,19 +66,21 @@
         margin-left:400px;
     }  {% endcomment %}
     .image-button {
-        background: url("{% static 'photo/aigomgom.png'%}") no-repeat;
-        border: none;
-        width: 700px; 
-        height: 700px;
         cursor: pointer;
-        margin-top : 50px;
-        margin-left:400px;
     }
 
     .worry-box-contents {
         background : #FFFFFF;
     }
     
+    #submit-button {
+        border: none;
+        background-color:transparent;
+    }
+
+    .btn-image {
+        background-color:transparent;
+    }
 </style>
 
     <main>
@@ -112,7 +114,7 @@
             </div>
             <div class="image-box">
                 <button id="submit-button" class="image-button" type="submit">
-                    {% comment %} <img src="{% static 'photo/aigomgom.png'%}"> {% endcomment %}
+                    <img class="btn-image" src="{% static 'photo/aigomgom.png'%}">
                 </button>
             </div>
             {% comment %} class="image-button"></button> {% endcomment %}
