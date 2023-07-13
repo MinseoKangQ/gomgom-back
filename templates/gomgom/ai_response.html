@@ -54,6 +54,7 @@
         background: #e9e5da
         box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
         text-align: center;
+        display:block;
     }
     
     .worry-text {
@@ -149,18 +150,20 @@
                 </p>
                 <div class="worry-button-box">
                     <button class="worry-box" onclick="location.href='{% url 'gomgom:ai' %}'">
-                            <img src="{% static 'photo/retry.png' %}" alt="retry">
-                            <br>
-                            <div class="worry-button-text">
-                                다시하기
-                            </div>
+                        <img src="{% static 'photo/retry.png' %}" alt="retry">
+                        <br>
+                        <div class="worry-button-text">
+                            다시하기
+                        </div>
                     </button>
+                    
                 </div>
-                {% comment %} <button class = "return-button" onclick="location.href='{% url 'gomgom:ai' %}'">
+                {% comment %}<button class = "return-button" onclick="location.href='{% url 'gomgom:ai' %}'">
                     <div class ="return-button-text">
                     다시하기
                     </div>
-                </button> {% endcomment %}
+                </button> 
+                {% endcomment %}
             </div>
         </div>
         <div class="image-box">
