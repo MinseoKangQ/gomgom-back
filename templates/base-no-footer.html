@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/screens/post-detail-view.css' %}">
+
+    <script defer src="{% static 'js/post-list-all.js' %}"></script>  
+    <script defer src="{% static 'js/post-detail-today-question.js' %}"></script>
+    <script defer src="{% static 'js/post-detail-view.js' %}"></script> 
+    <script defer src="{% static 'js/mypage_my_worry.js' %}"></script> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
+
+</head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav id="nav">
+            <div class="logo">
+                <p>gomgom</p>
+            </div>
+            <div class="navbar-div-box">
+                <div class="navbar-div">
+                    <a href="{% url 'gomgom:home'%}">메인</a>
+                    <a href="{% url 'posts:post-create'%}">고민올리기</a>
+                    <a href="{% url 'posts:post-list-all' %}">게시판</a>
+                    <a href="{% url 'gomgom:ai'%}">곰곰이</a>
+                </div>
+                {% if request.user.image %}
+                    <div class="mypage-div">
+                        <a href="{% url 'accounts:mypage'%}">
+                            <img class="mypage-img" src="{{ request.user.image.url }}">
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="mypage-div">
+                        <a href="{% url 'accounts:mypage'%}">
+                            <img class="mypage-img" src="{% static 'photo/basic_profile.png' %}">
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
+        <div class="line">
+    </header>
+
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

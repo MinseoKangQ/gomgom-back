@@ -1,0 +1,42 @@
+/*components*/
+@import "component/header.css";
+@import "component/detail-footer.css";
+@import "component/question-box.css";
+/*screens*/
+@import "screens/post-detail-today-question.css";
+@import "screens/post-create-complete.css";
+@import "screens/post-list-all.css";
+@import "screens/signup.css";
+@import "screens/login.css";
+@import "screens/mypage_my_worry.css";
+@import "screens/post-detail-view.css";
+@import "screens/ai_response.css";
+@import "screens/home.css";
+
+:root {
+    --color1:#67594C;
+    --color2:#D2CDBC;
+    --color3:#E9E5DA;
+    --color4:#D9D9D9;
+    --bodycolor:#FAF9F6;
+}
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color:var(--bodycolor);
+}
+main {
+    width: 100vw;
+    /* height: 0vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}

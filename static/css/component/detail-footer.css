@@ -1,6 +1,6 @@
 .detail-footer {
     width: 100vw;
-    height: 211px;
+    /* height: 200px; */
     flex-shrink: 0;
     background: var(--color3);
 }
@@ -47,7 +47,7 @@
 }
 .answer-form__container {
     background-color: aqua;
-    margin: 40px 0 99px 0;
+    margin: 40px 0 40px 0;
     display: flex;
     align-items: center;
     position: relative;
