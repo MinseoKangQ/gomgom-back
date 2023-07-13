@@ -114,20 +114,10 @@
 .worry-box-contents {
     width: 680px;
     height: 248px;
-    flex-shrink: 0;
+    position: relative;
     border-radius: 24px;
     background: var(--e-9-e-5-da, #E9E5DA);
     box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
-    text-align: center;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    /* color: var(--d-2-cdbc, #67594C);
-    font-family: Pretendard;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 160%; */
 }
 
 .worry-text {
@@ -141,6 +131,10 @@
     border: none;
     outline: none;
     margin: 0px;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
 }
 
 

@@ -258,12 +258,6 @@ main {
     line-height: 160%;
     margin-bottom: 14px;
 }
-.comments-container__comment-box__img {
-    /* position: absolute; */
-    /* top: 0; */
-    /* right: 0; */
-    /* padding-bottom: 70px; */
-}
 
 .comments__border {
     width: 1092px;
