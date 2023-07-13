@@ -49,7 +49,7 @@
         {% for post in gomgom_post_list %}
                     <div class="slide-op">
                       <a href="{% url 'posts:post-gomgom-detail' post.id %}">
-                        <img class="post-img" src="{{ post.image.url }}">
+                        {% comment %}<img class="post-img" src="{{ post.image.url }}"> {% endcomment %}
                         <div class="slide-op__worry-title">{{ post.title }}</div>
                       </a>
                     </div>
