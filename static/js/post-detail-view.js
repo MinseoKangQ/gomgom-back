@@ -85,3 +85,7 @@ likeBtn.addEventListener('click', function() {
 imgBtn.addEventListener('click', function() {
   inputFile.click();
 })
+window.addEventListener('DOMContentLoaded', () => {
+  const commentsBox = document.querySelector('.comments-box');
+  commentsBox.classList.add('custom-scrollbar');
+});

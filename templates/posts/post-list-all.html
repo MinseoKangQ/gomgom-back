@@ -21,6 +21,10 @@
     border-radius: 50%;
     overflow: hidden;
   }
+  .category-btn.clicked {
+    background-color: #67594C;
+    color: #FAF9F6;
+  }
 </style>
 
 <section class="list-all">
@@ -33,7 +37,7 @@
         {% for post in gomgom_post_list %}
                     <div class="slide-op">
                       <a href="{% url 'posts:post-gomgom-detail' post.id %}">
-                        <img class="post-img" src="{{ post.image.url }}">
+                        {%comment%}<img class="post-img" src="{{ post.image.url }}">{% endcomment %}
                         <div class="slide-op__worry-title">{{ post.title }}</div>
                       </a>
                     </div>
@@ -103,7 +107,6 @@
     </form>
   </div>
 </section>
-
 
 <section class="content-section">
   <div class="todayWorryContent">
@@ -200,5 +203,4 @@
 </div>
 </main>
 </main>
-
 {% endblock %}
