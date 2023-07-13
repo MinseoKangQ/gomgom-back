@@ -39,14 +39,27 @@
     }
     
     
-    .worry-box {
-        margin-top: 37px;
+    .re-button {
+        width: 179px;
+        height: 64px;
+        flex-shrink: 0;
+        border-radius: 32px;
+        background: var(--faf-9-f-6, #FAF9F6);
+        color: var(--67594-c, #67594C);
+        font-size: 20px;
+        font-family: Pretendard;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 100%;
+        border: none;
+        {% comment %} margin-top: 37px;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center; {% endcomment %}
     }
     
     .worry-box-contents {
+        padding : 0 20px;
         width: 680px;
         height: 248px;
         flex-shrink: 0;
@@ -54,6 +67,7 @@
         background: #e9e5da
         box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
         text-align: center;
+        display: block;
     }
     
     .worry-text {
@@ -93,6 +107,9 @@
         margin-bottom: 19px;
     }
     
+    .re-button-img, .worry-button-text {
+        display : inline;
+    }
 {% comment %} .return-button-text{
     color: #67594C;
     text-align: center;
@@ -144,12 +161,14 @@
         </div>
         <div class="worry-box">
             <div class="worry-box-contents">
-                <p class="worry-text">
+                <div class="worry-text">
                     {{ response }}
-                </p>
+                </div>
                 <div class="worry-button-box">
-                    <button class="worry-box" onclick="location.href='{% url 'gomgom:ai' %}'">
+                    <button class="re-button" onclick="location.href='{% url 'gomgom:ai' %}'">
+                        <div class="re-button-img">    
                             <img src="{% static 'photo/retry.png' %}" alt="retry">
+                        <div>
                             <br>
                             <div class="worry-button-text">
                                 다시하기
