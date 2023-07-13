@@ -87,10 +87,10 @@
 }
 
 .category {
-    width: 100vw;
-    height: 192px;
-    display: flex;
-    justify-content: center;
+    /* width: 100vw; */
+    /* height: 192px; */
+    /* display: flex; */
+    /* justify-content: center; */
 }
 .category__container {
     display: flex;

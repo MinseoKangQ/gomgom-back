@@ -201,7 +201,7 @@ body {
 }
 
 .choice-1 {
-    margin-top: 24px;
+    margin-top: 11px;
     display: flex;
     align-items: center;
 }
@@ -256,11 +256,11 @@ body {
 }
 
 .explan {
-    margin-top: 132px;
+    margin-top: 55px;
 }
 
 .explan-box {
-    margin-top: 16px;
+    margin-top: 11px;
 }
 
 .explan-box-text-box {
@@ -282,7 +282,7 @@ body {
 }
 
 .explan-text {
-    color: var(--67594-c, #D2CDBC);
+    color: var(--67594-c, rgba(103, 89, 76, 0.50));
     font-family: Pretendard;
     font-size: 15px;
     font-style: normal;
@@ -305,7 +305,7 @@ main {
     background: var(--faf-9-f-6, #FAF9F6);
 }
 
-.category {
+/* .category {
     margin-top: 64px;
     margin-right: 550px;
 }
@@ -350,7 +350,53 @@ main {
 
 .category-button {
     margin-left: 106px;
+} */
+
+/* .category {
+    margin-top: 64px;
+    margin-right: 575px;
+} */
+
+.category-new {
+    margin-top: 55px;
 }
+
+.category-title {
+    color: var(--67594-c, rgba(103, 89, 76, 0.50));
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.category-box {
+    margin-top: 16px;
+    width: 203px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 2px solid var(--e-9-e-5-da, #E9E5DA);
+    background: #FFF;
+    display: flex;
+    align-items: center;
+}
+
+.category-text {
+    color: var(--d-2-cdbc, #D2CDBC);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+    padding-top: 8px;
+    margin-left: 28px;
+}
+
+.category-button {
+    margin-left: 0px;
+}
+
 
 .button {
     margin-top: 10px;
@@ -358,6 +404,7 @@ main {
 }
 
 .worry-button {
+    /* align-self: center; */
     width: 176px;
     height: 64px;
     flex-shrink: 0;
@@ -367,6 +414,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 
 .button-text {
@@ -378,13 +426,16 @@ main {
     line-height: 100%;
 }
 
-
 main {
+    height: 90vh;
+}
+
+/* main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: center;
     height: 100vh;
-}
+} */
 
 
