@@ -37,7 +37,9 @@
         {% for post in gomgom_post_list %}
                     <div class="slide-op">
                       <a href="{% url 'posts:post-gomgom-detail' post.id %}">
-                        {% comment %}<img class="post-img" src="{{ post.image.url }}"> {% endcomment %}
+                        {% if post.image %}
+                          <img class="post-img" src="{{ post.image.url }}">
+                          {% endif %}
                         <div class="slide-op__worry-title">{{ post.title }}</div>
                       </a>
                     </div>
@@ -94,6 +96,7 @@
     <div class="category__title">고민을 한 곳에 모았어요</div>
       <form action="" method="GET" enctype="multipart/form-data">
         <div class="category__btns">
+          <input  class="category-btn" type="submit"  name="category" value="전체">
           <input  class="category-btn" type="submit"  name="category" value="대인관계">
           <input  class="category-btn" type="submit"  name="category" value="연애">
           <input  class="category-btn" type="submit"  name="category" value="교육">

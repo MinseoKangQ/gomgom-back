@@ -1,42 +1,68 @@
-{% extends 'base.html' %}
+{% extends 'base-no-footer.html' %}
 {% block title %}곰곰이의 고민{% endblock %}
     {% load static %}
     {% block content %}
-    <style>
-        .question-box__title-box {
-            width: 390px;
-            height: 31px;
-            flex-shrink: 0;
-            background: var(--e-9-e-5-da, #E9E5DA);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/screens/post-detail-view.css">
+        <script defer src="js/post-detail-view.js"></script> 
+
+        <style>
+            .like-button {
+                border: none;
+                background: none;
+                padding: 0;
+                cursor: pointer;
+            }
+            
+            .answer-form__container input[type="text"] {
+                font-size: 18px;
+                font-family: Pretendard;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 100%;
+                text-indent: 31px;
+            }
+            .footer {
+                background : #e9e5da;
+            }
+            .question-box__content {
+                /* margin-top: 30px; */
+                margin-bottom: 47px;
+                display: flex;
+                width: 682px;
+                flex-direction: column;
+                flex-shrink: 0;
+                color: #67594C;
+                font-family: Pretendard;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 160%;
+            }
         
-        }
-        .question-box__content {
-            margin-top: 24px;
-            margin-bottom: 47px;
-            display: flex;
-            width: 410px;
-            flex-direction: column;
-            flex-shrink: 0;
-            color: var(--67594-c, #67594C);
-            font-family: Pretendard;
-            font-size: 15px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 160%;
-        }
-        .answer-form__container input[type="text"] {
-            font-size: 18px;
-            font-family: Pretendard;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 100%;
-            text-indent: 31px;
-        }
-        
-    </style>
+            .detail-container__div {
+                width: 800px;
+                height: 300px;
+                flex-shrink: 0;
+                border-radius: 24px;
+                background: var(--ffffff, #FFF);
+                position: relative;
+                margin-right: 250px;
+                
+                /* Drop Shadow */
+                box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
+            }
+            
+            .detail-container__question {
+                display: flex;
+                justify-content: center;
+                margin-top: 50px;
+                margin-right: 300px;
+            }
+        </style>
+    </head>
+    <body>
     <main>
         <section class="detail-sec1">
             <div class="detail-container">
@@ -48,6 +74,20 @@
                             <div class="question-box__title-box">
                                 <span class="question-box__title">{{post.title}}</span>
                             </div>
+                                <div class="detail-container__like-btn">
+                                        <form action="" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            {% if request.user in post.like.all %}
+                                            <button type ="submit" class ="like-button">
+                                                <img src="{% static 'photo/heart.svg'%}" alt="좋아요 취소">
+                                            </button>
+                                            {% else %}
+                                            <button type="submit" class="like-button">
+                                                <img src="{% static 'photo/heartEmpty.svg'%}" alt="좋아요 취소">
+                                            </button>
+                                            {% endif %}
+                                        </form>
+                                </div>
                             <div class="question-box__content">
                                 {{ post.content|linebreaksbr }}
                             </div>
@@ -55,7 +95,7 @@
                         <div class="detail-container__img">
                             {%comment %}이미지 넣는곳{% endcomment%}
                             {% if post.image %}
-                                <img src="{{ post.image.url }}" alt="" height="150" width="200">
+                                <img src="{{ post.selection.image.url }}" alt="" height="150" width="200">
                             {% endif %}
                         </div>      
                     </div>
@@ -69,17 +109,17 @@
                     </div>
                     <div class="likeCount__heart">
                         <img src="{% static 'photo/heart.svg'%}">
-                        <span>999+</span>
+                        <span>{{ post.like.count }}</span>
                     </div>
                 </div>
             </div>
             <div class="detail-container__border"></div>
             <!--댓글-->
             <div class="comments">
-                {% for comment in post.comment_set.all %}
-                <div class="comments-container">
-
-                    <div class="comments-container__userImg">
+                <div class="comments-box custom-scrollbar">
+                    {% for comment in post.comment_set.all %}
+                        <div class="comments-container">
+                            <div class="comments-container__userImg">
                         {% if comment.writer.image %}
                             <img src="{{ comment.writer.image.url }}" alt="Profile Picture" height="40" width="40">
                         {% else %}
@@ -95,28 +135,18 @@
                             {{comment.content}}
                         </div>
                         <div class="comments-container__comment-box__time">
-                            {{comment.created_at}}
+                            {{comment.created_string }}
                         </div>
                         <div class="comments-container__comment-box__img">
                             {% if comment.image %}
-                            <img class="card__image" src="{{ comment.image.url }}" alt="" height="150" width="200">
+                                <img class="card__image" src="{{ comment.image.url }}" alt="" height="150" width="200">
                             {% endif %}
                         </div>
                     </div>
                 </div> 
                 <div class="comments__border"></div>
                 {% endfor %}
-                <div class="comments__border"></div>
-                <div class="comments__border"></div>
-                <div class="comments__border"></div>
-                <div class="comments__border"></div>
-                <div class="comments__border"></div>
-                <div class="comments__border"></div>
-                <div class="comments__border"></div>
-                <div class="comments__border"></div>
             </div>
-
-        </section>
 
     </main>
     <style>

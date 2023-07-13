@@ -53,7 +53,7 @@ def post_list_view(request):
         post_list = Post.objects.exclude(writer__username='gomgom').order_by('-created_at')
         
         if selected_category is None: # 처음에 버튼 선택 안할시, queryset 데이터에 아무것도 없음.
-            selected_category = '대인관계'  # 그래서 디폴트 값은 대인관계로 설정
+            selected_category = '전체'  # 그래서 디폴트 값은 전체 설정
             
         print(selected_category)
         filter_list = Post.objects.filter(category=selected_category).order_by('-created_at') # 사용자가 선택한 카테고리와 같은것만 필터링
@@ -227,7 +227,14 @@ def post_gomgom_detail_view(request, id):
                     writer=request.user,
                 )
             else: # 댓글 이미지와, 내용이 없을 경우,
-                return render(request, 'posts/post-detail-today-question.html')
+                if request.user in post.like.all():
+                    post.like.remove(request.user)
+                else:
+                    post.like.add(request.user)
+                context = {
+                    'post':post,
+                }    
+                return render(request, 'posts/post-detail-today-question.html',context)
             context = {
                     'post': post,
             }
