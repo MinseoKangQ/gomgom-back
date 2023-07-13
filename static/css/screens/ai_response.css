@@ -85,7 +85,7 @@ main{
     background: var(--faf-9-f-6, #FAF9F6);
 }
 
-.worry-button-box{ 
-    margin-top: 57px;
-    margin-bottom: 19px;
-}
+/* .worry-button-box{
+    margin-top: 0px;
+    margin-bottom: 0px;
+} */

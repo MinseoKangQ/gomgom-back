@@ -38,10 +38,10 @@
             </div>
             <div class="navbar-div-box">
                 <div class="navbar-div">
-                    <a href="{% url 'gomgom:home'%}">메인</a>
-                    <a href="{% url 'posts:post-create'%}">고민올리기</a>
-                    <a href="{% url 'posts:post-list-all' %}">게시판</a>
-                    <a href="{% url 'gomgom:ai'%}">곰곰이</a>
+                    <a class="header-menu" href="{% url 'gomgom:home'%}">메인</a>
+                    <a class="header-menu" href="{% url 'posts:post-create'%}">고민올리기</a>
+                    <a class="header-menu" href="{% url 'posts:post-list-all' %}">게시판</a>
+                    <a class="header-menu" href="{% url 'gomgom:ai'%}">곰곰이</a>
                 </div>
                 {% if request.user.image %}
                     <div class="mypage-div">
