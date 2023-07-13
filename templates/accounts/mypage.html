@@ -44,6 +44,14 @@
       margin-bottom: 4px;
       color: #67594C;
   }
+    .myWorry-button-text__count-1 {
+      color: var(--67594-c, rgba(103, 89, 76, 0.50));
+      font-family: Pretendard;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 160%;
+  }
 
     .myWorry-button-text__title-1.clicked {
       font-family: Pretendard;
@@ -52,7 +60,19 @@
       font-weight: 700;
       line-height: 160%;
       margin-bottom: 4px;
-      color : #E9E5DA;
+      color : #D2CDBC;
+  }
+    .myWorry-button-text__count-1.clicked {
+      color: var(--67594-c, #E9E5DA);
+      font-family: Pretendard;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 160%;
+
+    }
+    .todayWorryContent-question-header__like1{
+      right: 50px;
     }
 
   </style>
@@ -85,7 +105,7 @@
             <button class="myWorry-button-1" name ="mypage" value="mypost">
               <div class="myWorry-button">
                 <div id="myWorry-btn-title" class="myWorry-button-text__title-1">나의 고민</div>
-                <div class="myWorry-button-text__count-1"> </div>
+                <div class="myWorry-button-text__count-1"> {{ post_list.count }} 개</div>
               </div>
             </button>
 
@@ -93,7 +113,7 @@
             <button class="myWorry-button-1" name="mypage" value="myheart">
                 <div class="myWorry-button">
                     <div id="myWorry-btn-title" class="myWorry-button-text__title-1">내가 공감한 고민</div>
-                    <div class="myWorry-button-text__count-2"></div>
+                    <div class="myWorry-button-text__count-1"> {{ heart_list.count }} 개</div>
                 </div>
             </button>
 
@@ -101,69 +121,74 @@
             <button class="myWorry-button-1" name="mypage" value="mycomment">
                 <div class="myWorry-button">
                   <div id="myWorry-btn-title" class="myWorry-button-text__title-1">내가 답변한 고민</div>
-                  <div class="myWorry-button-text__count-3"></div>
+                  <div class="myWorry-button-text__count-1">{{comment_list.count}} 개</div>
                 </div>
             </button>
 
         </div>
       </form>
 
-    <script>
-
-      const myBtns = document.querySelectorAll('.myWorry-button-1');
-      const myTxts = document.querySelectorAll('.myWorry-button-text__title-1');
-
-
-        let selectedCategoryIndex = null;
-
-        // 버튼 클릭 상태 저장
-        function saveButtonState(key, index) {
+      <script>
+      const myBtns = document.querySelectorAll('.myWorry-button-1'); // 마이페이지 버튼
+      const myTxts = document.querySelectorAll('.myWorry-button-text__title-1'); // 마이페이지 버튼 텍스트
+      const myCounts = document.querySelectorAll('.myWorry-button-text__count-1'); // 마이페이지 버튼 개수
+  
+      let selectedCategoryIndex = null;
+  
+      // 버튼 클릭 상태 저장
+      function saveButtonState(key, index) {
           localStorage.setItem(key, index);
-        }
-
-        // 버튼 클릭 상태 복원
-        function applyButtonState(key, buttons, texts) {
+      }
+  
+      // 버튼 클릭 상태 복원
+      function applyButtonState(key, buttons, texts, counts) {
           const selectedIndex = localStorage.getItem(key);
           if (selectedIndex !== null) {
-            buttons.forEach((button, index) => {
-              const isClicked = index === parseInt(selectedIndex);
-              button.classList.toggle('clicked', isClicked);
-              texts[index].classList.toggle('clicked', isClicked);
-            });
+              buttons.forEach((button, index) => {
+                  const isClicked = index === parseInt(selectedIndex);
+                  button.classList.toggle('clicked', isClicked);
+                  texts[index].classList.toggle('clicked', isClicked);
+                  counts[index].classList.toggle('clicked', isClicked);
+              });
           }
-        }
-
-        // 마이페이지 버튼 처리하기
-        myBtns.forEach((myBtn, index) => {
-          myBtn.addEventListener('click', function() {
-            // 현재 선택된 버튼이 아닌 경우에만 처리하기
-            if (selectedCategoryIndex !== index) {
-              // 이전 선택된 버튼의 색상을 원래 색상으로 변경
-              if (selectedCategoryIndex !== null) {
-                const prevSelectedBtn = myBtns[selectedCategoryIndex];
-                const prevSelectedTxt = myTxts[selectedCategoryIndex];
-                prevSelectedBtn.classList.remove('clicked');
-                prevSelectedTxt.classList.remove('clicked');
+      }
+  
+      // 마이페이지 버튼 처리하기
+      myBtns.forEach((myBtn, index) => {
+          myBtn.addEventListener('click', function () {
+              // 현재 선택된 버튼이 아닌 경우에만 처리하기
+              if (selectedCategoryIndex !== index) {
+                  // 이전 선택된 버튼의 색상을 원래 색상으로 변경
+                  if (selectedCategoryIndex !== null) {
+                      const prevSelectedBtn = myBtns[selectedCategoryIndex];
+                      const prevSelectedTxt = myTxts[selectedCategoryIndex];
+                      const prevSelectedCount = myCounts[selectedCategoryIndex];
+                      prevSelectedBtn.classList.remove('clicked');
+                      prevSelectedTxt.classList.remove('clicked');
+                      prevSelectedCount.classList.remove('clicked');
+                  }
+  
+                  // 선택된 버튼의 색상 변경
+                  myBtn.classList.add('clicked');
+                  myTxts[index].classList.add('clicked');
+                  myCounts[index].classList.add('clicked');
+  
+                  selectedCategoryIndex = index;
+  
+                  // 저장된 선택된 버튼 인덱스 업데이트
+                  saveButtonState('selectedCategoryIndex', index);
               }
-
-              // 선택된 버튼의 색상 변경
-              myBtn.classList.add('clicked');
-              myTxts[index].classList.add('clicked');
-
-              selectedCategoryIndex = index;
-
-              // 저장된 선택된 버튼 인덱스 업데이트
-              saveButtonState('selectedCategoryIndex', index);
-            }
           });
-        });
-        applyButtonState('selectedCategoryIndex', myBtns, myTxts);
-    </script>
+      });
+  
+      // 페이지 로드 시 버튼 클릭 상태 복원
+      applyButtonState('selectedCategoryIndex', myBtns, myTxts, myCounts);
+  </script>
 
           <section class="content-section">
             <div class="todayWorryContent">
-              {% for post in post_list %}
-              {% if post.writer|stringformat:"s" != "gomgom"%}
+              {% for post in main_list %}
+              {% comment %} {% if post.writer|stringformat:"s" != "gomgom"%} {% endcomment %}
                   <div class="todayWorryContent-left">
                     <div class="todayWorryContent-left-start">
                         <div class="todayWorryContent-medium-sizebox">
@@ -188,6 +213,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% if post.writer|stringformat:"s" != "gomgom"%}
                             <div class="todayWorryContent-two-buttons">
                                 <div class="todayWorryContent-two-buttons-left">
                                     <div class="todayWorryContent-two-buttons-left-1">
@@ -202,6 +228,11 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
+                            {% if post.writer|stringformat:"s" == "gomgom"%}
+                              <br>
+                              <br>
+                            {% endif %}
                             <div class="todayWorryContent-left-start-box-post">
                               {{ post.content }}
                             </div>
@@ -213,6 +244,8 @@
                                     <div class="todayWorryContent-profile-box-icon">
                                       {% if post.writer.image %}
                                         <img class="userImage" src="{{ post.writer.image.url }}" alt="프로필 이미지">
+                                      {% elif post.writer|stringformat:"s" == "gomgom"%}
+                                        <img src="{% static 'photo/completeGom.png'%}" alt="곰곰이미지" height=40, width=60>
                                       {% else %}
                                         <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
                                       {% endif %}
@@ -229,7 +262,7 @@
                     </div>
                     
                   </div>
-                  {% endif %}
+                  {% comment %} {% endif %} {% endcomment %}
                   {% endfor %}
           </section>
     
