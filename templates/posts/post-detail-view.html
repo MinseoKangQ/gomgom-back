@@ -61,6 +61,9 @@
                     background: var(--faf-9-f-6, #FAF9F6);
                     cursor: pointer;
                 }
+                .selection-img {
+                    object-fit: cover;
+                }
             </style>
         </head>
 
@@ -99,7 +102,7 @@
 
                                     {% elif forloop.counter == 1 %}
                                         {% if selection.image %}
-                                            <img src="{{ selection.image.url }}" width="88" height="88">
+                                            <img class="selection-img" src="{{ selection.image.url }}" width="88" height="88">
 
                                             <button class="question-box__choice-btn_image1"  data-vote="{{ selection.vote }}" onclick="location.href='{% url 'posts:post-detail' post.id %}?param=1'">
                                                 <div class="choice-btn__content-1">
@@ -124,7 +127,7 @@
                                                     <span>{{selection.vote}}</span>
                                                 </div>
                                             </button>
-                                            <img src="{{ selection.image.url }}" width="88" height="88">
+                                            <img class="selection-img" src="{{ selection.image.url }}" width="88" height="88">
                                         {% else %}
                                             <button class="question-box__choice-btn2"  data-vote="{{ selection.vote }}"
                                                 onclick="location.href='{% url 'posts:post-detail' post.id %}?param=2'">

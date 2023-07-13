@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% block title %}고민 입력{% endblock %}
 {% load static %}
@@ -9,20 +8,13 @@
         display: flex;
         flex-direction: column;
         align-content: center;
-    
+
     }
+
     .custom-file-upload input[type="file"] {
         display: none;
     }
 
-    .choice-box {
-        margin-top: 55px;
-        margin-left: 1050px;
-    }
-    .explan {
-        margin-top: 132px;
-        margin-left: 1050px;
-    }
     .explan-box-text-box {
         width: 770px;
         height: 116px;
@@ -35,14 +27,43 @@
     .worry-title-box {
         margin-top: 150px;
     }
+
     input::placeholder {
         color: #D2CDBC;
     }
 
+    main {
+        background: var(--faf-9-f-6, #FAF9F6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 90vh;
+        width: 100vw;
+    }
+    
+    .worry-title-box {
+    margin: 0px;
+    }
+    
+    .choice-box, .explan, .category-new, {
+        margin: 0px;
+        margin-top: 55px;
+    }
+    
+    .button {
+        margin-top: 55px;
+        margin-left: 0px;
+    }
+
+    .worry-button {
+        margin: 0 auto;
+    }
+
 </style>
-    <main>
-        <form class="create-form" action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
+<main>
+    <form class="create-form" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
         <div class="worry-title-box">
             <div class="worry-title-text">
                 고민제목
@@ -59,7 +80,7 @@
                 <div class="choice-img">
                     <div class="choice-img-box">
                         <div class="custom-file-upload">
-                            <input type="file" id="file-input1" name="selection_image1" >
+                            <input type="file" id="file-input1" name="selection_image1">
                             <label for="file-input1">
                                 <img src="{% static 'photo/image-gallery.png'%}" alt="image-gallery">
                             </label>
@@ -70,12 +91,12 @@
                 <input class="choice-text-box" type="text" name="selection_content1" placeholder="선택지1"></input>
 
             </div>
-            
+
             <div class="choice-2">
                 <div class="choice-img">
                     <div class="choice-img-box">
                         <div class="custom-file-upload">
-                            <input type="file" id="file-input2" name="selection_image2" >
+                            <input type="file" id="file-input2" name="selection_image2">
                             <label for="file-input2">
                                 <img src="{% static 'photo/image-gallery.png'%}" alt="image-gallery">
                             </label>
@@ -86,7 +107,7 @@
             </div>
         </div>
 
-        <div class="explan"> 
+        <div class="explan">
             <div class="explan-text">
                 설명
             </div>
@@ -95,21 +116,21 @@
             </div>
         </div>
 
-        <div class="category">
+        <div class="category-new">
             <div class="category-title">
                 카테고리
             </div>
-                <select class="category-box" name="post_category"> 
-                    <option value="전체">전체</option>
-                    <option value="대인관계">대인관계</option> 
-                    <option value="연애">연애</option> 
-                    <option value="교육">교육</option>
-                    <option value="생활">생활</option> 
-                    <option value="건강">건강</option>
-                    <option value="반려동물">반려동물</option> 
-                    <option value="기타">기타</option> 
-                </select>
-            </div>
+            <select class="category-box" name="post_category">
+                <option value="전체">전체</option>
+                <option value="대인관계">대인관계</option>
+                <option value="연애">연애</option>
+                <option value="교육">교육</option>
+                <option value="생활">생활</option>
+                <option value="건강">건강</option>
+                <option value="반려동물">반려동물</option>
+                <option value="기타">기타</option>
+            </select>
+        </div>
 
         <div class="button">
             <button class="worry-button" type="submit" value="add_post">
@@ -119,6 +140,6 @@
             </button>
         </div>
     </form>
-    </main>
+</main>
 
 {% endblock %}
