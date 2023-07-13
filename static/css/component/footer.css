@@ -1,5 +1,4 @@
 .footer-home {
-    margin-top: ;
     height: 165px;
     flex-shrink: 0;
     display: flex;
@@ -16,7 +15,7 @@
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    background: #e9e5da;
+    background: #B1A9A1;
 }
 
 .footer-contents {
