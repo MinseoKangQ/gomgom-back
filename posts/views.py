@@ -164,12 +164,14 @@ def post_detail_view(request, id):
                     writer=request.user,
                 )
             else: # 댓글 이미지와, 내용이 없을 경우, (공감 버튼)
-                if post.like.filter(pk = id).exists:
+                if request.user in post.like.all():
                     post.like.remove(request.user)
                 else:
                     post.like.add(request.user)
-                return render(request, 'posts/post-detail-view.html')
-            
+                context = {
+                    'post': post,
+                }
+                return render(request, 'posts/post-detail-view.html', context) 
             context = {
                     'post': post,
             }
