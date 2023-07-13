@@ -7,6 +7,7 @@ from django.utils import timezone
 
 User = get_user_model()
 CHOICES = (
+        ('전체','전체'),
         ('대인관계','대인관계'),
         ('연애','연애'),
         ('교육','교육'),
