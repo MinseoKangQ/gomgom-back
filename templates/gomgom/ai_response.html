@@ -4,7 +4,96 @@
 
 {% block content %}
 <style>
-.return-button-text{
+    main {
+        justify-content: initial;
+    }
+    .ask-box {
+        margin-top: 100px;
+    }
+    
+    .ask-text {
+        color: #67594C;
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 160%;
+    }
+    
+    .think-box {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .think-text {
+        color: #67594C;
+        font-family: Pretendard;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 160%;
+        text-align: center;
+    }
+    
+    
+    .worry-box {
+        margin-top: 37px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .worry-box-contents {
+        width: 680px;
+        height: 248px;
+        flex-shrink: 0;
+        border-radius: 24px;
+        background: #e9e5da
+        box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
+        text-align: center;
+    }
+    
+    .worry-text {
+        color: var(--67594-c, #67594C);
+        font-family: Pretendard;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 160%;
+        margin-top: 70px;
+        display: block;
+        align : center;
+    }
+    
+    
+    .image-box {
+        margin-top: 74px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .img {
+        width: 501px;
+        height: 320px;
+        flex-shrink: 0;
+        background: lightgray -3.534px 0px / 101.411% 153.516% no-repeat;
+        background-blend-mode: darken;
+    }
+    
+    main{ 
+        background: var(--faf-9-f-6, #FAF9F6);
+    }
+    
+    .worry-button-box{ 
+        margin-top: 57px;
+        margin-bottom: 19px;
+    }
+    
+{% comment %} .return-button-text{
     color: #67594C;
     text-align: center;
     font-family: Pretendard;
@@ -39,7 +128,7 @@
     font-weight: 700;
     line-height: 160%;
     margin-top: 70px;
-}
+} {% endcomment %}
 </style>
 <body>
     <main>
@@ -55,14 +144,23 @@
         </div>
         <div class="worry-box">
             <div class="worry-box-contents">
-                <div class="worry-text">
+                <p class="worry-text">
                     {{ response }}
+                </p>
+                <div class="worry-button-box">
+                    <button class="worry-box" onclick="location.href='{% url 'gomgom:ai' %}'">
+                            <img src="{% static 'photo/retry.png' %}" alt="retry">
+                            <br>
+                            <div class="worry-button-text">
+                                다시하기
+                            </div>
+                    </button>
                 </div>
-                <button class = "return-button" onclick="location.href='{% url 'gomgom:ai' %}'">
+                {% comment %} <button class = "return-button" onclick="location.href='{% url 'gomgom:ai' %}'">
                     <div class ="return-button-text">
                     다시하기
                     </div>
-                </button>
+                </button> {% endcomment %}
             </div>
         </div>
         <div class="image-box">
