@@ -21,6 +21,9 @@
         border-radius: 50%;
         overflow: hidden;
       }
+      .todayWorryContent-question-header__like1{
+        right: 50px;
+      }
 </style>
 <body>
 
@@ -173,7 +176,7 @@
                                                 <img class=".todayWorryContent-icon" src="{% static 'photo/heart.svg'%}" alt="heart">
                                             </div>
                                             <div class="todayWorryContent-question-header__like2-text">
-                                                999+
+                                                {{ post.like.count }}
                                             </div>
                                         </div>
                                     </div>
