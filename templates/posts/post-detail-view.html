@@ -6,6 +6,15 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/screens/post-detail-view.css">
     <script defer src="js/post-detail-view.js"></script>  
+    <style>
+        .like-button {
+            border: none;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+    </style>
 
     <main>
         <section class="detail-sec1">
@@ -63,13 +72,14 @@
                             <form action="" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {% if request.user in post.like.all %}
-                                    <input type="submit" value ='좋아요 취소'>
-                                {% comment %} <img src="{% static 'photo/heartEmpty.svg' %}">{% endcomment %}
-                                {% else %}
-                                {% comment %} <img src ="{% static 'photo/fullheart.png' %}"> {% endcomment %}
-                                    <input type="submit" value='좋아요'>
+                                <button type="submit" class="like-button">
+                                    <img src="{% static 'photo/heart.svg'%}" alt="좋아요 취소">
+                                </button>
+                            {% else %}
+                                <button type="submit" class="like-button">
+                                    <img src="{% static 'photo/heartEmpty.svg'%}" alt="좋아요">
+                                </button>
                                 {% endif %}
-                                <div id="text"></div>
                             </form>
                         </div>        
                     </div>
@@ -83,7 +93,7 @@
                     </div>
                     <div class="likeCount__heart">
                         <img src="{% static 'photo/heart.svg' %}">
-                        <span>999+</span>
+                        <span>{{ post.like.count }}</span>
                     </div>
                 </div>
             </div>

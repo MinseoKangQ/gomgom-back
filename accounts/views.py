@@ -58,7 +58,7 @@ def logout_view(request):
 def mypage_view(request):
     if request.method == 'GET':
         name = request.GET.get("mypage")
-        if name is None:
+        if name is None:    #name 디폴트 값 설정 
             name = "mypost"
         # Post.writer 가 현재 로그인인 것 조회 (1. 내가 작성한 글 )
         if name =="mypost":
@@ -71,7 +71,11 @@ def mypage_view(request):
         
         elif name =="myheart":
             print("내가 공감한 글 출력")
-            return render(request, 'accounts/mypage.html')
+            my_heart_list = Post.objects.filter(like=request.user)
+            context = {
+                'post_list':my_heart_list,
+            }
+            return render(request, 'accounts/mypage.html',context)
         
         elif name =="mycomment":
             print("내가 답변한 글 출력")
