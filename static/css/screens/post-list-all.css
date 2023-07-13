@@ -176,7 +176,7 @@
 
 
 .todayWorryContent-medium-sizebox {
-    width: 580px;
+    /* width: 580px; */
     flex-shrink: 0;
     border-radius: 8px;
     background: #FFF;

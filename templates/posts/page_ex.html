@@ -1,0 +1,16 @@
+<span class="current-page">{{ filter_list.number }}</span>      
+
+                {% comment %} 현재 페이지가 1이라면 {% endcomment %}
+                {% if filter_list.number == 1 %}
+                  {% if filter_list.paginator.num_pages|add:-1 == 2 %}
+                    <a href="?category={{ selected_category }}&page=2">2</a>
+                  {% elif filter_list.paginator.num_pages|add:-1 == 3 %}
+                    <a href="?category={{ selected_category }}&page=2">2</a>
+                    <a href="?category={{ selected_category }}&page=3">3</a>
+                  {% endif %}
+                {% else %}
+                  {% if filter_list.has_next %}
+                      {% if filter_list.next_page_number != filter_list.paginator.num_pages %}
+                          <a href="?category={{ selected_category }}&page={{ filter_list.next_page_number }}">{{ filter_list.number|add:1 }}</a>
+                      {% endif %}  
+                  {% endif %}
