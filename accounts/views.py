@@ -8,7 +8,7 @@ from users.models import User
 from .forms import CustomAuthenticationForm
 from django.contrib.auth.decorators import login_required
 
-# 완성
+# 최종 완성
 
 # 회원가입
 def signup_view(request):
