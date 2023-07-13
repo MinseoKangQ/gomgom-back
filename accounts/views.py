@@ -57,32 +57,44 @@ def logout_view(request):
 @login_required
 def mypage_view(request):
     if request.method == 'GET':
+        post = Post
         name = request.GET.get("mypage")
+        
+        my_post_list = Post.objects.filter(writer = request.user).order_by('-created_at') 
+        my_heart_list = Post.objects.filter(like = request.user).order_by('-created_at')
+        
+        comment_list = Comment.objects.filter(writer=request.user)
+        post_ids = comment_list.values_list('post_id', flat=True) 
+        my_comment_list = Post.objects.filter(id__in=post_ids).order_by('-created_at')
+        
         if name is None:    #name 디폴트 값 설정 
             name = "mypost"
+            
         # Post.writer 가 현재 로그인인 것 조회 (1. 내가 작성한 글 )
         if name =="mypost":
             print("내가 작성한 글 출력")
-            post_list = Post.objects.filter(writer = request.user) 
             context = {
-                'post_list' : post_list,
+                'main_list':my_post_list,
+                'post_list':my_post_list,
+                'heart_list':my_heart_list,
+                'comment_list':my_comment_list,
             }
-            return render(request, 'accounts/mypage.html', context)
-        
         elif name =="myheart":
             print("내가 공감한 글 출력")
-            my_heart_list = Post.objects.filter(like=request.user)
             context = {
-                'post_list':my_heart_list,
+                'main_list':my_heart_list,
+                'post_list':my_post_list,
+                'heart_list':my_heart_list,
+                'comment_list':my_comment_list,
             }
-            return render(request, 'accounts/mypage.html',context)
         
         elif name =="mycomment":
             print("내가 답변한 글 출력")
-            my_comment_list = Comment.objects.filter(writer=request.user)
-            post_ids = my_comment_list.values_list('post_id', flat=True)
-            post_list = Post.objects.filter(id__in=post_ids)
             context = {
-                'post_list': post_list,
+                'main_list':my_comment_list,
+                'post_list':my_post_list,
+                'heart_list':my_heart_list,
+                'comment_list':my_comment_list,
             }
-            return render(request, 'accounts/mypage.html', context)
+
+        return render(request, 'accounts/mypage.html', context)
