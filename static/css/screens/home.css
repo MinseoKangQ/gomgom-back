@@ -179,7 +179,7 @@ body {
 .main_visual_last {
     background: var(--faf-9-f-6, #FAF9F6);
     display: flex;
-    height: 1475px;
+    height: 120%;
     align-items: center;
     flex-direction: column;
 }
