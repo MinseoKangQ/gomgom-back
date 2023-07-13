@@ -91,26 +91,26 @@ main {
     background: #E9E5DA;
 }
 .question-box__title-box {
-    width: 275px;
-    height: 31px;
+    width: fit-content;
+    /* height: 31px; */
     flex-shrink: 0;
     background: var(--e-9-e-5-da, #E9E5DA);
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
     align-items: center;
-
 }
 .question-box__title {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    flex-shrink: 0;
+    /* display: flex; */
+    /* width: 100%; */
+    /* flex-direction: column; */
+    /* flex-shrink: 0; */
     color: #67594C;
     font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: 100%;
+    background-color: #e9e5da;
 }
 .question-box__content {
     /* margin-top: 30px; */
