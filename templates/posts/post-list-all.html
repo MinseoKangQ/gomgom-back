@@ -36,7 +36,9 @@
   .todayWorryContent-question-header__like1{
     right: 50px;
   }
-  
+  .chosen-page-img {
+    vertical-align: baseline;
+  }
 </style>
 
 <section class="list-all">
@@ -49,7 +51,7 @@
         {% for post in gomgom_post_list %}
                     <div class="slide-op">
                       <a href="{% url 'posts:post-gomgom-detail' post.id %}">
-                        {% comment %}<img class="post-img" src="{{ post.image.url }}"> {% endcomment %}
+                        <img class="post-img" src="{{ post.image.url }}">
                         <div class="slide-op__worry-title">{{ post.title }}</div>
                       </a>
                     </div>
@@ -120,79 +122,6 @@
   </div>
 </section>
 
-{% comment %} <section class="content-section">
-  <div class="todayWorryContent">
-    {% for post in filter_list %}
-    {% if post.writer|stringformat:"s" != "gomgom"%}
-        <div class="todayWorryContent-left">
-          <div class="todayWorryContent-left-start">
-              <div class="todayWorryContent-medium-sizebox">
-                  <div class="todayWorryContent-question-header">
-                      <div class="todayWorryContent-question-header__title">
-                        <a href="{% url 'posts:post-detail' post.id %}">{{ post.title }}</a>
-                      </div>
-                      <div class="todayWorryContent-question-header__like1">
-                          <div class="todayWorryContent-question-header__like-icon">
-                            <img src="{% static 'photo/message.svg'%}" alt="message">
-                          </div>
-                          <div class="todayWorryContent-question-header__like-count">
-                            {{ post.comment_set.count }}
-                          </div>
-                      </div>
-                      <div class="todayWorryContent-question-header__like2">
-                          <div class="todayWorryContent-question-header__like-icon">
-                              <img class=".todayWorryContent-icon" src="{% static 'photo/heart.svg'%}" alt="heart">
-                          </div>
-                          <div class="todayWorryContent-question-header__like2-text">
-                              {{ post.like.count }}
-                          </div>
-                      </div>
-                  </div>
-                  <div class="todayWorryContent-two-buttons">
-                      <div class="todayWorryContent-two-buttons-left">
-                          <div class="todayWorryContent-two-buttons-left-1">
-                              <div>{{ post.selection_set.all.0.content }}</div>
-                              <div class="hidden ratio">60%</div>
-                          </div>
-                      </div>
-                      <div class="todayWorryContent-two-buttons-right">
-                          <div class="todayWorryContent-two-buttons-right-1">
-                              <div>{{ post.selection_set.all.1.content }}</div>
-                              <div class="hidden ratio">40%</div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="todayWorryContent-left-start-box-post">
-                    {{ post.content|linebreaksbr }}
-                  </div>
-              </div>
-
-              <div class="todayWorryContent-profile">
-                  <div class="todayWorryContent-profile-box">
-                      <div class="todayWorryContent-profile-box-1">
-                          <div class="todayWorryContent-profile-box-icon">
-                            {% if post.writer.image %}
-                              <img class="userImage" src="{{ post.writer.image.url }}" alt="프로필 이미지">
-                            {% else %}
-                              <img class="userImage" src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
-                            {% endif %}
-                          </div>
-                          <div class="todayWorryContent-profile-box-text1">
-                            {{ post.writer }}
-                          </div>
-                      </div>
-                      <div class="todayWorryContent-profile-box-text2">
-                        {{ post.created_string }}
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
-        </div>
-        {% endif %}
-        {% endfor %}
-  </div>
-</section> {% endcomment %}
 <section class="content-section">
   <div class="todayWorryContent">
     {% for post in filter_list %}
@@ -273,18 +202,47 @@
     <div class="pageNumberBar-container__left-btn">
       <img src="{% static 'photo/leftBtn.png'%}">
     </div>
-    <div class="pageNumberBar-container__chosen-page">
-      <img src="{% static 'photo/chosenPageSign.svg' %}">
-    </div>
-    <div class="pageNumberBar-container__second">
-      2
-    </div>
-    <div class="pageNumberBar-container__third">
-      3
-    </div>
-    <div class="pageNumberBar-container__right-btn">
-      <img src="{% static 'photo/rightBtn.png'%}">
-    </div>
+    {% comment %} 현재 페이지가 1이라면 {% endcomment %}
+    {% if filter_list.number == 1 %}
+      <div class="pageNumberBar-container__chosen-page">
+        <img class="chosen-page-img" src="{% static 'photo/chosenPageSign.svg' %}">
+      </div>
+      <div class="pageNumberBar-container__second">
+        <a href="?category={{ selected_category }}&page=2">2</a>
+      </div>
+      <div class="pageNumberBar-container__third">
+        <a href="?category={{ selected_category }}&page=3">3</a>
+      </div>
+      <div class="pageNumberBar-container__right-btn">
+        <img src="{% static 'photo/rightBtn.png'%}">
+      </div>
+    {% elif filter_list.number == 2 %}
+      <div class="pageNumberBar-container__second">
+        <a href="?category={{ selected_category }}&page=1">1</a>
+      </div>
+      <div class="pageNumberBar-container__chosen-page">
+        <img class="chosen-page-img" src="{% static 'photo/chosenPageSign.svg' %}">
+      </div>
+      <div class="pageNumberBar-container__third">
+        <a href="?category={{ selected_category }}&page=3">3</a>
+      </div>
+      <div class="pageNumberBar-container__right-btn">
+        <img src="{% static 'photo/rightBtn.png'%}">
+      </div>
+    {% elif filter_list.number == 3 %}
+      <div class="pageNumberBar-container__second">
+        <a href="?category={{ selected_category }}&page=1">1</a>
+      </div>
+      <div class="pageNumberBar-container__second">
+        <a href="?category={{ selected_category }}&page=2">2</a>
+      </div>
+      <div class="pageNumberBar-container__chosen-page">
+        <img class="chosen-page-img" src="{% static 'photo/chosenPageSign.svg' %}">
+      </div>
+      <div class="pageNumberBar-container__right-btn">
+        <img src="{% static 'photo/rightBtn.png'%}">
+      </div>
+    {% endif %}
     </div>
 </div>
 </main>
