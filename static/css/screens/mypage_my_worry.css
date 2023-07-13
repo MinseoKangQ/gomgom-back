@@ -196,6 +196,7 @@
     border-radius: 8px;
     background: #FFF;
     box-shadow: 0px 2px 4px 0px rgba(210, 205, 189, 0.50);
+    padding-bottom: 8px;
 }
 
 .todayWorryContent-profile {
@@ -245,11 +246,11 @@
 .todayWorryContent-question-header__title {
     color: #67594C;
     font-family: Pretendard;
-    font-size: 18px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: 100%;
-    margin-top: 24px;
+    margin-top: 8px;
 }
 
 .todayWorryContent-two-buttons {
@@ -364,7 +365,7 @@
     margin-bottom: 10px;
 }
 .todayWorryContent-question-header__like1 {
-    margin-left: 168px;
+    /* margin-left: 168px; */
     display: flex;
     flex-direction: row;
 }

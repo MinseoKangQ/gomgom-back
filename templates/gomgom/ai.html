@@ -2,8 +2,18 @@
 {% block title %}똑똑한 곰곰이{% endblock %}
 {% load static %}
 {% block content %}
+<script>
+    function changeImage() {
+        var input = document.getElementsByClassName('worry-text')[0];
+        var inputValue = input.value;
+        var image = document.querySelector('.image-box img');
+    
+        if (inputValue) { image.src = "/static/photo/bear_ai2.png"; }
+        else { image.src = "/static/photo/bear_ai.png"; }
+    }
+</script>
 <style>
-    .ask-box {
+    {% comment %} .ask-box {
         margin-top: 50px;
     }
     .worry-box-contents {
@@ -45,6 +55,16 @@
         
     }
 
+    {% endcomment %}
+    {% comment %} .image-button {
+        background: url("{% static 'photo/aigomgom.png'%}") no-repeat;
+        border: none;
+        width: 700px; 
+        height: 700px;
+        cursor: pointer;
+        margin-top : 50px;
+        margin-left:400px;
+    }  {% endcomment %}
     .image-button {
         background: url("{% static 'photo/aigomgom.png'%}") no-repeat;
         border: none;
@@ -54,23 +74,12 @@
         margin-top : 50px;
         margin-left:400px;
     }
+
+    .worry-box-contents {
+        background : #FFFFFF;
+    }
     
 </style>
-<script>
-    const input = document.querySelector('.worry-box-contents');
-    const button = document.getElementById('submit-button');
-
-    input.addEventListener('input', function() {
-        if (input.value) {
-            button.style.backgroundImage = "url('/static/photo/thinkgomgom.png')";
-        } else {
-            button.style.backgroundImage = "url('/static/photo/aigomgom.png')";
-        }
-    });
-
-</script>
-
-
 
     <main>
 
@@ -87,13 +96,27 @@
             </div>
         </div>
 
-        <form action="" method="GET">
+        {% comment %} 기존 {% endcomment %}
+        {% comment %} <form action="" method="GET">
             <div class="worry-box">
                 <input type ="text" class="worry-box-contents" name="question" placeholder="고민을 간단히 적어주세요">
             </div>
             <button id="submit-button" type="submit" class="image-button"></button>
-        </form>
+        </form> {% endcomment %}
 
+        <form action="" method="GET">
+            <div class="worry-box">
+                <div class="worry-box-contents">
+                    <input type ="text" class="worry-text" name="question" placeholder="고민을 간단히 적어주세요" onblur="changeImage()">
+                </div>
+            </div>
+            <div class="image-box">
+                <button id="submit-button" class="image-button" type="submit">
+                    {% comment %} <img src="{% static 'photo/aigomgom.png'%}"> {% endcomment %}
+                </button>
+            </div>
+            {% comment %} class="image-button"></button> {% endcomment %}
+        </form>
     </main>
 
 
