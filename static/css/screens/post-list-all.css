@@ -316,6 +316,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-left:5px;
 }
 
 .todayWorryContent-two-buttons-right-1 {
