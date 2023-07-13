@@ -25,7 +25,34 @@
                 .footer {
                     background : #e9e5da;
                 }
-                .question-box__choice-btn_image {
+                .question-box__choice-btn1 {
+                    width: 321px;
+                    height: 88px;
+                    flex-shrink: 0;
+                    border-radius: 8px;
+                    border: 2px solid var(--e-9-e-5-da, #E9E5DA);
+                    background: var(--faf-9-f-6, #FAF9F6);
+                    cursor: pointer;
+                }
+                .question-box__choice-btn2 {
+                    width: 321px;
+                    height: 88px;
+                    flex-shrink: 0;
+                    border-radius: 8px;
+                    border: 2px solid var(--e-9-e-5-da, #E9E5DA);
+                    background: var(--faf-9-f-6, #FAF9F6);
+                    cursor: pointer;
+                }
+                .question-box__choice-btn_image1 {
+                    width: 233px;
+                    height: 88px;
+                    flex-shrink: 0;
+                    border-radius: 8px;
+                    border: 2px solid var(--e-9-e-5-da, #E9E5DA);
+                    background: var(--faf-9-f-6, #FAF9F6);
+                    cursor: pointer;
+                }
+                .question-box__choice-btn_image2 {
                     width: 233px;
                     height: 88px;
                     flex-shrink: 0;
@@ -74,15 +101,15 @@
                                         {% if selection.image %}
                                             <img src="{{ selection.image.url }}" width="88" height="88">
 
-                                            <button class="question-box__choice-btn_image" onclick="location.href='{% url 'posts:post-detail' post.id %}?param=1'">
-                                                <div class="choice-btn__content">
+                                            <button class="question-box__choice-btn_image1"  data-vote="{{ selection.vote }}" onclick="location.href='{% url 'posts:post-detail' post.id %}?param=1'">
+                                                <div class="choice-btn__content-1">
                                                     <span>{{selection.content}}</span>
                                                     <span>{{selection.vote}}</span>
                                                 </div>
                                             </button>
                                         {% else %}
-                                            <button class="question-box__choice-btn" onclick="location.href='{% url 'posts:post-detail' post.id %}?param=1'">
-                                                <div class="choice-btn__content">
+                                            <button class="question-box__choice-btn1"  data-vote="{{ selection.vote }}" onclick="location.href='{% url 'posts:post-detail' post.id %}?param=1'">
+                                                <div class="choice-btn__content-1">
                                                     <span>{{selection.content}}</span>
                                                     <span>{{selection.vote}}</span>
                                                 </div>
@@ -91,7 +118,7 @@
 
                                     {% elif forloop.counter == 2 %}
                                         {% if selection.image %}
-                                            <button class="question-box__choice-btn_image" onclick="location.href='{% url 'posts:post-detail' post.id %}?param=2'">
+                                            <button class="question-box__choice-btn_image2"  data-vote="{{ selection.vote }}" onclick="location.href='{% url 'posts:post-detail' post.id %}?param=2'">
                                                 <div class="choice-btn__content">
                                                     <span>{{selection.content}}</span>
                                                     <span>{{selection.vote}}</span>
@@ -99,7 +126,7 @@
                                             </button>
                                             <img src="{{ selection.image.url }}" width="88" height="88">
                                         {% else %}
-                                            <button class="question-box__choice-btn"
+                                            <button class="question-box__choice-btn2"  data-vote="{{ selection.vote }}"
                                                 onclick="location.href='{% url 'posts:post-detail' post.id %}?param=2'">
                                                 <div class="choice-btn__content">
                                                     <span>{{selection.content}}</span>
@@ -112,6 +139,35 @@
                                 {% endfor %}
                             </div>
                         </div>
+
+
+                        {% comment %}투표 결과를 나타내기 위한 스크립트 코드{% endcomment %}
+                        <script>
+
+                            var buttons1 = document.getElementsByClassName("question-box__choice-btn1");
+                            var buttons2 = document.getElementsByClassName("question-box__choice-btn2");
+                            var buttonsImage1 = document.getElementsByClassName("question-box__choice-btn_image1");
+                            var buttonsImage2 = document.getElementsByClassName("question-box__choice-btn_image2");
+
+                            var param1Button = buttons1[0] || buttonsImage1[0];
+                            var param2Button = buttons2[0] || buttonsImage2[0];
+
+                            var param1Vote = parseInt(param1Button.getAttribute("data-vote"));
+                            var param2Vote = parseInt(param2Button.getAttribute("data-vote"));
+
+                            if (param1Vote > param2Vote) {
+                                
+                                param1Button.style.backgroundColor = "#67594C";
+                                document.getElementsByClassName("choice-btn__content-1")[0].style.color = "#FAF9F6";
+
+                            } else if (param2Vote > param1Vote) {
+
+                                param2Button.style.backgroundColor = "#67594C";
+                                document.getElementsByClassName("choice-btn__content")[0].style.color = "#FAF9F6";
+                            }
+                        </script>
+
+
                         <div class="detail-container__like-btn">
                             <span>공감돼요!</span>
                             <form action="" method="POST" enctype="multipart/form-data">

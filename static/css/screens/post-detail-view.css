@@ -145,8 +145,22 @@ main {
     font-style: normal;
     font-weight: 700;
     line-height: 160%;
+    color:#D2CDBC
+}
+.choice-btn__content-1 span {
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    color:#D2CDBC
 }
 .choice-btn__content {
+
+    display: flex;
+    flex-direction: column;
+}
+.choice-btn__content-1 {
 
     display: flex;
     flex-direction: column;
