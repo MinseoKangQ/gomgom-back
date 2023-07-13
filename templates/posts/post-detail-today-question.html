@@ -60,6 +60,14 @@
                 margin-top: 50px;
                 margin-right: 300px;
             }
+            .content-img-div{
+                margin : 0 20px;
+            }
+            .detail-container__img {
+                top: 85px;
+                right: 35px;
+                margin-right: 33px;
+            }
         </style>
     </head>
     <body>
@@ -94,9 +102,14 @@
                         </div>
                         <div class="detail-container__img">
                             {%comment %}이미지 넣는곳{% endcomment%}
-                            {% if post.image %}
-                                <img src="{{ post.selection.image.url }}" alt="" height="150" width="200">
-                            {% endif %}
+                            {% comment %} {% if post.selection.set_all.image %}
+                                <img src="{{ post.selection.set_all.imageurl }}" alt="" height="150" width="200">
+                            {% endif %} {% endcomment %}
+                            {% for selection in post.selection_set.all %}
+                                <div class="content-img-div">
+                                    <img class="content-img" src="{{ selection.image.url }}" alt="Selection Image">
+                                </div>
+                            {% endfor %}
                         </div>      
                     </div>
                 </div>

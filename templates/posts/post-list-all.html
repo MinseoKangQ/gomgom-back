@@ -160,7 +160,6 @@
 <section class="content-section">
   <div class="todayWorryContent">
     {% for post in filter_list %}
-    {% if post.writer|stringformat:"s" != "gomgom"%}
         <div class="todayWorryContent-left">
           <div class="todayWorryContent-left-start">
               <div class="todayWorryContent-medium-sizebox">
@@ -255,32 +254,53 @@
           </div>
           
         </div>
-        {% endif %}
         {% endfor %}
   </div>
 </section>
 
-
 <div class="pageNumberBar">
   <div class="pageNumberBar-container">
+    {% comment %} 왼쪽 버튼 무조건 출력 {% endcomment %}
     <div class="pageNumberBar-container__left-btn">
       <img src="{% static 'photo/leftBtn.png'%}">
     </div>
     {% comment %} 현재 페이지가 1이라면 {% endcomment %}
     {% if filter_list.number == 1 %}
+      {% comment %} 전체 페이지 개수가 1이라면 {% endcomment %}
+      {% if filter_list.paginator.num_pages == 1 %}
+        <div class="pageNumberBar-container__chosen-page">
+          <img class="chosen-page-img" src="{% static 'photo/chosenPageSign.svg' %}">
+        </div>
+      {% comment %} 전체 페이지 개수가 2이라면 {% endcomment %}
+        {% elif filter_list.paginator.num_pages == 2  %}
+        <div class="pageNumberBar-container__chosen-page">
+          <img class="chosen-page-img" src="{% static 'photo/chosenPageSign.svg' %}">
+        </div>
+        <div class="pageNumberBar-container__second">
+          <a href="?category={{ selected_category }}&page=2">2</a>
+        </div>
+      {% elif filter_list.paginator.num_pages == 3  %}
+        <div class="pageNumberBar-container__chosen-page">
+          <img class="chosen-page-img" src="{% static 'photo/chosenPageSign.svg' %}">
+        </div>
+        <div class="pageNumberBar-container__second">
+          <a href="?category={{ selected_category }}&page=2">2</a>
+        </div>
+        <div class="pageNumberBar-container__third">
+          <a href="?category={{ selected_category }}&page=3">3</a>
+        </div>
+      {% endif%}
+      {% comment %} 현재 페이지가 2라면 {% endcomment %}
+    {% elif filter_list.number == 2 %}
+      {% comment %} 전체 페이지 개수가 2개이면 {% endcomment %}
+      {% if filter_list.paginator.num_pages == 2  %}
+      <div class="pageNumberBar-container__second">
+        <a href="?category={{ selected_category }}&page=1">1</a>
+      </div>
       <div class="pageNumberBar-container__chosen-page">
         <img class="chosen-page-img" src="{% static 'photo/chosenPageSign.svg' %}">
       </div>
-      <div class="pageNumberBar-container__second">
-        <a href="?category={{ selected_category }}&page=2">2</a>
-      </div>
-      <div class="pageNumberBar-container__third">
-        <a href="?category={{ selected_category }}&page=3">3</a>
-      </div>
-      <div class="pageNumberBar-container__right-btn">
-        <img src="{% static 'photo/rightBtn.png'%}">
-      </div>
-    {% elif filter_list.number == 2 %}
+      {% elif filter_list.paginator.num_pages == 3%}
       <div class="pageNumberBar-container__second">
         <a href="?category={{ selected_category }}&page=1">1</a>
       </div>
@@ -290,9 +310,9 @@
       <div class="pageNumberBar-container__third">
         <a href="?category={{ selected_category }}&page=3">3</a>
       </div>
-      <div class="pageNumberBar-container__right-btn">
-        <img src="{% static 'photo/rightBtn.png'%}">
-      </div>
+      {% endif %}
+      </div> 
+      {% comment %} 현재 페이지가 3이라면 {% endcomment %}
     {% elif filter_list.number == 3 %}
       <div class="pageNumberBar-container__second">
         <a href="?category={{ selected_category }}&page=1">1</a>
@@ -303,10 +323,11 @@
       <div class="pageNumberBar-container__chosen-page">
         <img class="chosen-page-img" src="{% static 'photo/chosenPageSign.svg' %}">
       </div>
-      <div class="pageNumberBar-container__right-btn">
-        <img src="{% static 'photo/rightBtn.png'%}">
-      </div>
     {% endif %}
+    {% comment %} 오른쪽 버튼 무조건 출력 {% endcomment %}
+    <div class="pageNumberBar-container__right-btn">
+      <img src="{% static 'photo/rightBtn.png'%}">
+    </div>
     </div>
 </div>
 </main>
