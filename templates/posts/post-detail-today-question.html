@@ -68,6 +68,10 @@
                 right: 35px;
                 margin-right: 33px;
             }
+            .selection_image{
+                object-fit:cover;
+            }
+          
         </style>
     </head>
     <body>
@@ -136,7 +140,7 @@
                         {% if comment.writer.image %}
                             <img src="{{ comment.writer.image.url }}" alt="Profile Picture" height="40" width="40">
                         {% else %}
-                            <img src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
+                            <img src="{% static 'photo/gomgomprofile.png' %}" alt="" height="40" width="40">
                         {% endif %}
                     </div>
 
@@ -152,7 +156,7 @@
                         </div>
                         <div class="comments-container__comment-box__img">
                             {% if comment.image %}
-                                <img class="card__image" src="{{ comment.image.url }}" alt="" height="150" width="200">
+                                <img class="selection_image" src="{{ comment.image.url }}" alt="" height="150" width="200">
                             {% endif %}
                         </div>
                     </div>

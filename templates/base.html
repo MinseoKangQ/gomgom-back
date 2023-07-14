@@ -28,6 +28,9 @@
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@700&display=swap" rel="stylesheet">
 
 </head>
+<style>
+
+</style>
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -52,7 +55,7 @@
                 {% else %}
                     <div class="mypage-div">
                         <a href="{% url 'accounts:mypage'%}">
-                            <img class="mypage-img" src="{% static 'photo/basic_profile.png' %}">
+                            <img src="{% static 'photo/gomgomprofile.png' %}"  height=35, width=30>
                         </a>
                     </div>
                 {% endif %}

@@ -70,6 +70,9 @@
     margin-left: 20px;
     cursor: pointer;
   }
+  .selection-img{
+    object-fit:cover;
+  }
 
 </style>
 
@@ -189,7 +192,7 @@
 
                   <div class="todayWorryContent-two-buttons">
                     {% if post.selection_set.all.0.image %}
-                    <img src="{{ post.selection_set.all.0.image.url }}" height="72" width="72">
+                    <img class="selection-img" src="{{ post.selection_set.all.0.image.url }}" height="72" width="72">
                     <div class="todayWorryContent-selection-image-content-left">
                       <div class="todayWorryContent-two-buttons-left-1">
                           <div>{{ post.selection_set.all.0.content }}</div>
@@ -212,7 +215,7 @@
                             <div class="hidden ratio">40%</div>
                         </div>
                     </div>
-                    <img src="{{ post.selection_set.all.1.image.url }}" height="72" width="72">
+                    <img class="selection-img" src="{{ post.selection_set.all.1.image.url }}" height="72" width="72">
                     {% else %}
                     <div class="todayWorryContent-two-buttons-right">
                       <div class="todayWorryContent-two-buttons-right-1">
@@ -239,7 +242,7 @@
                             {% if post.writer.image %}
                               <img class="userImage" src="{{ post.writer.image.url }}" alt="프로필 이미지">
                             {% else %}
-                              <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                              <img src="{% static 'photo/completeGom.png' %}" alt="프로필 이미지" height="40" width="45">
                             {% endif %}
                           </div>
                           <div class="todayWorryContent-profile-box-text1">
