@@ -27,6 +27,41 @@
       .main_visual_last{
         padding-bottom: 90px;
       }
+      .todayWorryContent-selection-image-content-left {
+        width: 181px;
+        height: 72px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        border: 2px solid var(--e-9-e-5-da, #E9E5DA);
+        background: var(--faf-9-f-6, #FAF9F6);
+        color: #67594C;
+        font-family: Pretendard;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 160%;
+        cursor: pointer;
+    }
+    .todayWorryContent-selection-image-content-right {
+        width: 181px;
+        height: 72px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        border: 2px solid var(--e-9-e-5-da, #E9E5DA);
+        background: var(--faf-9-f-6, #FAF9F6);
+        color: #67594C;
+        font-family: Pretendard;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 160%;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+    .fit {
+        object-fit: cover;
+
+    }
 </style>
 <body>
 
@@ -185,20 +220,51 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="todayWorryContent-two-buttons">
-                                        <div class="todayWorryContent-two-buttons-left">
-                                            <div class="todayWorryContent-two-buttons-left-1">
-                                                <div>{{ post.selection_set.all.0.content }}</div>
-                                                <div class="hidden ratio">60%</div>
-                                            </div>
-                                        </div>
-                                        <div class="todayWorryContent-two-buttons-right">
-                                            <div class="todayWorryContent-two-buttons-right-1">
-                                                <div>{{ post.selection_set.all.1.content }}</div>
-                                                <div class="hidden ratio">40%</div>
-                                            </div>
+
+
+                                    
+                                    {% comment %} {% endcomment %}
+
+                                <div class="todayWorryContent-two-buttons">
+                                    {% if post.selection_set.all.0.image %}
+                                    <img class="fit" src="{{ post.selection_set.all.0.image.url }}" height="72" width="72">
+                                    <div class="todayWorryContent-selection-image-content-left">
+                                    <div class="todayWorryContent-two-buttons-left-1">
+                                        <div>{{ post.selection_set.all.0.content }}</div>
+                                        <div class="hidden ratio">60%</div>
+                                    </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="todayWorryContent-two-buttons-left">
+                                    <div class="todayWorryContent-two-buttons-left-1">
+                                        <div>{{ post.selection_set.all.0.content }}</div>
+                                        <div class="hidden ratio">60%</div>
+                                    </div>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    {% if post.selection_set.all.1.image %}
+                                    <div class="todayWorryContent-selection-image-content-right">
+                                        <div class="todayWorryContent-two-buttons-right-1">
+                                            <div>{{ post.selection_set.all.1.content }}</div>
+                                            <div class="hidden ratio">40%</div>
                                         </div>
                                     </div>
+                                    <img class="fit" src="{{ post.selection_set.all.1.image.url }}" height="72" width="72">
+                                    {% else %}
+                                    <div class="todayWorryContent-two-buttons-right">
+                                    <div class="todayWorryContent-two-buttons-right-1">
+                                        <div>{{ post.selection_set.all.1.content }}</div>
+                                        <div class="hidden ratio">40%</div>
+                                    </div>
+                                    </div>
+                                    {% endif %}
+
+
+                                </div>
+
+
+
                                     <div class="todayWorryContent-left-start-box-post">
                                       {{ post.content|linebreaksbr }}
                                     </div>
@@ -211,7 +277,7 @@
                                               {% if post.writer.image %}
                                                 <img class="userImage" src="{{ post.writer.image.url }}" alt="프로필 이미지">
                                               {% else %}
-                                                <img src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                                                <img src="{% static 'photo/completeGom.png' %}" alt="프로필 이미지"  height=40, width=45>
                                               {% endif %}
                                             </div>
                                             <div class="todayWorryContent-profile-box-text1">

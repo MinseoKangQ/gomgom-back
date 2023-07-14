@@ -79,7 +79,7 @@
                     </div>
                     {% else %}
                     <div class="detiail-container__view-user-div">
-                        <img class="detail-container__view-user" src="{% static 'photo/mypage-icon.png' %}" alt="프로필 이미지">
+                        <img class="detail-container__view-user" src="{% static 'photo/gomgomprofile.png' %}" alt="프로필 이미지">
                     </div>
                     {% endif %}
                     <div class="detail-container__div">
@@ -214,7 +214,7 @@
                             {% if comment.writer.image %}
                                 <img class="comment-container__view-user userImage" src="{{ comment.writer.image.url }}" alt="Profile Picture" height="40" width="40">
                             {% else %}
-                                <img class="comment-container__view-user userImage" src="{% static 'photo/basic_profile.png' %}" alt="" height="40" width="40">
+                                <img class="comment-container__view-user userImage" src="{% static 'photo/gomgomprofile.png' %}" alt="" height="40" width="40">
                             {% endif %}
                         </div>
                         <div class="comments-container__comment-box">
@@ -229,7 +229,7 @@
                             </div>
                             <div class="comments-container__comment-box__img">
                                 {% if comment.image %}
-                                    <img src="{{ comment.image.url }}" alt="" height="100" width="150">
+                                    <img class="selection-img" src="{{ comment.image.url }}" alt="" height="100" width="150">
                                 {% endif %}
                             </div>
                         </div>
