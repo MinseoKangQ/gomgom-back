@@ -106,8 +106,8 @@ https://github.com/MinseoKangQ/gomgom-back/assets/98332877/cb499187-df01-4e59-9d
 
 - 기획 : 이륜진
 - 디자인 : 구가영
-- 프론트 : <a href="https://github.com/drimh>신승혜</a>, <a href="https://github.com/benniejung>정예빈</a>
-- 백 : <a href="https://github.com/hyeonda02>강다현</a>, <a href="https://github.com/MinseoKangQ">강민서</a>
+- 프론트 : <a href="https://github.com/drimh">신승혜</a>, <a href="https://github.com/benniejung">정예빈</a>
+- 백 : <a href="https://github.com/hyeonda02">강다현</a>, <a href="https://github.com/MinseoKangQ">강민서</a>
 
 <br>
 
