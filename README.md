@@ -6,6 +6,7 @@
 
 <br>
 
+<img width="250" alt="곰곰이" src="https://github.com/MinseoKangQ/gomgom-back/assets/98332877/24cbc501-cc4a-4d1f-a4fd-f0b8b38127ca">
 
 ---
 
@@ -82,6 +83,10 @@
 <br>
 
 <h4>3. 시연 영상</h4>
+
+<br>
+
+https://github.com/MinseoKangQ/gomgom-back/assets/98332877/cb499187-df01-4e59-9d74-321ef406b19a
 
 <br>
 
