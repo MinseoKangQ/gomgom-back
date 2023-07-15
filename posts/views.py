@@ -45,7 +45,6 @@ def post_create_form_view(request,selection_count=2):
         return render(request, 'posts/post-create-complete.html')
     return render(request, 'posts/post-create-complete.html')
 
-@login_required
 def post_list_view(request):
     if request.method == 'GET':
         selected_category = request.GET.get('category') 

@@ -109,6 +109,18 @@
       object-fit:cover;
     }
 
+    .selection_image {
+      object-fit: cover;
+      border-radius: 10px;
+  }
+
+    .todayWorryContent-selection-image-content-left {
+      margin-left: 5px;
+    }
+    .todayWorryContent-selection-image-content-right {
+      margin-right: 5px;
+    }
+
   </style>
 
         <div class="mypage">
@@ -126,7 +138,7 @@
                 </div>
                 <div class="mypage__settings">
                   {% comment %} 프로필 수정 부분 페이지 연결하기 {% endcomment %}
-                  <a href="{% url 'accounts:logout' %}"><span>프로필 수정</span></a>
+                  {% comment %} <a href="{% url 'accounts:logout' %}"><span>프로필 수정</span></a> {% endcomment %}
                   <a href="{% url 'accounts:logout' %}"><span>로그아웃</span></a>
                 </div>    
             </div>
