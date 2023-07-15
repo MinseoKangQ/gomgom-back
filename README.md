@@ -131,4 +131,5 @@ https://github.com/MinseoKangQ/gomgom-back/assets/98332877/cb499187-df01-4e59-9d
 <br>
 
 <h5>협업 툴</h5>
+
 <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"/> <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white"/> <img src="https://img.shields.io/badge/Notion-black?style=for-the-badge&logo=Notion&logoColor=white"/> <img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=Github&logoColor=white"/>
