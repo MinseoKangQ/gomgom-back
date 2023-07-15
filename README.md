@@ -6,7 +6,9 @@
 
 <br>
 
-<img width="250" alt="곰곰이" src="https://github.com/MinseoKangQ/gomgom-back/assets/98332877/24cbc501-cc4a-4d1f-a4fd-f0b8b38127ca">
+<img align="center" width="250" alt="곰곰이" src="https://github.com/MinseoKangQ/gomgom-back/assets/98332877/24cbc501-cc4a-4d1f-a4fd-f0b8b38127ca">
+
+<br>
 
 ---
 
@@ -92,6 +94,8 @@ https://github.com/MinseoKangQ/gomgom-back/assets/98332877/cb499187-df01-4e59-9d
 
 ---
 
+<br>
+
 <h4>4. 정보</h4>
 
 <br>
@@ -113,14 +117,11 @@ https://github.com/MinseoKangQ/gomgom-back/assets/98332877/cb499187-df01-4e59-9d
 
 <h5>개발 언어 및 프레임워크</h5>
 
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/>
-<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>
 
 <br>
 
-<img src="https://img.shields.io/badge/Python-3766AB?style=for-the-badge&logo=Python&logoColor=white"/>
-<img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=Django&logoColor=white)"/>
+<img src="https://img.shields.io/badge/Python-3766AB?style=for-the-badge&logo=Python&logoColor=white"/> <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=Django&logoColor=white)"/>
 
 <br>
 <br>
@@ -133,8 +134,6 @@ https://github.com/MinseoKangQ/gomgom-back/assets/98332877/cb499187-df01-4e59-9d
 <br>
 
 <h5>협업 툴</h5>
-<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"/>
-<img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white"/>
-<img src="https://img.shields.io/badge/Notion-black?style=for-the-badge&logo=Notion&logoColor=white"/>
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"/> <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white"/> <img src="https://img.shields.io/badge/Notion-black?style=for-the-badge&logo=Notion&logoColor=white"/>
 
 <img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=Github&logoColor=white"/>
