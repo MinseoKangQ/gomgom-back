@@ -106,6 +106,7 @@ def post_detail_view(request, id):
             param = request.GET.get('param')
             selections = Selection.objects.filter(post=post)
             
+            # 투표ㄹ 위한 로직
             if param == "1" or param == "2":
                 post.all_voted_count += 1
                 post.save()

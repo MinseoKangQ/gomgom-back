@@ -4,8 +4,8 @@ import os
 import openai
 from posts.models import Post
 
-# 실제 AI 테스트 할 때 주석 풀기
-openai.api_key = os.environ['OPENAI_API_KEY']
+# 실제 시연 여기 풀기
+# openai.api_key = os.environ['OPENAI_API_KEY']
 
 # 곰곰AI 페이지 접속 시
 def ai_view(request):
@@ -25,15 +25,14 @@ def ai_view(request):
             response_ko = translator.translate(response_en, src='en', dest='ko')
             print("답변 완료")
             # 답변이 포함된 페이지로 렌더링 해주기
-            # 테스트 시 여기 풀기
-            context = { 'question' : question_ko,
-                        'response' : response_ko.text,}
+            # 실제 시연 여기 풀기
             # context = { 'question' : question_ko,
-                        # 'response' : "성공" }
-            # print(response_ko.text)
+                        # 'response' : response_ko.text,}
+            # 테스트
+            context = { 'question' : question_ko,
+                        'response' : "성공" }
+            print(response_ko.text)
             return render(request, 'gomgom/ai_response.html',context)
-        # if request.user.is_authenticated:
-        #     return render(request,'gomgom/ai_response.html', context)
         # 로그인이 안 된 상태이면 로그인 화면으로 이동
         else:
             return redirect('accounts:login')
