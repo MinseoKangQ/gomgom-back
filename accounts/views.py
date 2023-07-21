@@ -36,12 +36,10 @@ def login_view(request):
     else:
         #개인정보는 post 요청으로 받아옴 (CustomAuthenticationForm으로..)
         form = CustomAuthenticationForm(request, request.POST)
-        #비지니스 로직
         if form.is_valid():
                 login(request, form.user_cache)
                 return redirect('gomgom:home')
-            # else:
-                # print('User not found')
+
         else: #비지니스 로직 실패 ( 로그인 실패 )
             print(form.error_messages)
             return render(request,'accounts/login.html',{'form':CustomAuthenticationForm()})
@@ -50,7 +48,7 @@ def login_view(request):
 def logout_view(request):
     if request.user.is_authenticated:
         logout(request)
-    #로그아웃 시, 그냥 홈페이지로 이동 redirect  ** 추후에 설정 필요함! **
+
     return redirect('gomgom:home')
 
 # 마이페이지 (1. 내가 작성한 글, 2. 내가 공감한 글, 3. 내가 답변한 글)
