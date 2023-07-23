@@ -1,10 +1,7 @@
 from django.contrib.auth import logout,login,authenticate
 from django.shortcuts import redirect,render
 from accounts.forms import signupForm
-from django.contrib.auth.forms import AuthenticationForm
 from posts.models import Post, Comment
-from users.models import models
-from users.models import User
 from .forms import CustomAuthenticationForm
 from django.contrib.auth.decorators import login_required
 
